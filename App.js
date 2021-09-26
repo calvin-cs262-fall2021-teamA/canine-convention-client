@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Platform, useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 
 
