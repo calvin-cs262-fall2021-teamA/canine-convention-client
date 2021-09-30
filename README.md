@@ -6,8 +6,9 @@ A React Native app for finding fellow dog owners to go on ctivities with.
 ## Installation
 The program requires npm and expo installed to run.
 
-To install npm, follow the guide at (https://docs.npmjs.com/cli/v7/commands/npm-install)
-To install expo, follow the guide at (https://docs.expo.dev/get-started/installation)
+To install npm, follow the guide at (https://docs.npmjs.com/cli/v7/commands/npm-install).
+
+To install expo, follow the guide at (https://docs.expo.dev/get-started/installation).
 
 To run the program:
 ```
