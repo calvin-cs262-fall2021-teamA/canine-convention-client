@@ -1,6 +1,6 @@
 # Canine Convention
 
-A React Native app for finding fellow dog owners to go on ctivities with.
+A React Native app for finding fellow dog owners to go on activities with.
 **WORK IN PROGRESS**
 
 ## Installation
