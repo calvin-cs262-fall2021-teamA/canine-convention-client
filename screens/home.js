@@ -31,10 +31,10 @@ export default function HomeScreen() {
   
     return (
       <View style={globalStyles.container}>
+        <StatusBar style="auto" />
         <Text>Welcome to Canine Convention! {"\n"} 
         This is your current location: 
         {"\n"} {text}</Text>
-        <StatusBar style="auto" />
       </View>
     );
   }
