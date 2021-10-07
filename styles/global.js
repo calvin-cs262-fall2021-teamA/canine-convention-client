@@ -34,12 +34,21 @@ export const globalStyles = StyleSheet.create({
     },
    
     loginBtn: {
-      width: "80%",
+      width: "50%",
       borderRadius: 25,
       height: 50,
       alignItems: "center",
       justifyContent: "center",
       marginTop: 40,
       backgroundColor: "#0047AB",
+    },
+    title: {
+      fontSize: 70,
+      fontWeight: 'bold'
+    },
+    logo: {
+      width: 500,
+      height: 300,
+      marginTop: 100,
     },
   });
