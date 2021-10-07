@@ -51,4 +51,13 @@ export const globalStyles = StyleSheet.create({
       height: 300,
       marginTop: 100,
     },
+    homeBtns:{
+      width: "20%",
+      borderRadius: 25,
+      height: 50,
+      alignItems: "center",
+      justifyContent: "center",
+      marginTop: 40,
+      backgroundColor: "#7DF9FF",
+    }
   });
