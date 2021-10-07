@@ -11,7 +11,7 @@ export default function StartScreen({ navigation }) {
           <TouchableOpacity style={globalStyles.loginBtn} onPress={() => navigation.navigate('Login')}>
               <Text style={{fontSize: 20}}>LOGIN</Text>
           </TouchableOpacity> 
-          <TouchableOpacity style={globalStyles.loginBtn}onPress={() => navigation.navigate('Login')}>
+          <TouchableOpacity style={globalStyles.loginBtn}onPress={() => navigation.navigate('SignUp')}>
               <Text style={{fontSize: 20}}>SIGN UP</Text>
           </TouchableOpacity>
         </View>
