@@ -12,6 +12,7 @@ import { globalStyles } from '../styles/global';
 export default function SignUpScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
  
   return (
     <View style={globalStyles.container}>
