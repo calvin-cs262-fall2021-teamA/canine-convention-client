@@ -40,7 +40,8 @@ export default function HomeScreen({navigation}) {
         <TouchableOpacity style={globalStyles.homeBtns} onPress={() => navigation.navigate('History')}>
           <Text style={globalStyles.loginText}>View History</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={globalStyles.homeBtns} onPress={() => navigation.navigate('Profile')}>
+        <TouchableOpacity style={globalStyles.homeBtns} onPress={() => 
+            navigation.navigate('Profile', {location: locText})}>
           <Text style={globalStyles.loginText}>View my Profile</Text>
         </TouchableOpacity>
 
