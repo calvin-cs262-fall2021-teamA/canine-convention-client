@@ -5,6 +5,7 @@ import HomeScreen from './screens/home';
 import LoginScreen from './screens/login';
 import StartScreen from './screens/start';
 import SignUpScreen from './screens/signUp';
+import FindEvent from './screens/eventFind';
 
 
 
@@ -18,7 +19,7 @@ function App() {
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="Start" component={StartScreen}/>
         <Stack.Screen name="SignUp" component={SignUpScreen}/>
-
+        <Stack.Screen name="FindEvent" component={FindEvent}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
