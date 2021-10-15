@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const globalStyles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#EFF0F4',
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -13,7 +13,7 @@ export const globalStyles = StyleSheet.create({
     },
    
     inputView: {
-      backgroundColor: "#7DF9FF",
+      backgroundColor: "#FFF",
       borderRadius: 30,
       width: "70%",
       height: 45,
@@ -40,7 +40,7 @@ export const globalStyles = StyleSheet.create({
       alignItems: "center",
       justifyContent: "center",
       marginTop: 40,
-      backgroundColor: "#0047AB",
+      backgroundColor: "#195F6B",
     },
     title: {
       fontSize: 70,
@@ -58,6 +58,10 @@ export const globalStyles = StyleSheet.create({
       alignItems: "center",
       justifyContent: "center",
       marginTop: 40,
-      backgroundColor: "#7DF9FF",
-    }
+      backgroundColor: "#195F6B",
+    },
+    header:{
+      backgroundColor: '#16BAC6',
+      fontWeight: 'bold'
+    },
   });
