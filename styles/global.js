@@ -69,7 +69,7 @@ export const globalStyles = StyleSheet.create({
       alignItems: "center",
       justifyContent: "center",
       marginTop: 40,
-      backgroundColor: "#7DF9FF",
+      backgroundColor: "#195F6B",
     },
     editBtn:{
       width: "15%",

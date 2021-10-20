@@ -6,6 +6,7 @@ import LoginScreen from './screens/login';
 import StartScreen from './screens/start';
 import SignUpScreen from './screens/signUp';
 import Profile from './screens/profile';
+import Map from './screens/map';
 
 
 const Stack = createNativeStackNavigator();
@@ -19,7 +20,7 @@ function App() {
         <Stack.Screen name="Start" component={StartScreen} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
         <Stack.Screen name="SignUp" component={SignUpScreen} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
         <Stack.Screen name="Profile" component={Profile} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
-
+        <Stack.Screen name="Map" component={Map} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
