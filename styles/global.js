@@ -26,6 +26,7 @@ export const globalStyles = StyleSheet.create({
       flex: 1,
       padding: 10,
       marginLeft: 20,
+      fontSize: 17,
     },
    
     forgot_button: {
@@ -79,15 +80,15 @@ export const globalStyles = StyleSheet.create({
       justifyContent: "center",
       backgroundColor: "#16BAC6",
       marginTop: 10,
-      marginBottom: 'auto',
-      marginLeft:'auto'
+      marginLeft:'auto',
     },
     pager:{
       height: '50%',
       width: "100%",
       backgroundColor: '#16BAC6',
       borderColor: '#16BAC6',
-      borderWidth: 10
+      borderWidth: 10,
+      borderBottomWidth: 50,
     },
     picture:{
       width: 200,
@@ -115,5 +116,15 @@ export const globalStyles = StyleSheet.create({
     row: {
       flex: 1,
       flexDirection: 'row',
-    }
+    },
+    picturePicker: {
+      fontSize: 20,
+      backgroundColor: '#16BAC6',
+      borderRadius: 25,
+      width: '60%',
+      height: 45,
+      justifyContent: 'center',
+      marginBottom:30,
+      alignItems: 'center'
+    },
   });
