@@ -8,6 +8,7 @@ import SignUpScreen from './screens/signUp';
 import Profile from './screens/profile';
 import ProfileEdit from './screens/profile_edit';
 import DogProfileEdit from './screens/dogprofile_edit';
+import Map from './screens/map';
 
 
 const Stack = createNativeStackNavigator();
@@ -23,7 +24,7 @@ function App() {
         <Stack.Screen name="Profile" component={Profile} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
         <Stack.Screen name="ProfileEdit" component={ProfileEdit} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
         <Stack.Screen name="DogProfileEdit" component={DogProfileEdit} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
-
+        <Stack.Screen name="Map" component={Map} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
