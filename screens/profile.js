@@ -26,7 +26,7 @@ export default function Profile({route, navigation}){
             </TouchableOpacity>
             <View style={{marginVertical: 80, left: '5%'}}>
                 <Text style={globalStyles.subtitle}>John Doe</Text>
-                <Text style={globalStyles.subtitle}>johndoe@gmail.com</Text>
+                <Text style={globalStyles.subtitle}>616-222-5555</Text>
                 <Text style={globalStyles.subtitle}>Grand Rapids{"\n"}</Text>
             </View>
             <View style={[globalStyles.container, {marginBottom: 80}]}>

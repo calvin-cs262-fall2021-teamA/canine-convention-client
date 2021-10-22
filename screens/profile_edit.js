@@ -60,7 +60,7 @@ export default function ProfileEdit({navigation}){
             <View style={globalStyles.inputView}>
                 <TextInput
                     style={globalStyles.TextInput}
-                    placeholder="johndoe@gmail.com"
+                    placeholder="616-222-5555"
                     placeholderTextColor="#003f5c"
                 />
             </View>
