@@ -1,0 +1,15 @@
+Get data about event from user
+Request event with given data from database
+If event exists:
+    Fetch event data
+    Partcipant = user
+    continue
+Else:
+    Create event with given data, participant = NULL
+    participantInfo = NULL
+    while participantInfo == NULL:
+        request event data
+        if participant != NULL:
+            fetch participantInfo
+
+Return user data collected  
