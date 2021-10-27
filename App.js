@@ -18,11 +18,6 @@ function App() {
   return (
     <NavigationContainer >
       <Stack.Navigator initialRouteName="Start">
-        <Stack.Screen name="Home-GPS" component={HomeScreen}/>
-        <Stack.Screen name="Login" component={LoginScreen}/>
-        <Stack.Screen name="Start" component={StartScreen}/>
-        <Stack.Screen name="SignUp" component={SignUpScreen}/>
-        <Stack.Screen name="FindEvent" component={FindEvent}/>
         <Stack.Screen name="Home-GPS" component={HomeScreen} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
         <Stack.Screen name="Login" component={LoginScreen} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
         <Stack.Screen name="Start" component={StartScreen} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
