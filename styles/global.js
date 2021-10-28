@@ -64,12 +64,13 @@ export const globalStyles = StyleSheet.create({
       marginTop: 100,
     },
     homeBtns:{
-      width: "20%",
+      width: '35%',
       borderRadius: 25,
       height: 50,
+      padding: 10,
       alignItems: "center",
       justifyContent: "center",
-      marginTop: 40,
+      marginTop: 20,
       backgroundColor: "#195F6B",
     },
     editBtn:{
