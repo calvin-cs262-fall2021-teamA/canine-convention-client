@@ -36,13 +36,16 @@ export default function LoginScreen({ navigation }) {
           onChangeText={(password) => setPassword(password)}
         />
       </View>
+
+      <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+        <Text style={globalStyles.forgot_button}>Don't have an account?</Text>
       </TouchableOpacity>
       <TouchableOpacity>
         <Text style={globalStyles.forgot_button}>Forgot Password?</Text>
       </TouchableOpacity>
  
       <TouchableOpacity style={globalStyles.loginBtn} onPress={() => navigation.navigate('Home-GPS')}>
-        <Text style={globalStyles.loginText,globalStyles.homeButtonsText}>LOGIN</Text>
+        <Text style={globalStyles.loginText}>LOGIN</Text>
       </TouchableOpacity>
     </View>
   );
