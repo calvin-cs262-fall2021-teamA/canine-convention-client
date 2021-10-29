@@ -46,7 +46,7 @@ export default function SignUpScreen({ navigation }) {
         />
       </View>
       <TouchableOpacity style={globalStyles.loginBtn} onPress={() => navigation.navigate('Home-GPS')}>
-        <Text style={globalStyles.loginText}> SIGN UP </Text>
+        <Text style={globalStyles.loginText,globalStyles.homeButtonsText}> SIGN UP </Text>
       </TouchableOpacity>
     </View>
   );
