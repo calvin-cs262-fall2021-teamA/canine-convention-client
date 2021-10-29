@@ -14,17 +14,19 @@ import blankPFP from '../assets/blankPFP.png'
 import blankDogPFP from '../assets/blankDogPFP.jpg'
 
 //Profile is set up to get location from home. 
-//It's not being printed because the location text is too long
+//It's not being printed because the location text is too long currently
+//
 
 export default function Profile({route, navigation}){
     const{location} = route.params;
     return(
-        <View style={{backgroundColor: '#fff'}}>
-            <TouchableOpacity style={globalStyles.editBtn} onPress={() => navigation.navigate('profileEdit')}>
+        <View style={{backgroundColor: '#EFF0F4'}}>
+            <TouchableOpacity style={globalStyles.editBtn} onPress={() => navigation.navigate('ProfileEdit')}>
                 <Text style={globalStyles.loginText}>Edit</Text>
             </TouchableOpacity>
             <View style={{marginVertical: 80, left: '5%'}}>
                 <Text style={globalStyles.subtitle}>John Doe</Text>
+                <Text style={globalStyles.subtitle}>616-222-5555</Text>
                 <Text style={globalStyles.subtitle}>Grand Rapids{"\n"}</Text>
             </View>
             <View style={[globalStyles.container, {marginBottom: 80}]}>
@@ -62,7 +64,7 @@ export default function Profile({route, navigation}){
                     <View style={globalStyles.row}>
                         <TouchableWithoutFeedback>
                             <View style={globalStyles.tag}>
-                                <Text style={globalStyles.tagText}>Playful</Text>
+                                <Text style={globalStyles.tagText}>2 years</Text>
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
