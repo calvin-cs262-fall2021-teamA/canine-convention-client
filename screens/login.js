@@ -37,7 +37,7 @@ export default function LoginScreen({ navigation }) {
         />
       </View>
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
         <Text style={globalStyles.forgot_button}>Don't have an account?</Text>
       </TouchableOpacity>
       <TouchableOpacity>
