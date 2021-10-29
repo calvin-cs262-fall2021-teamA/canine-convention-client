@@ -17,7 +17,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer >
-      <Stack.Navigator initialRouteName="Start">
+      <Stack.Navigator initialRouteName="Start" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home-GPS" component={HomeScreen} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
         <Stack.Screen name="Login" component={LoginScreen} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
         <Stack.Screen name="Start" component={StartScreen} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
