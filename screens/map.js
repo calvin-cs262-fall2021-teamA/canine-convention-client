@@ -20,6 +20,12 @@ export default function Map({navigation}){
 
       })();
     }, []);
+    let locText = 'Waiting..';
+    if (errorMsg) {
+      locText = errorMsg;
+    } else if (location) {
+      locText = JSON.stringify(location);
+    }
         return(
             <MapView
                 style={{ flex:1 }}

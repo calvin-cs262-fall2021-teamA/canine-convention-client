@@ -38,14 +38,14 @@ export default function LoginScreen({ navigation }) {
       </View>
 
       <TouchableOpacity>
-        <Text style={globalStyles.forgot_button}>Don't have an account?</Text>
+        <Text style={globalStyles.forgot_button} onPress={() => navigation.navigate('Login')}>Don't have an account?</Text>
       </TouchableOpacity>
       <TouchableOpacity>
         <Text style={globalStyles.forgot_button}>Forgot Password?</Text>
       </TouchableOpacity>
  
       <TouchableOpacity style={globalStyles.loginBtn} onPress={() => navigation.navigate('Home-GPS')}>
-        <Text style={globalStyles.loginText}>LOGIN</Text>
+        <Text style={globalStyles.loginText,globalStyles.homeButtonsText}>LOGIN</Text>
       </TouchableOpacity>
     </View>
   );

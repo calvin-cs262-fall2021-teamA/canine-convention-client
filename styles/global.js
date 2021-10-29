@@ -9,7 +9,9 @@ export const globalStyles = StyleSheet.create({
     },
 
     image: {
-      marginBottom: 40,
+      width: 400,
+      height: 400,
+      marginBottom: 0,
     },
    
     inputView: {
@@ -43,14 +45,14 @@ export const globalStyles = StyleSheet.create({
       backgroundColor: "#195F6B",
     },
     title: {
-      fontSize: 40,
-      fontWeight: 'bold'
+      fontSize: 45,
+      fontWeight: 'bold',
     },
     dogName: {
       fontSize: 25,
       marginRight: 'auto',
       marginTop: 20,
-      marginLeft: 20
+      marginLeft: 20,
     },
     subtitle: {
       marginRight: 'auto',
@@ -63,9 +65,10 @@ export const globalStyles = StyleSheet.create({
       marginTop: 100,
     },
     homeBtns:{
-      width: "20%",
+      width: "75%",
       borderRadius: 25,
       height: 50,
+      flexDirection: 'row',
       alignItems: "center",
       justifyContent: "center",
       marginTop: 40,
@@ -75,7 +78,6 @@ export const globalStyles = StyleSheet.create({
       width: "15%",
       borderRadius: 25,
       height: 30,
-      alignItems: "center",
       justifyContent: "center",
       backgroundColor: "#16BAC6",
       marginTop: 10,
@@ -115,5 +117,8 @@ export const globalStyles = StyleSheet.create({
     row: {
       flex: 1,
       flexDirection: 'row',
-    }
+    },
+    homeButtonsText: {
+      color: '#FFFFFF'
+    },
   });

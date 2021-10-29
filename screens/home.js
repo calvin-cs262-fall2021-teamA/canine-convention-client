@@ -29,28 +29,28 @@ export default function HomeScreen({navigation}) {
     } else if (location) {
       locText = JSON.stringify(location);
     }
-  
+
     return (
       <View style={globalStyles.container}>
         <StatusBar style="auto" />
         <Image source={logo} style={globalStyles.logo}/>
-        <TouchableOpacity style={globalStyles.homeBtns} onPress={() => navigation.navigate('FindEvent')}>
-          <Text style={globalStyles.loginText}>Find an Event</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={globalStyles.homeBtns} onPress={() => navigation.navigate('History')}>
-          <Text style={globalStyles.loginText}>View History</Text>
-        </TouchableOpacity>
         <TouchableOpacity style={globalStyles.homeBtns} onPress={() => 
             navigation.navigate('Profile', {location: locText})}>
-          <Text style={globalStyles.loginText}>View my Profile</Text>
+          <Text style={globalStyles.loginText, globalStyles.homeButtonsText}>View my Profile</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={globalStyles.homeBtns} onPress={() => navigation.navigate('FindEvent')}>
+          <Text style={globalStyles.loginText, globalStyles.homeButtonsText}>Find an Event</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={globalStyles.homeBtns} onPress={() => navigation.navigate('History')}>
+          <Text style={globalStyles.loginText, globalStyles.homeButtonsText}>View History</Text>
         </TouchableOpacity>
        <TouchableOpacity style={globalStyles.homeBtns} onPress={() => 
             navigation.navigate('Map')}>
-          <Text style={globalStyles.loginText}>View Map</Text>
+          <Text style={globalStyles.loginText, globalStyles.homeButtonsText}>View Map</Text>
        </TouchableOpacity>
 
-        <Text>{"\n\n"} This is your current location: 
-        {"\n"} {locText}</Text>
-      </View>
+       {/* <Text>{"\n\n"} This is your current location: 
+        {"\n"}{locText}</Text> */}
+       </View> 
     );
   }
