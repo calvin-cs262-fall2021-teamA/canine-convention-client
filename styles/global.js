@@ -58,7 +58,6 @@ export const globalStyles = StyleSheet.create({
     subtitle: {
       marginRight: 'auto',
       fontSize: 25,
-
     },
     logo: {
       width: 500,
@@ -111,6 +110,14 @@ export const globalStyles = StyleSheet.create({
       height: 30,
       justifyContent: 'center',
     },
+    historyTag: {
+      fontSize: 20,
+      backgroundColor: '#16BAC6',
+      borderRadius: 25,
+      width: 100,
+      height: 30,
+      justifyContent: 'center',
+    },
     tagText: {
       textAlign: 'center',
       textAlignVertical: 'center',
@@ -131,5 +138,18 @@ export const globalStyles = StyleSheet.create({
       justifyContent: 'center',
       marginBottom:30,
       alignItems: 'center',
+    },
+    historyText: {
+      marginRight: 'auto',
+      fontSize: 20,
+      marginRight: 'auto',
+      marginLeft: 20,
+      marginBottom: 5
+    },
+    historyContainer: {
+      flex: 1,
+      backgroundColor: '#EFF0F4',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
   });
