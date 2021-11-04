@@ -9,10 +9,10 @@ export default function StartScreen({ navigation }) {
           <Text style={globalStyles.title}>Canine Convention</Text>
           <Image source={logo} style={globalStyles.logo } /> 
           <TouchableOpacity style={globalStyles.loginBtn} onPress={() => navigation.navigate('Login')}>
-              <Text style={{fontSize: 15},globalStyles.homeButtonsText}>LOGIN</Text>
+              <Text style={{fontSize: 15},globalStyles.ButtonsText}>LOGIN</Text>
           </TouchableOpacity> 
           <TouchableOpacity style={globalStyles.loginBtn}onPress={() => navigation.navigate('SignUp')}>
-              <Text style={{fontSize: 15},globalStyles.homeButtonsText}>SIGN UP</Text>
+              <Text style={{fontSize: 15},globalStyles.ButtonsText}>SIGN UP</Text>
           </TouchableOpacity>
         </View>
       );
