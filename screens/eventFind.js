@@ -52,7 +52,7 @@ export default function FindEvent({ navigation }) {
             setDogChar(value);}
           }
         />
-      <TouchableOpacity style={globalStyles.homeBtns} onPress={() => navigation.navigate('Home-GPS')}>
+      <TouchableOpacity style={globalStyles.homeBtns} onPress={() => navigation.navigate('Match Found')}>
         <Text style={globalStyles.loginText, globalStyles.ButtonsText}>FIND</Text>
       </TouchableOpacity>
     </View>
