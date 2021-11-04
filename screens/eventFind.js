@@ -15,6 +15,7 @@ export default function FindEvent({ navigation }) {
   const [dogSize, setDogSize] = useState("");
   const [dogGender, setDogGender] = useState("");
   const [dogChar, setDogChar] = useState("");
+  const [dogStatus, setDogStatus] = useState("");
   const dogNames = ["Fido", "Rover", "Snowball"]
   return (
     <View style={globalStyles.container}>
@@ -79,6 +80,12 @@ export default function FindEvent({ navigation }) {
             setDogChar(value);}
           }
         />
+      <ButtonGroup containerStyle={{marginTop: 15}}
+        selectedButtonStyle={{backgroundColor: '#16BAC6'}}
+        buttons={['NEUTERED', 'NOT NEUTERED']}
+        selectedIndex={dogStatus}
+        onPress={(value)=>{setDogStatus(value);}}
+      />
       <TouchableOpacity style={globalStyles.homeBtns} onPress={() => navigation.navigate('Match Found')}>
         <Text style={globalStyles.loginText, globalStyles.ButtonsText}>FIND</Text>
       </TouchableOpacity>

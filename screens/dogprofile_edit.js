@@ -115,7 +115,7 @@ export default function DogProfileEdit({navigation, route}){
             />
             <ButtonGroup containerStyle={{marginTop: 15}}
                 selectedButtonStyle={{backgroundColor: '#16BAC6'}}
-                buttons={['Spayed', 'Neutered', 'Not']}
+                buttons={['Neutered', 'Not Neutered']}
                 selectedIndex={dogStatus}
                 onPress={(value)=>{setDogStatus(value);}}
             />

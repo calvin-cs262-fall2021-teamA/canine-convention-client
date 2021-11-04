@@ -33,7 +33,7 @@ export default function FindSuccess({navigation}){
                     <View style={globalStyles.row}>
                         <TouchableWithoutFeedback>
                             <View style={globalStyles.tag}>
-                                <Text style={globalStyles.tagText}>Spayed</Text>
+                                <Text style={globalStyles.tagText}>Neutered</Text>
                             </View>
                         </TouchableWithoutFeedback>
                         <TouchableWithoutFeedback>
