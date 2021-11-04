@@ -19,7 +19,7 @@ function App() {
   return (
     <NavigationContainer >
       <Stack.Navigator initialRouteName="Start" screenOptions={{ headerShown: true }}>
-        <Stack.Screen name="Home" component={HomeScreen} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
+        <Stack.Screen name="Home" component={HomeScreen} options={{headerStyle:{backgroundColor: '#16BAC6'}, headerBackVisible: false}}/>
         <Stack.Screen name="Login" component={LoginScreen} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
         <Stack.Screen name="Start" component={StartScreen} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
         <Stack.Screen name="SignUp" component={SignUpScreen} options={{headerStyle:{backgroundColor: '#16BAC6'}}}/>
