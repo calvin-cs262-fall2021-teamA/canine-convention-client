@@ -112,7 +112,7 @@ export const globalStyles = StyleSheet.create({
     },
     historyTag: {
       fontSize: 20,
-      backgroundColor: '#16BAC6',
+      backgroundColor: '#195F6B',
       borderRadius: 25,
       width: 100,
       height: 30,
