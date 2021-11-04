@@ -3,6 +3,7 @@ import {
   Text,
   View,
   Image,
+  Button,
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native";
@@ -15,7 +16,7 @@ import blankPFP from '../assets/blankPFP.png';
 export default function FindSuccess({navigation}){
     return(
         <View style={{backgroundColor: '#EFF0F4'}}>
-            <View style={{marginVertical: 80, left: '5%'}}>
+            <View style={{mmarginTop: 30, marginBottom: 50, left: '5%'}}>
                 <Text style={globalStyles.title}>Match found:</Text>
                 <Text style={globalStyles.subtitle}>John Doe</Text>
                 <Text style={globalStyles.subtitle}>616-222-5555</Text>
@@ -62,6 +63,14 @@ export default function FindSuccess({navigation}){
                     </View>
                 </View>
             </PagerView>
+            <View style={globalStyles.row}>
+                <TouchableOpacity style={globalStyles.acceptBtns} onPress={() => navigation.navigate('Home')}>
+                    <Text style={globalStyles.loginText, globalStyles.ButtonsText}>Accept</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={globalStyles.acceptBtns} onPress={() => navigation.navigate('FindEvent')}>
+                    <Text style={globalStyles.loginText, globalStyles.ButtonsText}>Decline</Text>
+                 </TouchableOpacity>
+            </View>
         </View>
     );
 }

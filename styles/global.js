@@ -62,7 +62,6 @@ export const globalStyles = StyleSheet.create({
     logo: {
       width: 500,
       height: 300,
-      marginTop: 100,
     },
     homeBtns:{
       width: "75%",
@@ -73,6 +72,17 @@ export const globalStyles = StyleSheet.create({
       justifyContent: "center",
       marginTop: 40,
       backgroundColor: "#195F6B",
+    },
+    acceptBtns:{
+      width: "45%",
+      borderRadius: 25,
+      height: 50,
+      flexDirection: 'row',
+      alignItems: "center",
+      justifyContent: "center",
+      marginTop: 15,
+      backgroundColor: "#195F6B",
+      marginLeft: 15
     },
     editBtn:{
       width: "15%",
