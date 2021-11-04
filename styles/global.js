@@ -93,8 +93,8 @@ export const globalStyles = StyleSheet.create({
       borderBottomWidth: 50,
     },
     picture:{
-      width: 200,
-      height: 100,
+      width: 150,
+      height: 150,
       marginVertical: 30
     },
     pictureDog:{
