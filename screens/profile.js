@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   View,
@@ -11,14 +11,34 @@ import {
 import PagerView from 'react-native-pager-view';
 import { globalStyles } from '../styles/global';
 import blankPFP from '../assets/blankPFP.png'
+import * as Location from 'expo-location';
 import blankDogPFP from '../assets/blankDogPFP.jpg'
 
-//Profile is set up to get location from home. 
-//It's not being printed because the location text is too long currently
-//
 
-export default function Profile({route, navigation}){
-    const{location} = route.params;
+export default function Profile({navigation}){
+    const [location, setLocation] = useState(null);
+    const [errorMsg, setErrorMsg] = useState(null);
+  
+    useEffect(() => {
+      (async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          setErrorMsg('Permission to access location was denied');
+          return;
+        }
+  
+        let location = await Location.getCurrentPositionAsync({});
+        setLocation(location);
+      })();
+    }, []);
+  
+    let locText = 'Waiting..';
+    if (errorMsg) {
+      locText = errorMsg;
+    } else if (location) {
+      locText = JSON.stringify(location);
+    }
+
     return(
         <View style={{backgroundColor: '#EFF0F4'}}>
             <TouchableOpacity style={globalStyles.editBtn} onPress={() => navigation.navigate('ProfileEdit')}>

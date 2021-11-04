@@ -35,7 +35,7 @@ export default function HomeScreen({navigation}) {
         <StatusBar style="auto" />
         <Image source={logo} style={globalStyles.logo}/>
         <TouchableOpacity style={globalStyles.homeBtns} onPress={() => 
-            navigation.navigate('Profile', {location: locText})}>
+            navigation.navigate('Profile')}>
           <Text style={globalStyles.loginText, globalStyles.ButtonsText}>View my Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity style={globalStyles.homeBtns} onPress={() => navigation.navigate('FindEvent')}>

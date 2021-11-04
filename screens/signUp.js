@@ -45,7 +45,7 @@ export default function SignUpScreen({ navigation }) {
           onChangeText={(password) => setPassword(password)}
         />
       </View>
-      <TouchableOpacity style={globalStyles.loginBtn} onPress={() => navigation.navigate('Home-GPS')}>
+      <TouchableOpacity style={globalStyles.loginBtn} onPress={() => navigation.navigate('Home')}>
         <Text style={globalStyles.loginText,globalStyles.ButtonsText}> SIGN UP </Text>
       </TouchableOpacity>
     </View>

@@ -47,7 +47,7 @@ export default function ProfileEdit({navigation}){
 
     return(
         <View style={globalStyles.container}>
-            <TouchableOpacity style={globalStyles.editBtn} onPress={() => navigation.navigate('ProfileEdit')}>
+            <TouchableOpacity style={globalStyles.editBtn} onPress={() => navigation.navigate('Profile')}>
                 <Text style={globalStyles.loginText, globalStyles.ButtonsText}>Save</Text>
             </TouchableOpacity>
             <View style={[globalStyles.inputView, {marginTop: 70}]}>
