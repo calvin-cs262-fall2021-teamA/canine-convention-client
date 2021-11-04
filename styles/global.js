@@ -73,6 +73,17 @@ export const globalStyles = StyleSheet.create({
       marginTop: 40,
       backgroundColor: "#195F6B",
     },
+    acceptBtns:{
+      width: "45%",
+      borderRadius: 25,
+      height: 50,
+      flexDirection: 'row',
+      alignItems: "center",
+      justifyContent: "center",
+      marginTop: 15,
+      backgroundColor: "#195F6B",
+      marginLeft: 15
+    },
     editBtn:{
       width: "15%",
       borderRadius: 25,
