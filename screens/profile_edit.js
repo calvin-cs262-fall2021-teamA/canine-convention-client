@@ -18,12 +18,6 @@ import blankPFP from '../assets/blankPFP.png'
 
 export default function ProfileEdit({navigation}){
     const[selectedImage, setSelectedImage] = React.useState(null);
-    const [dogList, setDogs] = useState([
-        { name: "Fido", key : '1'},
-        { name: "Rover", key: '2'},
-        { name: "Snowball", key: '3'},
-        { name: "Add dog!", key: '4'},
-    ]);
 
     var currentImage = Asset.fromModule(require('../assets/blankPFP.png')).uri;
     let openImagePickerAsync = async() => {
@@ -42,8 +36,6 @@ export default function ProfileEdit({navigation}){
     if(selectedImage !== null){
         currentImage = selectedImage.localUri;
     }
-
-    //Save button should navigate back to profile screen and send all current data to database - needs location from database
 
     return(
         <View style={globalStyles.container}>
@@ -71,23 +63,18 @@ export default function ProfileEdit({navigation}){
                     placeholderTextColor="#003f5c"
                 />
             </View>
-            <View style={[globalStyles.container, {marginBottom: 30, marginTop: 30}]}>
+            <View style={[globalStyles.container, {marginBottom: "5%", marginTop: "5%"}]}>
                 <Image source={{uri:currentImage}} style={globalStyles.picture}/>
             </View>
-            <TouchableOpacity style={globalStyles.picturePicker} onPress={openImagePickerAsync}>
+            <TouchableOpacity style={[globalStyles.picturePicker, {marginBottom: '20%'}]} onPress={openImagePickerAsync}>
                 <Text style={globalStyles.ButtonsText}>Choose a profile picture!</Text>
             </TouchableOpacity>
-            <FlatList data={dogList} renderItem={({item}) => (
-                    <TouchableOpacity onPress={() => navigation.navigate('DogProfileEdit', item.name)} 
-                        style={{fontSize: 20,
-                            backgroundColor: '#195F6B',
-                            borderRadius: 25,
-                            width: 100,
-                            height: 30,
-                            justifyContent: 'center', marginTop: 20}}>
-                        <Text style={globalStyles.tagText}>{item.name}</Text>
-                    </TouchableOpacity>
-                )}/>
+            <TouchableOpacity style={[globalStyles.picturePicker, {marginBottom: "30%"}]} onPress={() => navigation.navigate('DogProfileEdit', "New dog")}>
+                <Text style={globalStyles.ButtonsText}>Add a new dog</Text>
+            </TouchableOpacity>
+            {/* <TouchableOpacity style={globalStyles.homeBtns}>
+                <Text style={globalStyles.ButtonsText}>Remove a dog</Text>
+            </TouchableOpacity> */}
         </View>
     );
 }

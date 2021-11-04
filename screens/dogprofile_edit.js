@@ -78,7 +78,7 @@ export default function DogProfileEdit({navigation, route}){
                 onCancel={hideDatePicker}
             />
 
-            <TouchableOpacity style={globalStyles.editBtn} onPress={() => navigation.navigate('ProfileEdit')}>
+            <TouchableOpacity style={globalStyles.editBtn} onPress={() => navigation.navigate('Profile')}>
                 <Text style={globalStyles.loginText, globalStyles.ButtonsText}>Save</Text>
             </TouchableOpacity>
             <View style={[globalStyles.container, {marginTop: 150, marginBottom: 150}]}>
