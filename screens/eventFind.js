@@ -5,20 +5,47 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import { ButtonGroup } from 'react-native-elements';
+import { ButtonGroup, Icon } from 'react-native-elements';
 import { globalStyles } from '../styles/global';
- 
+import SelectDropdown from 'react-native-select-dropdown';
+
+
 export default function FindEvent({ navigation }) {
   const [eventType, setEventType] = useState("");
   const [dogSize, setDogSize] = useState("");
   const [dogGender, setDogGender] = useState("");
   const [dogChar, setDogChar] = useState("");
- 
+  const dogNames = ["Fido", "Rover", "Snowball"]
   return (
     <View style={globalStyles.container}>
       
       <StatusBar style="auto" />
       <Text style={globalStyles.title}>Find an event:</Text>
+      
+      <SelectDropdown 
+        buttonStyle={{backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: '#000000'}}
+        data={dogNames}
+        defaultButtonText="Choose Dog"
+        onSelect={(selectedItem, index) => {
+          //console.log(selectedItem, index)
+        }}
+        buttonTextAfterSelection={(selectedItem, index) => {
+          // text represented after item is selected
+          // if data array is an array of objects then return selectedItem.property to render after item is selected
+          return selectedItem
+        }}
+        rowTextForSelection={(item, index) => {
+          // text represented for each item in dropdown
+          // if data array is an array of objects then return item.property to represent item in dropdown
+          return item
+        }}
+        renderDropdownIcon={() => {
+          return (
+            <Icon name="chevron-down" type="font-awesome-5" color={"#444"} size={18} />
+          );
+        }}
+        dropdownIconPosition={"right"}
+      />
       <ButtonGroup
         buttons={['WALK', 'PARK']}
         selectedIndex={eventType}
