@@ -80,7 +80,8 @@ export const globalStyles = StyleSheet.create({
       borderRadius: 25,
       height: 30,
       justifyContent: "center",
-      backgroundColor: "#16BAC6",
+      alignItems: "center",
+      backgroundColor: "#195F6B",
       marginTop: 10,
       marginLeft:'auto',
     },
@@ -105,7 +106,7 @@ export const globalStyles = StyleSheet.create({
     tag: {
       fontSize: 20,
       marginLeft: 20,
-      backgroundColor: '#16BAC6',
+      backgroundColor: '#195F6B',
       borderRadius: 25,
       width: 100,
       height: 30,
@@ -114,17 +115,18 @@ export const globalStyles = StyleSheet.create({
     tagText: {
       textAlign: 'center',
       textAlignVertical: 'center',
+      color: '#FFFFFF',
     },
     row: {
       flex: 1,
       flexDirection: 'row',
     },
-    homeButtonsText: {
+    ButtonsText: {
       color: '#FFFFFF',
     },
     picturePicker: {
       fontSize: 20,
-      backgroundColor: '#16BAC6',
+      backgroundColor: '#195F6B',
       borderRadius: 25,
       width: '60%',
       height: 45,

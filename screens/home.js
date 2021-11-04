@@ -36,17 +36,17 @@ export default function HomeScreen({navigation}) {
         <Image source={logo} style={globalStyles.logo}/>
         <TouchableOpacity style={globalStyles.homeBtns} onPress={() => 
             navigation.navigate('Profile', {location: locText})}>
-          <Text style={globalStyles.loginText, globalStyles.homeButtonsText}>View my Profile</Text>
+          <Text style={globalStyles.loginText, globalStyles.ButtonsText}>View my Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity style={globalStyles.homeBtns} onPress={() => navigation.navigate('FindEvent')}>
-          <Text style={globalStyles.loginText, globalStyles.homeButtonsText}>Find an Event</Text>
+          <Text style={globalStyles.loginText, globalStyles.ButtonsText}>Find an Event</Text>
         </TouchableOpacity>
         <TouchableOpacity style={globalStyles.homeBtns} onPress={() => navigation.navigate('History')}>
-          <Text style={globalStyles.loginText, globalStyles.homeButtonsText}>View History</Text>
+          <Text style={globalStyles.loginText, globalStyles.ButtonsText}>View History</Text>
         </TouchableOpacity>
        <TouchableOpacity style={globalStyles.homeBtns} onPress={() => 
             navigation.navigate('Map')}>
-          <Text style={globalStyles.loginText, globalStyles.homeButtonsText}>View Map</Text>
+          <Text style={globalStyles.loginText, globalStyles.ButtonsText}>View Map</Text>
        </TouchableOpacity>
 
        {/* <Text>{"\n\n"} This is your current location: 

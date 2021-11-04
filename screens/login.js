@@ -45,7 +45,7 @@ export default function LoginScreen({ navigation }) {
       </TouchableOpacity>
  
       <TouchableOpacity style={globalStyles.loginBtn} onPress={() => navigation.navigate('Home-GPS')}>
-        <Text style={globalStyles.loginText}>LOGIN</Text>
+        <Text style={globalStyles.loginText, globalStyles.ButtonsText}>LOGIN</Text>
       </TouchableOpacity>
     </View>
   );

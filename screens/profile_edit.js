@@ -48,7 +48,7 @@ export default function ProfileEdit({navigation}){
     return(
         <View style={globalStyles.container}>
             <TouchableOpacity style={globalStyles.editBtn} onPress={() => navigation.navigate('ProfileEdit')}>
-                <Text style={globalStyles.loginText}>Save</Text>
+                <Text style={globalStyles.loginText, globalStyles.ButtonsText}>Save</Text>
             </TouchableOpacity>
             <View style={[globalStyles.inputView, {marginTop: 70}]}>
                 <TextInput
@@ -75,12 +75,12 @@ export default function ProfileEdit({navigation}){
                 <Image source={{uri:currentImage}} style={globalStyles.picture}/>
             </View>
             <TouchableOpacity style={globalStyles.picturePicker} onPress={openImagePickerAsync}>
-                <Text style={{fontSize: 20}}>Choose a profile picture!</Text>
+                <Text style={globalStyles.ButtonsText}>Choose a profile picture!</Text>
             </TouchableOpacity>
             <FlatList data={dogList} renderItem={({item}) => (
                     <TouchableOpacity onPress={() => navigation.navigate('DogProfileEdit', item.name)} 
                         style={{fontSize: 20,
-                            backgroundColor: '#16BAC6',
+                            backgroundColor: '#195F6B',
                             borderRadius: 25,
                             width: 100,
                             height: 30,

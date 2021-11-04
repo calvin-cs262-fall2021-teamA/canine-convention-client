@@ -22,7 +22,7 @@ export default function Profile({route, navigation}){
     return(
         <View style={{backgroundColor: '#EFF0F4'}}>
             <TouchableOpacity style={globalStyles.editBtn} onPress={() => navigation.navigate('ProfileEdit')}>
-                <Text style={globalStyles.loginText}>Edit</Text>
+                <Text style={globalStyles.loginText,globalStyles.ButtonsText}>Edit</Text>
             </TouchableOpacity>
             <View style={{marginVertical: 80, left: '5%'}}>
                 <Text style={globalStyles.subtitle}>John Doe</Text>

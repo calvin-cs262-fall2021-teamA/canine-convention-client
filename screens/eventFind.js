@@ -52,8 +52,8 @@ export default function FindEvent({ navigation }) {
             setDogChar(value);}
           }
         />
-      <TouchableOpacity style={globalStyles.loginBtn} onPress={() => navigation.navigate('Home-GPS')}>
-        <Text style={globalStyles.loginText}>FIND</Text>
+      <TouchableOpacity style={globalStyles.homeBtns} onPress={() => navigation.navigate('Home-GPS')}>
+        <Text style={globalStyles.loginText, globalStyles.ButtonsText}>FIND</Text>
       </TouchableOpacity>
     </View>
   );
