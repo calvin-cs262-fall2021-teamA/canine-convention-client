@@ -62,7 +62,6 @@ export const globalStyles = StyleSheet.create({
     logo: {
       width: 500,
       height: 300,
-      marginTop: 100,
     },
     homeBtns:{
       width: "75%",

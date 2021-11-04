@@ -79,7 +79,7 @@ export default function DogProfileEdit({navigation, route}){
             />
 
             <TouchableOpacity style={globalStyles.editBtn} onPress={() => navigation.navigate('ProfileEdit')}>
-                <Text style={globalStyles.loginText}>Save</Text>
+                <Text style={globalStyles.loginText, globalStyles.ButtonsText}>Save</Text>
             </TouchableOpacity>
             <View style={[globalStyles.container, {marginTop: 150, marginBottom: 150}]}>
                 <Image source={{uri:currentImage}} style={{width: 200, height: 100, marginBottom: 30}}/>
