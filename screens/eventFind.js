@@ -49,6 +49,7 @@ export default function FindEvent({ navigation }) {
       />
       <ButtonGroup
         buttons={['WALK', 'PARK']}
+        selectedButtonStyle={{backgroundColor: '#16BAC6'}}
         selectedIndex={eventType}
         containerStyle={{ marginBottom: 20 }}
         onPress={(value) => {
@@ -58,6 +59,7 @@ export default function FindEvent({ navigation }) {
       <Text style={{ textAlign: 'center' }}>Tags:</Text>
       <ButtonGroup
         buttons={['SMALL', 'MEDIUM', 'LARGE']}
+        selectedButtonStyle={{backgroundColor: '#16BAC6'}}
         selectedIndex={dogSize}
         containerStyle={{ marginBottom: 20 }}
         onPress={(value) => {
@@ -66,6 +68,7 @@ export default function FindEvent({ navigation }) {
         />  
       <ButtonGroup
         buttons={['MALE', 'FEMALE']}
+        selectedButtonStyle={{backgroundColor: '#16BAC6'}}
         selectedIndex={dogGender}
         containerStyle={{ marginBottom: 20 }}
         onPress={(value) => {
@@ -74,6 +77,7 @@ export default function FindEvent({ navigation }) {
         />
       <ButtonGroup
         buttons={['CALM', 'PLAYFUL', 'FRIENDLY']}
+        selectedButtonStyle={{backgroundColor: '#16BAC6'}}
         selectedIndex={dogChar}
         containerStyle={{ marginBottom: 20 }}
         onPress={(value) => {
