@@ -8,7 +8,8 @@ import {
   TouchableWithoutFeedback,
   SafeAreaView,
   ScrollView,
-  StyleSheet
+  StyleSheet,
+  Dimensions
 } from "react-native";
 import { globalStyles } from '../styles/global';
 import blankDogPFP from '../assets/blankDogPFP.jpg'
@@ -21,21 +22,20 @@ const CONTENT = [
     title: 'Oct 31 - Grand Rapids',
     content:
     <View style={globalStyles.historyContainer}>
-      <View style={{marginBottom: 20}}>
+      <View style={{marginVertical: "5%"}}>
         <Text style={globalStyles.historyText}>John Doe</Text>
         <Text style={globalStyles.historyText}>616-222-5555</Text>
-        <Text style={globalStyles.historyText}>Grand Rapids</Text>
       </View>
       <Text style={globalStyles.historyText}>Fido</Text>
-      <Image source={blankDogPFP} style={globalStyles.pictureDog}/>
+      <Image source={blankDogPFP} style={globalStyles.historyDog}/>
       <View style={globalStyles.row}>
         <TouchableWithoutFeedback>
-          <View style={[globalStyles.historyTag, {marginLeft: 10}]}>
-              <Text style={globalStyles.tagText}>Spayed</Text>
+          <View style={globalStyles.historyTag}>
+              <Text style={globalStyles.tagText}>Neutered</Text>
           </View>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback>
-          <View style={[globalStyles.historyTag, {marginLeft: 10, marginRight:10}]}>
+          <View style={[globalStyles.historyTag, { marginLeft:10}]}>
             <Text style={globalStyles.tagText}>Large</Text>
           </View>
         </TouchableWithoutFeedback>
@@ -70,21 +70,20 @@ const CONTENT = [
     title: 'Oct 26 - Grand Rapids',
     content:
     <View style={globalStyles.historyContainer}>
-      <View style={{marginBottom: 20}}>
+      <View style={{marginVertical: "5%"}}>
         <Text style={globalStyles.historyText}>John Doe</Text>
         <Text style={globalStyles.historyText}>616-222-5555</Text>
-        <Text style={globalStyles.historyText}>Grand Rapids</Text>
       </View>
       <Text style={globalStyles.historyText}>Snowball</Text>
-      <Image source={blankDogPFP} style={globalStyles.pictureDog}/>
+      <Image source={blankDogPFP} style={globalStyles.historyDog}/>
       <View style={globalStyles.row}>
         <TouchableWithoutFeedback>
-          <View style={[globalStyles.historyTag, {marginLeft: 10}]}>
+          <View style={globalStyles.historyTag}>
               <Text style={globalStyles.tagText}>Neutered</Text>
           </View>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback>
-          <View style={[globalStyles.historyTag, {marginLeft: 10, marginRight:10}]}>
+          <View style={[globalStyles.historyTag, {marginLeft: 10}]}>
             <Text style={globalStyles.tagText}>Small</Text>
           </View>
         </TouchableWithoutFeedback>
@@ -116,6 +115,7 @@ const CONTENT = [
 export default function History({navigation}){
   const [activeSections, setActiveSections] = useState([]);
   const [collapsed, setCollapsed] = useState(true);
+  const screen = Dimensions.get('window')
 
   const toggleExpanded = () => {
     setCollapsed(!collapsed);
@@ -129,7 +129,7 @@ export default function History({navigation}){
     return (
       <Animatable.View
         duration={400}
-        style={[{backgroundColor: '#F5FCFF', padding: 10,}, isActive ? styles.active : styles.inactive]}
+        style={[{backgroundColor: '#F5FCFF', padding: "3%",}, isActive ? styles.active : styles.inactive]}
         transition="backgroundColor">
         <Text style={{textAlign: 'center', fontSize: 16, fontWeight: '500'}}>{section.title}</Text>
       </Animatable.View>
@@ -140,10 +140,11 @@ export default function History({navigation}){
     return (
       <Animatable.View
         duration={400}
-        style={[{padding: 20, backgroundColor: '#fff', alignItems: 'center'}, isActive ? styles.active : styles.inactive]}
+        style={[{alignItems: 'center', width: "100%"}, isActive ? styles.active : styles.inactive]}
         transition="backgroundColor">
         <Text
-          style={{ textAlign: 'center' }}>
+          style={{ textAlign: 'center' }}
+          >
           {section.content}
         </Text>
       </Animatable.View>
@@ -151,13 +152,13 @@ export default function History({navigation}){
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={[globalStyles.container, {paddingTop: 30}]}>
+      <View style={[globalStyles.container, {paddingTop: "10%"}]}>
         <ScrollView>
-          <Text style={{textAlign: 'center', fontSize: 18, fontWeight: '300', marginBottom: 20,}}>
+          <Text style={{textAlign: 'center', fontSize: 18, fontWeight: '300', marginBottom: "5%",}}>
               History of Events
           </Text>
 
-          <Accordion style={{height: 400}}
+          <Accordion style={{height: screen.height * .6, width: screen.width * .9, alignItems: 'center'}}
             activeSections={activeSections}
             sections={CONTENT}
             touchableComponent={TouchableOpacity}
@@ -175,7 +176,7 @@ export default function History({navigation}){
 
 const styles = StyleSheet.create({
   active: {
-    backgroundColor: 'rgba(245,252,255,1)',
+    backgroundColor: '#F5FCFF',
   },
   inactive: {
     backgroundColor: '#EFF0F4',

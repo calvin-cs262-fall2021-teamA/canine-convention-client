@@ -66,8 +66,6 @@ export default function DogProfileEdit({navigation, route}){
         //     </View>
         //  );
     }
-    //Add dog birthdate field
-    //Save button needs to also send current state to database
 
     return(
         <View style={{backgroundColor: '#EFF0F4'}}>
@@ -81,48 +79,46 @@ export default function DogProfileEdit({navigation, route}){
             <TouchableOpacity style={globalStyles.editBtn} onPress={() => navigation.navigate('Profile')}>
                 <Text style={globalStyles.loginText, globalStyles.ButtonsText}>Save</Text>
             </TouchableOpacity>
-            <View style={[globalStyles.container, {marginTop: 150, marginBottom: 150}]}>
-                <Image source={{uri:currentImage}} style={{width: 200, height: 100, marginBottom: 30}}/>
-                <TouchableOpacity style={globalStyles.picturePicker} onPress={openImagePickerAsync}>
-                    <Text style={globalStyles.tagText}>Choose a puppy profile picture!</Text>
-                </TouchableOpacity>
-                <View style={{backgroundColor: "#FFF", borderRadius: 30, 
-                        width: "70%", height: 45, alignItems: "center"}}>
-                    <TextInput
-                        style={globalStyles.TextInput}
-                        placeholder= {route.params}
-                        placeholderTextColor="#003f5c"
-                    />
-                </View>
+            <Image source={{uri:currentImage}} style={{width: "30%", marginBottom: "5%", height: "15%", marginLeft: "35%"}}/>
+            <TouchableOpacity style={[globalStyles.picturePicker, {marginBottom: "5%"}]} onPress={openImagePickerAsync}>
+                <Text style={globalStyles.tagText}>Choose a puppy profile picture!</Text>
+            </TouchableOpacity>
+            <View style={globalStyles.inputView}>
+                <TextInput
+                    style={globalStyles.ProfileInput}
+                    textAlign= 'center'
+                    placeholder= {route.params}
+                    placeholderTextColor="#003f5c"
+                />
             </View>
-            <ButtonGroup containerStyle={{marginTop: 20}}
+            <ButtonGroup 
                 selectedButtonStyle={{backgroundColor: '#16BAC6'}}
                 buttons={['Small', 'Medium', 'Large']}
                 selectedIndex={dogSize}
                 onPress={(value)=>{setDogSize(value);}}
             />
-            <ButtonGroup containerStyle={{marginTop: 15}}
+            <ButtonGroup containerStyle={{marginTop: "2%"}}
                 selectedButtonStyle={{backgroundColor: '#16BAC6'}}
                 buttons={['Male', 'Female']}
                 selectedIndex={dogGender}
                 onPress={(value)=>{setDogGender(value);}}
             />
-            <ButtonGroup containerStyle={{marginTop: 15}}
+            <ButtonGroup containerStyle={{marginTop: "2%"}}
                 selectedButtonStyle={{backgroundColor: '#16BAC6'}}
                 buttons={['Calm', 'Playful', 'Friendly']}
                 selectedIndex={dogChar}
                 onPress={(value)=>{setDogChar(value);}}
             />
-            <ButtonGroup containerStyle={{marginTop: 15}}
+            <ButtonGroup containerStyle={{marginTop: "2%"}}
                 selectedButtonStyle={{backgroundColor: '#16BAC6'}}
                 buttons={['Neutered', 'Not Neutered']}
                 selectedIndex={dogStatus}
                 onPress={(value)=>{setDogStatus(value);}}
             />
-            <TouchableOpacity style={[globalStyles.picturePicker, {marginLeft:75, marginTop:10}]} onPress={showDatePicker}>
+            <TouchableOpacity style={[globalStyles.picturePicker, {marginTop:"2%"}]} onPress={showDatePicker}>
                     <Text style={globalStyles.tagText}>Select birthdate</Text>
                 </TouchableOpacity>
-            <Text style={{fontSize: 20, marginRight: 'auto', marginTop: 20, marginLeft: 20}}>
+            <Text style={{fontSize: 20, marginRight: 'auto', marginTop: "5%", marginLeft: "5%"}}>
                 Birthdate: {date}
             </Text>
         </View>

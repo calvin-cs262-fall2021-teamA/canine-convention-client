@@ -21,10 +21,10 @@ export default function FindEvent({ navigation }) {
     <View style={globalStyles.container}>
       
       <StatusBar style="auto" />
-      <Text style={globalStyles.title}>Find an event:</Text>
+      <Text style={globalStyles.subtitle}>Find an event:</Text>
       
       <SelectDropdown 
-        buttonStyle={{backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: '#000000'}}
+        buttonStyle={{backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: '#000000', marginVertical: "6%"}}
         data={dogNames}
         defaultButtonText="Choose Dog"
         onSelect={(selectedItem, index) => {
@@ -51,17 +51,17 @@ export default function FindEvent({ navigation }) {
         buttons={['WALK', 'PARK']}
         selectedButtonStyle={{backgroundColor: '#16BAC6'}}
         selectedIndex={eventType}
-        containerStyle={{ marginBottom: 20 }}
+        containerStyle={{ marginBottom: "5%" }}
         onPress={(value) => {
             setEventType(value);}
           }
         />
-      <Text style={{ textAlign: 'center' }}>Tags:</Text>
+      <Text style={{ textAlign: 'center', fontSize: 20 }}>Filters:</Text>
       <ButtonGroup
         buttons={['SMALL', 'MEDIUM', 'LARGE']}
         selectedButtonStyle={{backgroundColor: '#16BAC6'}}
         selectedIndex={dogSize}
-        containerStyle={{ marginBottom: 20 }}
+        containerStyle={{ marginBottom: "5%" }}
         onPress={(value) => {
             setDogSize(value);}
           }
@@ -70,7 +70,7 @@ export default function FindEvent({ navigation }) {
         buttons={['MALE', 'FEMALE']}
         selectedButtonStyle={{backgroundColor: '#16BAC6'}}
         selectedIndex={dogGender}
-        containerStyle={{ marginBottom: 20 }}
+        containerStyle={{ marginBottom: "5%" }}
         onPress={(value) => {
             setDogGender(value);}
           }
@@ -79,12 +79,12 @@ export default function FindEvent({ navigation }) {
         buttons={['CALM', 'PLAYFUL', 'FRIENDLY']}
         selectedButtonStyle={{backgroundColor: '#16BAC6'}}
         selectedIndex={dogChar}
-        containerStyle={{ marginBottom: 20 }}
+        containerStyle={{ marginBottom: "5%" }}
         onPress={(value) => {
             setDogChar(value);}
           }
         />
-      <ButtonGroup containerStyle={{marginTop: 15}}
+      <ButtonGroup containerStyle={{marginTop: "4%"}}
         selectedButtonStyle={{backgroundColor: '#16BAC6'}}
         buttons={['NEUTERED', 'NOT NEUTERED']}
         selectedIndex={dogStatus}
