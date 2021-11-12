@@ -44,14 +44,12 @@ export default function Profile({navigation}){
             <TouchableOpacity style={globalStyles.editBtn} onPress={() => navigation.navigate('ProfileEdit')}>
                 <Text style={globalStyles.loginText,globalStyles.ButtonsText}>Edit</Text>
             </TouchableOpacity>
-            <View style={{marginVertical: 80, left: '5%'}}>
-                <Text style={globalStyles.subtitle}>John Doe</Text>
-                <Text style={globalStyles.subtitle}>616-222-5555</Text>
-                <Text style={globalStyles.subtitle}>Grand Rapids{"\n"}</Text>
+            <View style={{left: '5%'}}>
+                <Text style={globalStyles.profileText}>John Doe</Text>
+                <Text style={globalStyles.profileText}>616-222-5555</Text>
+                <Text style={globalStyles.profileText}>Grand Rapids{"\n"}</Text>
             </View>
-            <View style={[globalStyles.container, {marginBottom: 80}]}>
-                <Image source={blankPFP} style={globalStyles.picture}/>
-            </View>
+            <Image source={blankPFP} style={globalStyles.picture}/>
             
             <PagerView style={globalStyles.pager} initialPage={0}>
                 <View style={globalStyles.container} key="1">

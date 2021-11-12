@@ -38,38 +38,41 @@ export default function ProfileEdit({navigation}){
     }
 
     return(
-        <View style={globalStyles.container}>
+        <View style={{backgroundColor: '#EFF0F4'}}>
             <TouchableOpacity style={globalStyles.editBtn} onPress={() => navigation.navigate('Profile')}>
                 <Text style={globalStyles.loginText, globalStyles.ButtonsText}>Save</Text>
             </TouchableOpacity>
-            <View style={[globalStyles.inputView, {marginTop: 70}]}>
-                <TextInput
-                    style={globalStyles.TextInput}
-                    placeholder="John Doe"
-                    placeholderTextColor="#003f5c"
-                />
-            </View>
-            <View style={globalStyles.inputView}>
-                <TextInput
-                    style={globalStyles.TextInput}
-                    placeholder="616-222-5555"
-                    placeholderTextColor="#003f5c"
-                />
-            </View>
-            <View style={globalStyles.inputView}>
-                <TextInput
-                    style={globalStyles.TextInput}
-                    placeholder="doeadeer"
-                    placeholderTextColor="#003f5c"
-                />
-            </View>
-            <View style={[globalStyles.container, {marginBottom: "5%", marginTop: "5%"}]}>
-                <Image source={{uri:currentImage}} style={globalStyles.picture}/>
-            </View>
-            <TouchableOpacity style={[globalStyles.picturePicker, {marginBottom: '20%'}]} onPress={openImagePickerAsync}>
+            <Image source={{uri:currentImage}} style={[globalStyles.picture, {marginTop: "10%"}]}/>
+            <TouchableOpacity style={[globalStyles.picturePicker, {marginBottom: "8%"}]} onPress={openImagePickerAsync}>
                 <Text style={globalStyles.ButtonsText}>Choose a profile picture!</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[globalStyles.picturePicker, {marginBottom: "30%"}]} onPress={() => navigation.navigate('DogProfileEdit', "New dog")}>
+            <View style={{alignItems: 'center'}}>
+                <View style={globalStyles.inputView}>
+                    <TextInput
+                        style={globalStyles.ProfileInput}
+                        textAlign= "center"
+                        placeholder="John Doe"
+                        placeholderTextColor="#003f5c"
+                    />
+                </View>
+                <View style={globalStyles.inputView}>
+                    <TextInput
+                        style={globalStyles.ProfileInput}
+                        textAlign= "center"
+                        placeholder="616-222-5555"
+                        placeholderTextColor="#003f5c"
+                    />
+                </View>
+                <View style={globalStyles.inputView}>
+                    <TextInput
+                        style={globalStyles.ProfileInput}
+                        textAlign= "center"
+                        placeholder="doeadeer"
+                        placeholderTextColor="#003f5c"
+                    />
+                </View>
+            </View>
+            <TouchableOpacity style={[globalStyles.picturePicker, {marginTop: "5%"}]} onPress={() => navigation.navigate('DogProfileEdit', "New dog")}>
                 <Text style={globalStyles.ButtonsText}>Add a new dog</Text>
             </TouchableOpacity>
             {/* <TouchableOpacity style={globalStyles.homeBtns}>

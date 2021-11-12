@@ -16,18 +16,16 @@ import blankPFP from '../assets/blankPFP.png';
 export default function FindSuccess({navigation}){
     return(
         <View style={{backgroundColor: '#EFF0F4'}}>
-            <View style={{mmarginTop: 30, marginBottom: 50, left: '5%'}}>
-                <Text style={globalStyles.title}>Match found:</Text>
-                <Text style={globalStyles.subtitle}>John Doe</Text>
-                <Text style={globalStyles.subtitle}>616-222-5555</Text>
-                <Text style={globalStyles.subtitle}>Grand Rapids{"\n"}</Text>
+            <View style={{marginTop: "2%", marginLeft: '5%'}}>
+                <Text style={globalStyles.subtitle}>Match found:</Text>
+                <Text style={globalStyles.profileText}>John Doe</Text>
+                <Text style={globalStyles.profileText}>616-222-5555</Text>
+                {/* <Text style={globalStyles.profileText}>Grand Rapids{"\n"}</Text> */}
             </View>
-            <View style={[globalStyles.container, {marginBottom: 80}]}>
-                <Image source={blankPFP} style={globalStyles.picture}/>
-            </View>
+            <Image source={blankPFP} style={globalStyles.picture}/>
             
             <PagerView style={globalStyles.pager} initialPage={0}>
-                <View style={globalStyles.container} key="1">
+                <View style={globalStyles.container} key="1" collapsable='false'>
                     <Text style={globalStyles.dogName}>Fido</Text>
                     <Image source={blankDogPFP} style={globalStyles.pictureDog}/>
                     <View style={globalStyles.row}>

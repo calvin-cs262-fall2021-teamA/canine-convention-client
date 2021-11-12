@@ -7,47 +7,62 @@ export const globalStyles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
-
-    image: {
-      width: 400,
-      height: 400,
-      marginBottom: 0,
-    },
-   
     inputView: {
-      backgroundColor: "#FFF",
-      borderRadius: 30,
-      width: "70%",
-      height: 45,
-      marginBottom: 20,
-      alignItems: "center",
+      borderRadius: 30, 
+      width: "100%", 
+      marginBottom: "4%", 
+      alignItems: "center"
     },
    
     TextInput: {
-      height: 50,
-      flex: 1,
-      padding: 10,
-      marginLeft: 20,
-      fontSize: 17,
+      backgroundColor: "#FFF", 
+      borderRadius: 30, 
+      width: "70%", 
+      minHeight: "15%", 
+      marginBottom: "5%", 
+      alignItems: "center", 
+      fontSize: 17
+    },
+    ProfileInput: {
+      backgroundColor: "#FFF", 
+      borderRadius: 30, 
+      width: "70%", 
+      minHeight: "7%", 
+      alignItems: "center", 
+      fontSize: 17
     },
    
     forgot_button: {
       height: 30,
-      marginBottom: 15,
+      marginTop: "3%",
     },
    
     loginBtn: {
       width: "50%",
       borderRadius: 25,
-      height: 50,
       alignItems: "center",
       justifyContent: "center",
-      marginTop: 40,
-      backgroundColor: "#195F6B",
+      marginTop: "10%",
+      backgroundColor: "#195F6B", 
+      marginBottom:"20%", 
+      minHeight: "13%"
+    },
+    startBtn: {
+      width: "50%",
+      borderRadius: 25,
+      height: "8%",
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "#195F6B", 
+      marginBottom:"10%", 
     },
     title: {
       fontSize: 45,
       fontWeight: 'bold',
+    },
+    subtitle: {
+      fontSize: 35, 
+      fontWeight: 'bold'
     },
     dogName: {
       fontSize: 25,
@@ -55,22 +70,22 @@ export const globalStyles = StyleSheet.create({
       marginTop: 20,
       marginLeft: 20,
     },
-    subtitle: {
+    profileText: {
       marginRight: 'auto',
       fontSize: 25,
     },
     logo: {
-      width: 500,
-      height: 300,
+      width: "100%",
+      height: "40%",
     },
     homeBtns:{
-      width: "75%",
+      width: "70%",
       borderRadius: 25,
-      height: 50,
+      height: "8%",
       flexDirection: 'row',
       alignItems: "center",
       justifyContent: "center",
-      marginTop: 40,
+      marginTop: "8%",
       backgroundColor: "#195F6B",
     },
     acceptBtns:{
@@ -100,33 +115,39 @@ export const globalStyles = StyleSheet.create({
       backgroundColor: '#16BAC6',
       borderColor: '#16BAC6',
       borderWidth: 10,
-      borderBottomWidth: 50,
     },
     picture:{
-      width: 200,
-      height: 100,
-      marginVertical: 30
+      width: "40%",
+      height: "20%",
+      marginLeft: "30%",
+      marginVertical: "3%"
     },
     pictureDog:{
-      width: 125,
-      height: 100,
-      marginBottom: 25,
+      width: "33%",
+      height: "30%",
+      marginBottom: "5%",
+    },
+    historyDog:{
+      width: "33%",
+      height: "20%",
+      marginBottom: "5%",
+      marginHorizontal: "33%"
     },
     tag: {
       fontSize: 20,
-      marginLeft: 20,
+      marginHorizontal: "4%",
       backgroundColor: '#195F6B',
       borderRadius: 25,
-      width: 100,
-      height: 30,
+      width: "30%",
+      height: "80%",
       justifyContent: 'center',
     },
     historyTag: {
       fontSize: 20,
       backgroundColor: '#195F6B',
       borderRadius: 25,
-      width: 100,
-      height: 30,
+      width: "40%",
+      height: "50%",
       justifyContent: 'center',
     },
     tagText: {
@@ -137,6 +158,7 @@ export const globalStyles = StyleSheet.create({
     row: {
       flex: 1,
       flexDirection: 'row',
+      minHeight: "5%",
     },
     ButtonsText: {
       color: '#FFFFFF',
@@ -146,20 +168,20 @@ export const globalStyles = StyleSheet.create({
       backgroundColor: '#195F6B',
       borderRadius: 25,
       width: '60%',
-      height: 45,
+      height: "8%",
       justifyContent: 'center',
-      marginBottom:30,
       alignItems: 'center',
+      marginLeft: '20%',
     },
     historyText: {
       marginRight: 'auto',
       fontSize: 20,
       marginRight: 'auto',
-      marginLeft: 20,
-      marginBottom: 5
+      marginLeft: "5%",
     },
     historyContainer: {
-      flex: 1,
+      height: "100%", 
+      width: "110%",
       backgroundColor: '#EFF0F4',
       alignItems: 'center',
       justifyContent: 'center',

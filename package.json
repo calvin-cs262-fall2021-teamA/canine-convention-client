@@ -24,6 +24,7 @@
     "react-native-animatable": "^1.3.3",
     "react-native-collapsible": "^1.6.0",
     "react-native-elements": "^3.4.2",
+    "react-native-keyboard-aware-scrollview": "^2.1.0",
     "react-native-maps": "0.28.0",
     "react-native-modal-datetime-picker": "^13.0.0",
     "react-native-month-year-picker": "^1.8.0",

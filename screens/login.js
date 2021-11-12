@@ -6,6 +6,8 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  ScrollView
 } from "react-native";
 import { globalStyles } from '../styles/global';
  
@@ -14,13 +16,17 @@ export default function LoginScreen({ navigation }) {
   const [password, setPassword] = useState("");
  
   return (
-    <View style={globalStyles.container}>
-      <Image style={globalStyles.image} source={require("../assets/logo.png")} />
+    
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1, flexDirection: 'column',justifyContent: 'center'}}>
+      <Image style={globalStyles.logo} source={require("../assets/logo.png")} />
  
       <StatusBar style="auto" />
+      <ScrollView contentContainerStyle={{alignItems:"center"}} scrollEnabled={false}>
       <View style={globalStyles.inputView}>
         <TextInput
           style={globalStyles.TextInput}
+          textAlign= "center"
           placeholder="email"
           placeholderTextColor="#003f5c"
           onChangeText={(email) => setEmail(email)}
@@ -30,6 +36,7 @@ export default function LoginScreen({ navigation }) {
       <View style={globalStyles.inputView}>
         <TextInput
           style={globalStyles.TextInput}
+          textAlign= "center"
           placeholder="password"
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
@@ -47,6 +54,7 @@ export default function LoginScreen({ navigation }) {
       <TouchableOpacity style={globalStyles.loginBtn} onPress={() => navigation.navigate('Home')}>
         <Text style={globalStyles.loginText, globalStyles.ButtonsText}>LOGIN</Text>
       </TouchableOpacity>
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
