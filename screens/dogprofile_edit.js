@@ -19,6 +19,9 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
 
 export default function DogProfileEdit({ navigation, route }) {
+  const {currentDog} = route.params;
+  const {userID} = route.params;
+
   const [dogSize, setDogSize] = useState("");
   const [dogGender, setDogGender] = useState("");
   const [dogChar, setDogChar] = useState("");
@@ -78,7 +81,7 @@ export default function DogProfileEdit({ navigation, route }) {
 
       <TouchableOpacity
         style={globalStyles.editBtn}
-        onPress={() => navigation.navigate("Profile")}
+        onPress={() => navigation.navigate("Profile", userID)}
       >
         <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
           Save
@@ -105,7 +108,7 @@ export default function DogProfileEdit({ navigation, route }) {
         <TextInput
           style={globalStyles.ProfileInput}
           textAlign="center"
-          placeholder={route.params}
+          placeholder={currentDog}
           placeholderTextColor="#003f5c"
         />
       </View>

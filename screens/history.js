@@ -112,7 +112,7 @@ const CONTENT = [
   },
 ];
 
-export default function History({ navigation }) {
+export default function History({ route, navigation }) {
   const [activeSections, setActiveSections] = useState([]);
   const [collapsed, setCollapsed] = useState(true);
   const screen = Dimensions.get("window");
