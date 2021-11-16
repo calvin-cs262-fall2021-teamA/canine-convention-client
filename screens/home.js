@@ -54,16 +54,6 @@ export default function HomeScreen({ route, navigation }) {
       <Image source={logo} style={globalStyles.logo} />
       {/* <Text>User id is {route.params}</Text> */}
       <TouchableOpacity
-     {/*  <TouchableOpacity
-        style={globalStyles.homeBtns}
-        onPress={() => navigation.navigate("Profile", route.params)}
-      >
-       <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
-          View my Profile
-        </Text>
-      </TouchableOpacity>
-  */}
-      <TouchableOpacity
         style={globalStyles.homeBtns}
         onPress={() => navigation.navigate("FindEvent", route.params)}
       >
