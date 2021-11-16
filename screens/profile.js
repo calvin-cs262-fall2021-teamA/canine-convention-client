@@ -13,6 +13,7 @@ import { globalStyles } from "../styles/global";
 import blankPFP from "../assets/blankPFP.png";
 import * as Location from "expo-location";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
+import{Icon} from "react-native-elements";
 
 export default function Profile({ navigation }) {
   const [location, setLocation] = useState(null);

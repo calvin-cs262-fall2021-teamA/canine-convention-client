@@ -4,6 +4,7 @@ import { Text, View, Image, TouchableOpacity, Alert } from "react-native";
 import * as Location from "expo-location";
 import { globalStyles } from "../styles/global";
 import logo from "../assets/logo.png";
+import{Icon} from "react-native-elements";
 
 export default function HomeScreen({ navigation }) {
   const [response, setLocation] = useState(null);
@@ -47,17 +48,23 @@ export default function HomeScreen({ navigation }) {
   }
 
   return (
+
     <View style={globalStyles.container}>
       <StatusBar style="auto" />
       <Image source={logo} style={globalStyles.logo} />
-      <TouchableOpacity
+      
+     
+
+
+     {/*  <TouchableOpacity
         style={globalStyles.homeBtns}
         onPress={() => navigation.navigate("Profile")}
       >
-        <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
+       <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
           View my Profile
         </Text>
       </TouchableOpacity>
+  */}
       <TouchableOpacity
         style={globalStyles.homeBtns}
         onPress={() => navigation.navigate("FindEvent")}
@@ -88,6 +95,28 @@ export default function HomeScreen({ navigation }) {
         {"\n"}
         {addressText}
       </Text>
+
+      <View style={globalStyles.navigationBarHome}>
+      <Icon 
+        raised
+        name = "person"
+        onPress={() => navigation.navigate("Profile")}
+        
+      />
+      <Icon
+      raised 
+      name= "home"
+      type="ionicon"
+      onPress={() => navigation.navigate("Home")}
+      
+      />
+      <Icon
+        raised
+        name= "log-out"
+        type="ionicon"
+        onPress={() => navigation.navigate("Start")} 
+      />
+      </View>
     </View>
   );
 }

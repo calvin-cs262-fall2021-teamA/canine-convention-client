@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { globalStyles } from "../styles/global";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
-
+import{Icon} from "react-native-elements";
 import * as Animatable from "react-native-animatable";
 import Accordion from "react-native-collapsible/Accordion";
 
@@ -185,6 +185,27 @@ export default function History({ navigation }) {
             duration={400}
             onChange={setSections}
           />
+          <View style={globalStyles.navigationBarHistory}>
+      <Icon 
+        raised
+        name = "person"
+        onPress={() => navigation.navigate("Profile")}
+        
+      />
+      <Icon
+      raised 
+      name= "home"
+      type="ionicon"
+      onPress={() => navigation.navigate("Home")}
+      
+      />
+      <Icon
+        raised
+        name= "log-out"
+        type="ionicon"
+        onPress={() => navigation.navigate("Start")} 
+      />
+      </View>
         </ScrollView>
       </View>
     </SafeAreaView>

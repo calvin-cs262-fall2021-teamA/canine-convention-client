@@ -15,6 +15,7 @@ import * as ImagePicker from "expo-image-picker";
 import { globalStyles } from "../styles/global";
 import { Asset } from "expo-asset";
 import blankPFP from "../assets/blankPFP.png";
+import{Icon} from "react-native-elements";
 
 export default function ProfileEdit({ navigation }) {
   const [selectedImage, setSelectedImage] = React.useState(null);
@@ -93,6 +94,28 @@ export default function ProfileEdit({ navigation }) {
       {/* <TouchableOpacity style={globalStyles.homeBtns}>
                 <Text style={globalStyles.ButtonsText}>Remove a dog</Text>
             </TouchableOpacity> */}
+
+<View style={globalStyles.navigationBarProfileEdit}>
+      <Icon 
+        raised
+        name = "person"
+        onPress={() => navigation.navigate("Profile")}
+        
+      />
+      <Icon
+      raised 
+      name= "home"
+      type="ionicon"
+      onPress={() => navigation.navigate("Home")}
+      
+      />
+      <Icon
+        raised
+        name= "log-out"
+        type="ionicon"
+        onPress={() => navigation.navigate("Start")} 
+      />
+      </View>
     </View>
   );
 }
