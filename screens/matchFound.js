@@ -12,7 +12,7 @@ import { globalStyles } from "../styles/global";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
 import blankPFP from "../assets/blankPFP.png";
 
-export default function FindSuccess({ navigation }) {
+export default function FindSuccess({ route, navigation }) {
   return (
     <View style={{ backgroundColor: "#EFF0F4" }}>
       <View style={{ marginTop: "2%", marginLeft: "5%" }}>
@@ -63,7 +63,7 @@ export default function FindSuccess({ navigation }) {
       <View style={globalStyles.row}>
         <TouchableOpacity
           style={globalStyles.acceptBtns}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("Home", route.params)}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             Accept
@@ -71,7 +71,7 @@ export default function FindSuccess({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={globalStyles.acceptBtns}
-          onPress={() => navigation.navigate("FindEvent")}
+          onPress={() => navigation.navigate("FindEvent", route.params)}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             Decline

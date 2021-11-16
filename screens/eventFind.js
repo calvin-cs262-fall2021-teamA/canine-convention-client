@@ -5,7 +5,7 @@ import { ButtonGroup, Icon } from "react-native-elements";
 import { globalStyles } from "../styles/global";
 import SelectDropdown from "react-native-select-dropdown";
 
-export default function FindEvent({ navigation }) {
+export default function FindEvent({ route, navigation }) {
   const [eventType, setEventType] = useState("");
   const [dogSize, setDogSize] = useState("");
   const [dogGender, setDogGender] = useState("");
@@ -99,7 +99,7 @@ export default function FindEvent({ navigation }) {
       />
       <TouchableOpacity
         style={globalStyles.homeBtns}
-        onPress={() => navigation.navigate("Match Found")}
+        onPress={() => navigation.navigate("Match Found", route.params)}
       >
         <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
           FIND

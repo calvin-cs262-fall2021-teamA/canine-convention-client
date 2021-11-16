@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useState, } from "react";
 import {
   Text,
   View,
@@ -16,6 +16,8 @@ export default function SignUpScreen({ navigation }) {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
+  const id = 1;
+  
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -62,7 +64,7 @@ export default function SignUpScreen({ navigation }) {
         </View>
         <TouchableOpacity
           style={globalStyles.loginBtn}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("Home", id)}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             {" "}

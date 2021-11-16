@@ -15,7 +15,7 @@ import * as Location from "expo-location";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
 import{Icon} from "react-native-elements";
 
-export default function Profile({ navigation }) {
+export default function Profile({ route, navigation }) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
@@ -43,7 +43,7 @@ export default function Profile({ navigation }) {
     <View style={{ backgroundColor: "#EFF0F4" }}>
       <TouchableOpacity
         style={globalStyles.editBtn}
-        onPress={() => navigation.navigate("ProfileEdit")}
+        onPress={() => navigation.navigate("ProfileEdit", route.params)}
       >
         <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
           Edit
@@ -65,7 +65,7 @@ export default function Profile({ navigation }) {
                 globalStyles.editBtn,
                 { marginLeft: "60%", marginTop: "5%" },
               ]}
-              onPress={() => navigation.navigate("DogProfileEdit", "Fido")}
+              onPress={() => navigation.navigate("DogProfileEdit", {currentDog: "Fido", userID: route.params})}
             >
               <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
                 Edit
@@ -113,7 +113,7 @@ export default function Profile({ navigation }) {
                 globalStyles.editBtn,
                 { marginLeft: "60%", marginTop: "5%" },
               ]}
-              onPress={() => navigation.navigate("DogProfileEdit", "Rover")}
+              onPress={() => navigation.navigate("DogProfileEdit", {currentDog: "Rover", userID: route.params})}
             >
               <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
                 Edit
@@ -161,7 +161,7 @@ export default function Profile({ navigation }) {
                 globalStyles.editBtn,
                 { marginLeft: "60%", marginTop: "5%" },
               ]}
-              onPress={() => navigation.navigate("DogProfileEdit", "Snowball")}
+              onPress={() => navigation.navigate("DogProfileEdit", {currentDog: "Snowball", userID: route.params})}
             >
               <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
                 Edit
