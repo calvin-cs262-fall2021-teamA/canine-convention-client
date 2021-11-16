@@ -185,4 +185,24 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  navigationBarProfileEdit:{
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    marginTop:"5%",
+    marginBottom: "-20%",
+  },
+  navigationBarHome:{
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    marginTop:"5%",
+    marginBottom: "10%",
+  },
+  navigationBarHistory:{
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    marginTop:"90%",
+  },
 });
