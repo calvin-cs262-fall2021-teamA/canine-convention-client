@@ -42,7 +42,7 @@ export default function ProfileEdit({ route, navigation }) {
   return (
     <View style={{ backgroundColor: "#EFF0F4" }}>
       <TouchableOpacity
-        style={globalStyles.editBtn}
+        style={[globalStyles.editBtn, {height: "5%"}]}
         onPress={() => navigation.navigate("Profile", route.params)}
       >
         <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
@@ -91,9 +91,6 @@ export default function ProfileEdit({ route, navigation }) {
       >
         <Text style={globalStyles.ButtonsText}>Add a new dog</Text>
       </TouchableOpacity>
-      {/* <TouchableOpacity style={globalStyles.homeBtns}>
-                <Text style={globalStyles.ButtonsText}>Remove a dog</Text>
-            </TouchableOpacity> */}
 
 <View style={globalStyles.navigationBarProfileEdit}>
       <Icon 

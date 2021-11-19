@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState, } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   View,
@@ -7,39 +7,76 @@ import {
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
-  ScrollView,
+  ScrollView, 
 } from "react-native";
 import { globalStyles } from "../styles/global";
 
 export default function SignUpScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirst] = useState("");
+  const [lastName, setLast] = useState("");
+  const [phone, setPhone] = useState("");
+  //const [id, setID] = useState("hi");
 
-  const id = 1;
+  const makeUser = async () => {
+    try{
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          "firstName": firstName,
+          "lastName": lastName,
+          "email": email,
+          "phone": phone
+        })
+      };
+      const response = await fetch("http://canine-convention.herokuapp.com/persons", requestOptions);
+      const json = await response.json();
+      console.log(json);
+      return json;
+    }catch(error) {console.error(error)}
+  };
+
   
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1, flexDirection: "column", justifyContent: "center" }}
+      style={{ flex: 1, flexDirection: "column", justifyContent: "center", backgroundColor: "#EFF0F4" }}
     >
       <Image
-        style={[globalStyles.logo, { marginTop: "10%" }]}
+        style={globalStyles.logo}
         source={require("../assets/logo.png")}
       />
 
       <StatusBar style="auto" />
       <ScrollView
         contentContainerStyle={{ alignItems: "center" }}
-        scrollEnabled={false}
+        scrollEnabled={true}
       >
-        <View style={globalStyles.inputView}>
+        <View style={globalStyles.inputView, globalStyles.row}>
+          <TextInput
+            style={[globalStyles.TextInput, {height: "100%", width: "45%"}]}
+            textAlign="center"
+            placeholder="first name"
+            placeholderTextColor="#003f5c"
+            onChangeText={(firstName) => setFirst(firstName)}
+          />
+          <TextInput
+            style={[globalStyles.TextInput, {height: "100%", width: "45%"}]}
+            textAlign="center"
+            placeholder="last name"
+            placeholderTextColor="#003f5c"
+            onChangeText={(lastName) => setLast(lastName)}
+          />
+        </View>
+        <View style={[globalStyles.inputView, {marginTop: "4%"}]}>
           <TextInput
             style={globalStyles.TextInput}
             textAlign="center"
-            placeholder="name"
+            placeholder="phone number"
             placeholderTextColor="#003f5c"
-            onChangeText={(name) => setName(name)}
+            onChangeText={(phone) => setPhone(phone)}
           />
         </View>
         <View style={globalStyles.inputView}>
@@ -64,7 +101,9 @@ export default function SignUpScreen({ navigation }) {
         </View>
         <TouchableOpacity
           style={globalStyles.loginBtn}
-          onPress={() => navigation.navigate("Home", id)}
+          //onPressIn={() => makeUser()}
+          onPress={() => makeUser().then(val => navigation.navigate("Home", val.id))}
+          //onPress={() => makeUser().then(val => navigation.navigate("DogProfileEdit", {currentDog: "New dog", userID: val.id}))}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             {" "}

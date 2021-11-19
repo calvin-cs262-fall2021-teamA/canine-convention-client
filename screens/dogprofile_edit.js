@@ -79,14 +79,27 @@ export default function DogProfileEdit({ navigation, route }) {
         onCancel={hideDatePicker}
       />
 
-      <TouchableOpacity
-        style={globalStyles.editBtn}
-        onPress={() => navigation.navigate("Profile", userID)}
-      >
-        <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
-          Save
-        </Text>
-      </TouchableOpacity>
+      <View style={globalStyles.row}>
+        <TouchableOpacity
+          style={{width: "30%", borderRadius: 25, height: "100%", justifyContent: "center", alignItems: "center", 
+            backgroundColor: "#195F6B", marginTop: "2%", marginLeft: "2%"}}
+          onPress={() => navigation.navigate("Profile", userID)}
+        >
+          <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
+            Delete Dog
+          </Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity
+          style={{width: "15%", borderRadius: 25, height: "100%", justifyContent: "center", alignItems: "center",
+            backgroundColor: "#195F6B", marginTop: "2%", marginLeft: "auto", marginRight: "2%"}}
+          onPress={() => navigation.navigate("Profile", userID)}
+        >
+          <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
+            Save
+          </Text>
+        </TouchableOpacity>
+      </View>
       <Image
         source={{ uri: currentImage }}
         style={{
@@ -94,6 +107,7 @@ export default function DogProfileEdit({ navigation, route }) {
           marginBottom: "5%",
           height: "15%",
           marginLeft: "35%",
+          marginTop: "5%"
         }}
       />
       <TouchableOpacity
