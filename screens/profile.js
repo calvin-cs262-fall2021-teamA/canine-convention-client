@@ -42,7 +42,7 @@ export default function Profile({ route, navigation }) {
   return (
     <View style={{ backgroundColor: "#EFF0F4" }}>
       <TouchableOpacity
-        style={globalStyles.editBtn}
+        style={[globalStyles.editBtn, {height: "5%"}]}
         onPress={() => navigation.navigate("ProfileEdit", route.params)}
       >
         <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
@@ -63,7 +63,7 @@ export default function Profile({ route, navigation }) {
             <TouchableOpacity
               style={[
                 globalStyles.editBtn,
-                { marginLeft: "60%", marginTop: "5%" },
+                { marginLeft: "60%", marginTop: "5%", height: "60%"},
               ]}
               onPress={() => navigation.navigate("DogProfileEdit", {currentDog: "Fido", userID: route.params})}
             >
@@ -111,7 +111,7 @@ export default function Profile({ route, navigation }) {
             <TouchableOpacity
               style={[
                 globalStyles.editBtn,
-                { marginLeft: "60%", marginTop: "5%" },
+                { marginLeft: "60%", marginTop: "5%" , height: "60%"},
               ]}
               onPress={() => navigation.navigate("DogProfileEdit", {currentDog: "Rover", userID: route.params})}
             >
@@ -159,7 +159,7 @@ export default function Profile({ route, navigation }) {
             <TouchableOpacity
               style={[
                 globalStyles.editBtn,
-                { marginLeft: "60%", marginTop: "5%" },
+                { marginLeft: "60%", marginTop: "5%", height: "60%" },
               ]}
               onPress={() => navigation.navigate("DogProfileEdit", {currentDog: "Snowball", userID: route.params})}
             >
