@@ -65,7 +65,7 @@ export const globalStyles = StyleSheet.create({
     fontWeight: "bold",
   },
   dogName: {
-    fontSize: 25,
+    fontSize: 20,
     marginRight: "auto",
     marginTop: "5%",
     marginLeft: "5%",
@@ -85,7 +85,8 @@ export const globalStyles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: "8%",
+    marginTop: "5%",
+    marginBottom: "2.5%",
     backgroundColor: "#195F6B",
   },
   acceptBtns: {
@@ -203,5 +204,23 @@ export const globalStyles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     marginTop:"90%",
+  },
+  navigationBarProfile:{
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    marginBottom: "-40%",
+  },
+  navigationBarEvent:{
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    marginBottom: "5%",
+  },
+  navigationBarMap:{
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    marginTop: "140%",
   },
 });

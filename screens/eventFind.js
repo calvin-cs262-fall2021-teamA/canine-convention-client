@@ -22,7 +22,7 @@ export default function FindEvent({ route, navigation }) {
           backgroundColor: "#FFFFFF",
           borderWidth: 1,
           borderColor: "#000000",
-          marginVertical: "6%",
+          marginVertical: "4%",
         }}
         data={dogNames}
         defaultButtonText="Choose Dog"
@@ -55,7 +55,7 @@ export default function FindEvent({ route, navigation }) {
         buttons={["WALK", "PARK"]}
         selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
         selectedIndex={eventType}
-        containerStyle={{ marginBottom: "5%" }}
+        containerStyle={{ marginBottom: "4%" }}
         onPress={(value) => {
           setEventType(value);
         }}
@@ -65,7 +65,7 @@ export default function FindEvent({ route, navigation }) {
         buttons={["SMALL", "MEDIUM", "LARGE"]}
         selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
         selectedIndex={dogSize}
-        containerStyle={{ marginBottom: "5%" }}
+        containerStyle={{ marginBottom: "4%" }}
         onPress={(value) => {
           setDogSize(value);
         }}
@@ -74,7 +74,7 @@ export default function FindEvent({ route, navigation }) {
         buttons={["MALE", "FEMALE"]}
         selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
         selectedIndex={dogGender}
-        containerStyle={{ marginBottom: "5%" }}
+        containerStyle={{ marginBottom: "4%" }}
         onPress={(value) => {
           setDogGender(value);
         }}
@@ -83,7 +83,7 @@ export default function FindEvent({ route, navigation }) {
         buttons={["CALM", "PLAYFUL", "FRIENDLY"]}
         selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
         selectedIndex={dogChar}
-        containerStyle={{ marginBottom: "5%" }}
+        containerStyle={{ marginBottom: "4%" }}
         onPress={(value) => {
           setDogChar(value);
         }}
@@ -105,6 +105,27 @@ export default function FindEvent({ route, navigation }) {
           FIND
         </Text>
       </TouchableOpacity>
+      <View style={globalStyles.navigationBarEvent}>
+      <Icon 
+        raised
+        name = "person"
+        onPress={() => navigation.navigate("Profile")}
+        
+      />
+      <Icon
+      raised 
+      name= "home"
+      type="ionicon"
+      onPress={() => navigation.navigate("Home")}
+      
+      />
+      <Icon
+        raised
+        name= "log-out"
+        type="ionicon"
+        onPress={() => navigation.navigate("Start")} 
+      />
+      </View>
     </View>
   );
 }

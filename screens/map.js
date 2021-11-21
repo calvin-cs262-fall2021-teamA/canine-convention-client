@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import * as Location from "expo-location";
-import { BackHandler } from "react-native";
+import { BackHandler,View } from "react-native";
+import{Icon} from "react-native-elements";
+import { globalStyles } from "../styles/global";
 
 export default function Map({ route, navigation }) {
   const [mapRegion, setMapRegion] = useState(null);
@@ -54,7 +56,29 @@ export default function Map({ route, navigation }) {
         }}
         title = "Covell"
         source={require('../assets/map_marker.png')}>
-        </Marker>           
+        </Marker>
+        <View style={globalStyles.navigationBarMap}>
+      <Icon 
+        raised
+        name = "person"
+        onPress={() => navigation.navigate("Profile")}
+        
+      />
+      <Icon
+      raised 
+      name= "home"
+      type="ionicon"
+      onPress={() => navigation.navigate("Home")}
+      
+      />
+      <Icon
+        raised
+        name= "log-out"
+        type="ionicon"
+        onPress={() => navigation.navigate("Start")} 
+      />
+      </View>           
    </MapView>
+   
   );
     }

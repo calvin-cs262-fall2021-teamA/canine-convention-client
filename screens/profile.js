@@ -202,6 +202,28 @@ export default function Profile({ route, navigation }) {
           </View>
         </View>
       </PagerView>
+      <View style={globalStyles.navigationBarProfile}>
+      <Icon 
+        raised
+        name = "person"
+        onPress={() => navigation.navigate("Profile")}
+        
+      />
+      <Icon
+      raised 
+      name= "home"
+      type="ionicon"
+      onPress={() => navigation.navigate("Home")}
+      
+      />
+      <Icon
+        raised
+        name= "log-out"
+        type="ionicon"
+        onPress={() => navigation.navigate("Start")} 
+      />
+      </View>
     </View>
+    
   );
 }
