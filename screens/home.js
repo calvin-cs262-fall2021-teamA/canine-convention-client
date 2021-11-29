@@ -55,7 +55,7 @@ export default function HomeScreen({ route, navigation }) {
       {/* <Text>User id is {route.params}</Text> */}
       <TouchableOpacity
         style={globalStyles.homeBtns}
-        onPress={() => navigation.navigate("FindEvent", route.params)}
+        onPress={() => navigation.navigate("Map", route.params)}
       >
         <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
           Find an Event
@@ -69,15 +69,6 @@ export default function HomeScreen({ route, navigation }) {
           View History
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={globalStyles.homeBtns}
-        onPress={() => navigation.navigate("Map", route.params)}
-      >
-        <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
-          View Map
-        </Text>
-      </TouchableOpacity>
-
       <Text>
         {"\n\n"} This is your current location:
         {"\n"}
