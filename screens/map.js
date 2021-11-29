@@ -54,6 +54,7 @@ export default function Map({ route, navigation }) {
         provider={PROVIDER_GOOGLE}
         initialRegion={mapRegion}
         showsUserLocation={true}
+        onLongPress={e => console.log(e.nativeEvent)}
       >
         <Marker
           coordinate={{
