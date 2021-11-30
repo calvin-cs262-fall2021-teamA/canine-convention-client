@@ -7,37 +7,35 @@ import {
   Button,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  ActivityIndicator,
+  FlatList,
 } from "react-native";
 import PagerView from "react-native-pager-view";
 import { globalStyles } from "../styles/global";
 import blankPFP from "../assets/blankPFP.png";
-import * as Location from "expo-location";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
 import{Icon} from "react-native-elements";
 
 export default function Profile({ route, navigation }) {
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [isLoading, setLoading] = useState(true);
+  const [userID, setUserID] = useState(1);
+  const [userInfo, setUserInfo] = useState(NULL);
 
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        setErrorMsg("Permission to access location was denied");
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-    })();
-  }, []);
-
-  let locText = "Waiting..";
-  if (errorMsg) {
-    locText = errorMsg;
-  } else if (location) {
-    locText = JSON.stringify(location);
+  const getPersonInfo = async () => {
+    try{
+      const response = await fetch('https://canine-convention.herokuapp.com/person/' + str(userID))
+      const json = await response.json();
+      setUserInfo(json)
+    } catch (error) {
+      console.error(error);
+    }finally {
+      setLoading(false)
+    }
   }
+
+  useEffect (() => {
+    getPersonInfo ();
+  }, []);
 
   return (
     <View style={{ backgroundColor: "#EFF0F4" }}>
@@ -49,11 +47,18 @@ export default function Profile({ route, navigation }) {
           Edit
         </Text>
       </TouchableOpacity>
-      <View style={{ left: "5%" }}>
-        <Text style={globalStyles.profileText}>John Doe</Text>
-        <Text style={globalStyles.profileText}>616-222-5555</Text>
-        <Text style={globalStyles.profileText}>Grand Rapids{"\n"}</Text>
-      </View>
+        {isLoading ? <ActivityIndicator/> : (
+          <FlatList
+            data={userInfo}
+            renderItem={({ item }) => (
+              <View style={{ left: "5%" }}>
+                <Text style={globalStyles.profileText}>{item.firstname} {item.lastname}</Text>
+                <Text style={globalStyles.profileText}>{item.phone}</Text>
+                <Text style={globalStyles.profileText}>{item.email}</Text>
+              </View>
+            )}
+            />
+        )}
       <Image source={blankPFP} style={globalStyles.picture} />
 
       <PagerView style={globalStyles.pager} initialPage={0}>
