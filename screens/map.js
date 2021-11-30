@@ -27,7 +27,7 @@ export default function Map({ route, navigation }) {
   const handleExpandPress = () => bottomSheetRef.current.expand()
 
   // variables
-  const snapPoints = useMemo(() => ["10%", "70%"], []);
+  const snapPoints = useMemo(() => ["20%", "80%"], []);
 
   const [mapRegion, setMapRegion] = useState(null);
   useEffect(() => {
@@ -98,6 +98,7 @@ export default function Map({ route, navigation }) {
                 backgroundColor: "#FFFFFF",
                 borderWidth: 1,
                 borderColor: "#000000",
+                marginVertical: "6%",
               }}
               data={dogNames}
               defaultButtonText="Choose Dog"
