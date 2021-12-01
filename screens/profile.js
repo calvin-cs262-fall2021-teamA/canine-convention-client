@@ -84,12 +84,14 @@ export default function Profile({ route, navigation }) {
       <Image source={blankPFP} style={globalStyles.picture} />
 
       <PagerView style={globalStyles.pager} initialPage={0}>
-        {isLoadinf}
+      {isLoading ? (
+        <ActivityIndicator />
+      ) : (
         <FlatList
           data={dogInfo}
           keyExtractor={({ id }, index) => id}
-          renderItem={({ item }) => (
-            <View style={globalStyles.container} key={ id }>
+          renderItem={({ item }, index ) => (
+            <View style={globalStyles.container} key={ index }>
               <View style={globalStyles.row}>
                 <Text style={globalStyles.dogName}>{ item.dogName }</Text>
                 <TouchableOpacity
@@ -99,7 +101,7 @@ export default function Profile({ route, navigation }) {
                   ]}
                   onPress={() =>
                     navigation.navigate("DogProfileEdit", {
-                      currentDog: { item.dogName },
+                      currentDog: "Fido",
                       userID: route.params,
                     })
                   }
@@ -146,6 +148,7 @@ export default function Profile({ route, navigation }) {
             </View>
           )}
         />
+        )}
       </PagerView>
     </View>
   );
