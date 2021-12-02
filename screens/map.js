@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import * as Location from "expo-location";
-import { BackHandler, View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { BackHandler, View, Text, StyleSheet, TouchableOpacity, Modal } from "react-native";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { ButtonGroup, Icon } from "react-native-elements";
 import { globalStyles } from "../styles/global";
@@ -20,7 +20,31 @@ export default function Map({ route, navigation }) {
   const [dogGender, setDogGender] = useState("");
   const [dogChar, setDogChar] = useState("");
   const [dogStatus, setDogStatus] = useState("");
+  const [eventData, setEventData] = useState('{}');
+  const [showEvents, setShowEvents] = useState(false);
   const dogNames = ["Fido", "Rover", "Snowball"];
+
+
+  //Check events available
+  const getEvents = async () => {
+    try {
+      const response = await fetch('https://canine-convention.herokuapp.com/events');
+      const json = await response.json();
+      setEventData(json);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  //find Event
+  const findEvent = () => {
+    getEvents()
+    if (eventData !== '{}') {
+      setShowEvents(true)
+    }
+  }
   // ref
   const bottomSheetRef = useRef(null);
 
@@ -175,7 +199,7 @@ export default function Map({ route, navigation }) {
             />
             <TouchableOpacity
               style={globalStyles.homeBtns}
-              onPress={() => navigation.navigate("Match Found", route.params)}
+              onPress={() => setShowEvents(true)}
             >
               <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
                 FIND
@@ -184,6 +208,18 @@ export default function Map({ route, navigation }) {
           </View>
         </BottomSheetScrollView>
       </BottomSheet>
+      <Modal transparent={true} fullScreen={true} visible={showEvents} animationType='slide'>
+        <View style={globalStyles.container}>
+          <View style={popStyle.box}>
+            <TouchableOpacity
+              onPress={() => setShowEvents(false)}
+              style={styles.modalToggle}
+            >
+              <Text>CLOSE</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -197,4 +233,25 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
+});
+
+const popStyle = StyleSheet.create({
+  boxBackground: {
+    backgroundColor: "#000000aa",
+    flex: 1,
+  },
+
+  box: {
+    backgroundColor: "#fff",
+    width: "80%",
+    padding: 25,
+    height: '50%',
+    borderRadius: 10,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+
+  boxText: {
+    fontSize: 50,
+  }
 });
