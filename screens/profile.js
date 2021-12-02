@@ -15,12 +15,13 @@ import { globalStyles } from "../styles/global";
 import blankPFP from "../assets/blankPFP.png";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
 import { Icon } from "react-native-elements";
+import { render } from "react-dom";
 
 export default function Profile({ route, navigation }) {
   const [isLoading, setLoading] = useState(true);
   const [userID, setUserID] = useState(1);
-  const [userInfo, setUserInfo] = useState(null);
-  const [dogInfo, setDogInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState([]);
+  const [dogInfo, setDogInfo] = useState([]);
 
   const getPersonInfo = async () => {
     try {
@@ -32,7 +33,6 @@ export default function Profile({ route, navigation }) {
     } catch (error) {
       console.error(error);
     } finally {
-      getDogInfo();
     }
   };
 
@@ -55,6 +55,7 @@ export default function Profile({ route, navigation }) {
     getDogInfo();
   }, []);
 
+
   return (
     <View style={{ backgroundColor: "#EFF0F4" }}>
       <TouchableOpacity
@@ -65,12 +66,11 @@ export default function Profile({ route, navigation }) {
           Edit
         </Text>
       </TouchableOpacity>
-      {isLoading ? (
-        <ActivityIndicator />
-      ) : (
+      {isLoading ? <ActivityIndicator/> : (
         <View style={{ left: "5%" }}>
           <Text style={globalStyles.profileText}>
-            {userInfo.firstname} {userInfo.lastname}
+            {/* {userInfo.firstname} {userInfo.lastname} */}
+            John
           </Text>
           <Text style={globalStyles.profileText}>{userInfo.phone}</Text>
           <Text style={globalStyles.profileText}>{userInfo.email}</Text>
@@ -78,74 +78,63 @@ export default function Profile({ route, navigation }) {
       )}
       <Image source={blankPFP} style={globalStyles.picture} />
 
-      {isLoading ? (
-        <ActivityIndicator />
-      ) : (
-          <FlatList
-            data={dogInfo}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }, id) => (
-              <View style={globalStyles.container}>
-                <View style={globalStyles.row}>
-                  <Text style={globalStyles.dogName}>{item.dogName}</Text>
-                  <TouchableOpacity
-                    style={[
-                      globalStyles.editBtn,
-                      { marginLeft: "60%", marginTop: "5%", height: "60%" },
-                    ]}
-                    onPress={() =>
-                      navigation.navigate("DogProfileEdit", {
-                        currentDog: "Fido",
-                        userID: route.params,
-                      })
-                    }
-                  >
-                    <Text
-                      style={(globalStyles.loginText, globalStyles.ButtonsText)}
-                    >
-                      Edit
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <Image source={blankDogPFP} style={globalStyles.pictureDog} />
-                <View style={globalStyles.row}>
-                  <TouchableWithoutFeedback>
-                    <View style={globalStyles.tag}>
-                      <Text style={globalStyles.tagText}>
-                        {item.Neutered ? "Neutered" : "Not Neutered"}
-                      </Text>
-                    </View>
-                  </TouchableWithoutFeedback>
-                  <TouchableWithoutFeedback>
-                    <View style={globalStyles.tag}>
-                      <Text style={globalStyles.tagText}>{item.Size}</Text>
-                    </View>
-                  </TouchableWithoutFeedback>
-                </View>
-                <View style={globalStyles.row}>
-                  <TouchableWithoutFeedback>
-                    <View style={globalStyles.tag}>
-                      <Text style={globalStyles.tagText}>{item.Gender}</Text>
-                    </View>
-                  </TouchableWithoutFeedback>
-                  <TouchableWithoutFeedback>
-                    <View style={globalStyles.tag}>
-                      <Text style={globalStyles.tagText}>
-                        {item.Personality}
-                      </Text>
-                    </View>
-                  </TouchableWithoutFeedback>
-                </View>
-                <View style={globalStyles.row}>
-                  <TouchableWithoutFeedback>
-                    <View style={globalStyles.tag}>
-                      <Text style={globalStyles.tagText}>2 years</Text>
-                    </View>
-                  </TouchableWithoutFeedback>
-                </View>
+      {isLoading ? <ActivityIndicator/> : (
+          <PagerView style={globalStyles.pager} initialPage={0}>
+            {/* {output} */}
+            {dogInfo.map((item)=> {return (
+            <View style={globalStyles.container} key={item.id}>
+              <View style={globalStyles.row}>
+                <Text style={globalStyles.dogName}>{item.dogname}</Text>
+                <TouchableOpacity
+                  style={[
+                    globalStyles.editBtn,
+                    { marginLeft: "60%", marginTop: "5%", height: "60%"},
+                  ]}
+                  onPress={() => navigation.navigate("DogProfileEdit", {currentDog: item, userID: route.params})}
+                >
+                  <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
+                    Edit
+                  </Text>
+                </TouchableOpacity>
               </View>
-            )}
-          />
+              <Image source={blankDogPFP} style={globalStyles.pictureDog} />
+              <View style={globalStyles.row}>
+                <TouchableWithoutFeedback>
+                  <View style={globalStyles.tag}>
+                    {item.neutered &&
+                    <Text style={globalStyles.tagText}>Neutered</Text>}
+                    {!(item.neutered) &&
+                    <Text style={globalStyles.tagText}>Not Neutered</Text>}
+                  </View>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback>
+                  <View style={globalStyles.tag}>
+                    <Text style={globalStyles.tagText}>{item.size}</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+              </View>
+              <View style={globalStyles.row}>
+                <TouchableWithoutFeedback>
+                  <View style={globalStyles.tag}>
+                    <Text style={globalStyles.tagText}>{item.gender}</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback>
+                  <View style={globalStyles.tag}>
+                    <Text style={globalStyles.tagText}>{item.personality}</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+              </View>
+              <View style={globalStyles.row}>
+                <TouchableWithoutFeedback>
+                  <View style={globalStyles.tag}>
+                    <Text style={globalStyles.tagText}>2 years</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+              </View>
+            </View>
+            );})}
+        </PagerView>
       )}
     </View>
   );
