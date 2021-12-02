@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   View,
@@ -18,19 +18,14 @@ import { Asset } from "expo-asset";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
 
-export default function DogProfileEdit({ navigation, route }) {
-  const {currentDog} = route.params;
+export default function AddDog({ navigation, route }) {
   const {userID} = route.params;
 
-  const [dogSize, setDogSize] = useState(currentDog.size);
-  const [dogGender, setDogGender] = useState(currentDog.gender);
-  const [dogChar, setDogChar] = useState(currentDog.personality);
-  var neutered = "Not Neutered";
-  if (currentDog.neutered){
-    neutered = "Neutered";
-  }
-  const [dogStatus, setDogStatus] = useState(neutered);
-  const [dogName, setDogName] = useState(currentDog.dogname);
+  const [dogSize, setDogSize] = useState("");
+  const [dogGender, setDogGender] = useState("");
+  const [dogChar, setDogChar] = useState("");
+  const [dogStatus, setDogStatus] = useState("");
+  const [dogName, setDogName] = useState("");
 
   const [date, setDate] = useState("Oct 2015");
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -64,87 +59,30 @@ export default function DogProfileEdit({ navigation, route }) {
   };
 
   if (selectedImage !== null) {
-    //Change this to send image to database
     currentImage = selectedImage.localUri;
-    // return (
-    //     <View style={globalStyles.container}>
-    //         <Image source={{uri:selectedImage.localUri}}
-    //             style={{width: 200, height: 100, marginBottom: 30}}
-    //         />
-    //     </View>
-    //  );
   }
 
-  const updateDog = async () => {
+  const createDog = async () => {
 
     var neutered = false;
     if(dogStatus === "Neutered"){
       neutered = true;
     }
     try{
-      const response = await fetch("http://canine-convention.herokuapp.com/dog/name/"+ currentDog.id , {method: 'PUT',
+      const response = await fetch(`http://canine-convention.herokuapp.com/dog`, {method: 'POST',
         headers: { 'Content-Type': 'application/json' }, 
         body: JSON.stringify(
-            {"dogName": dogName}
+            {"personID": userID,
+             "dogName": dogName,
+             "Birthdate": date,
+             "Personality": dogChar,
+             "Gender": dogGender,
+             "Neutered": neutered,
+             "Size": dogSize,
+             "image": currentImage}
         )});
       const json = await response.json();
-      return json;
-    }catch(error) {console.error(error)}
-    try{
-      const response = await fetch("http://canine-convention.herokuapp.com/dog/birthdate/"+ currentDog.id , {method: 'PUT',
-        headers: { 'Content-Type': 'application/json' }, 
-        body: JSON.stringify(
-            {"Birthdate": date}
-        )});
-      const json = await response.json();
-      return json;
-    }catch(error) {console.error(error)}
-    try{
-      const response = await fetch("http://canine-convention.herokuapp.com/dog/personality/"+ currentDog.id , {method: 'PUT',
-        headers: { 'Content-Type': 'application/json' }, 
-        body: JSON.stringify(
-            {"Personality": dogChar}
-        )});
-      const json = await response.json();
-      return json;
-    }catch(error) {console.error(error)}
-    try{
-      const response = await fetch("http://canine-convention.herokuapp.com/dog/gender/"+ currentDog.id , {method: 'PUT',
-        headers: { 'Content-Type': 'application/json' }, 
-        body: JSON.stringify(
-            {"Gender": dogGender}
-        )});
-      const json = await response.json();
-      return json;
-    }catch(error) {console.error(error)}
-    try{
-      if (dogStatus == "Neutered"){
-        var neuterBool = true;
-      }else{neuterbool = false;}
-      const response = await fetch("http://canine-convention.herokuapp.com/dog/neutered/"+ currentDog.id , {method: 'PUT',
-        headers: { 'Content-Type': 'application/json' }, 
-        body: JSON.stringify(
-            {"Neutered": neuterBool}
-        )});
-      const json = await response.json();
-      return json;
-    }catch(error) {console.error(error)}
-    try{
-      const response = await fetch("http://canine-convention.herokuapp.com/dog/image/"+ currentDog.id , {method: 'PUT',
-        headers: { 'Content-Type': 'application/json' }, 
-        body: JSON.stringify(
-            {"image": currentImage}
-        )});
-      const json = await response.json();
-      return json;
-    }catch(error) {console.error(error)}
-    try{
-      const response = await fetch("http://canine-convention.herokuapp.com/dog/size/"+ currentDog.id , {method: 'PUT',
-        headers: { 'Content-Type': 'application/json' }, 
-        body: JSON.stringify(
-            {"Size": dogSize}
-        )});
-      const json = await response.json();
+      //console.log(json);
       return json;
     }catch(error) {console.error(error)}
   };
@@ -159,20 +97,11 @@ export default function DogProfileEdit({ navigation, route }) {
       />
 
       <View style={globalStyles.row}>
-        <TouchableOpacity
-          style={{width: "30%", borderRadius: 25, height: "100%", justifyContent: "center", alignItems: "center", 
-            backgroundColor: "#195F6B", marginTop: "2%", marginLeft: "2%"}}
-          onPress={() => navigation.navigate("Profile", userID)}
-        >
-          <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
-            Delete Dog
-          </Text>
-        </TouchableOpacity>
         
         <TouchableOpacity
           style={{width: "15%", borderRadius: 25, height: "100%", justifyContent: "center", alignItems: "center",
             backgroundColor: "#195F6B", marginTop: "2%", marginLeft: "auto", marginRight: "2%"}}
-          onPress={() => navigation.navigate("Profile", userID)}
+          onPress={() => createDog().then(navigation.navigate("Profile", userID))}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             Save
@@ -201,7 +130,7 @@ export default function DogProfileEdit({ navigation, route }) {
         <TextInput
           style={globalStyles.ProfileInput}
           textAlign="center"
-          placeholder={currentDog.dogname}
+          placeholder={"Add a dog"}
           placeholderTextColor="#003f5c"
           onChangeText={(name) => setDogName(name)}
         />
