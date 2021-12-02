@@ -69,8 +69,7 @@ export default function Profile({ route, navigation }) {
       {isLoading ? <ActivityIndicator/> : (
         <View style={{ left: "5%" }}>
           <Text style={globalStyles.profileText}>
-            {/* {userInfo.firstname} {userInfo.lastname} */}
-            John
+            {userInfo.firstname} {userInfo.lastname}
           </Text>
           <Text style={globalStyles.profileText}>{userInfo.phone}</Text>
           <Text style={globalStyles.profileText}>{userInfo.email}</Text>

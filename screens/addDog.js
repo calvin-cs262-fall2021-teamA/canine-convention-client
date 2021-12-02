@@ -62,7 +62,7 @@ export default function AddDog({ navigation, route }) {
     currentImage = selectedImage.localUri;
   }
 
-  const createDog = async () => {
+    const createDog = async () => {
 
     var neutered = false;
     if(dogStatus === "Neutered"){
