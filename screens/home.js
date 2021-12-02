@@ -78,11 +78,11 @@ export default function HomeScreen({ route, navigation }) {
         </Text>
       </TouchableOpacity>
 
-      <Text>
+      {/* <Text>
         {"\n\n"} This is your current location:
         {"\n"}
         {addressText}
-      </Text>
+      </Text> */}
 
       <View style={globalStyles.navigationBarHome}>
       <Icon 

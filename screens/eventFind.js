@@ -11,7 +11,7 @@ export default function FindEvent({ route, navigation }) {
   const [dogGender, setDogGender] = useState("");
   const [dogChar, setDogChar] = useState("");
   const [dogStatus, setDogStatus] = useState("");
-  const dogNames = ["Fido", "Rover", "Snowball"];
+  const dogNames = ["Fido", "Sugar"];
   return (
     <View style={globalStyles.container}>
       <StatusBar style="auto" />
