@@ -18,6 +18,7 @@ import blankPFP from "../assets/blankPFP.png";
 import{Icon} from "react-native-elements";
 
 export default function ProfileEdit({ route, navigation }) {
+  const {userID} = route.params;
   const [selectedImage, setSelectedImage] = React.useState(null);
 
   var currentImage = Asset.fromModule(require("../assets/blankPFP.png")).uri;
@@ -43,7 +44,7 @@ export default function ProfileEdit({ route, navigation }) {
     <View style={{ backgroundColor: "#EFF0F4" }}>
       <TouchableOpacity
         style={[globalStyles.editBtn, {height: "5%"}]}
-        onPress={() => navigation.navigate("Profile", route.params)}
+        onPress={() => navigation.navigate("Profile", userID)}
       >
         <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
           Save
@@ -85,12 +86,6 @@ export default function ProfileEdit({ route, navigation }) {
           />
         </View>
       </View>
-      <TouchableOpacity
-        style={[globalStyles.picturePicker, { marginTop: "5%" }]}
-        onPress={() => navigation.navigate("DogProfileEdit", {currentDog: "New dog", userID: route.params})}
-      >
-        <Text style={globalStyles.ButtonsText}>Add a new dog</Text>
-      </TouchableOpacity>
 
 <View style={globalStyles.navigationBarProfileEdit}>
       <Icon 

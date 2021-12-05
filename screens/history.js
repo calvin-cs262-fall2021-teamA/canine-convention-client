@@ -113,6 +113,7 @@ const CONTENT = [
 ];
 
 export default function History({ route, navigation }) {
+  const {userID} = route.params;
   const [activeSections, setActiveSections] = useState([]);
   const [collapsed, setCollapsed] = useState(true);
   const screen = Dimensions.get("window");

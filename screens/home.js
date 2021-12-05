@@ -7,12 +7,14 @@ import logo from "../assets/logo.png";
 import{Icon} from "react-native-elements";
 
 export default function HomeScreen({ route, navigation }) {
+  const {userID} = route.params;
   const [response, setLocation] = useState(null);
   //const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
     //CheckIfLocationEnabled();
     GetCurrentLocation();
+    console.log(route.params);
   }, []);
 
   const GetCurrentLocation = async () => {
@@ -88,14 +90,14 @@ export default function HomeScreen({ route, navigation }) {
       <Icon 
         raised
         name = "person"
-        onPress={() => navigation.navigate("Profile")}
+        onPress={() => navigation.navigate("Profile", route.params)}
         
       />
       <Icon
       raised 
       name= "home"
       type="ionicon"
-      onPress={() => navigation.navigate("Home")}
+      onPress={() => navigation.navigate("Home", route.params)}
       
       />
       <Icon
