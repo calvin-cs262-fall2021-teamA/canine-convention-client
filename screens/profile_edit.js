@@ -19,6 +19,7 @@ import{Icon} from "react-native-elements";
 
 export default function ProfileEdit({ route, navigation }) {
   const [selectedImage, setSelectedImage] = React.useState(null);
+  const [userID, setUserID] = useState(1);
 
   var currentImage = Asset.fromModule(require("../assets/blankPFP.png")).uri;
   let openImagePickerAsync = async () => {
@@ -38,6 +39,19 @@ export default function ProfileEdit({ route, navigation }) {
   if (selectedImage !== null) {
     currentImage = selectedImage.localUri;
   }
+
+  const getPersonInfo = async () => {
+    try {
+      const response = await fetch(
+        "https://canine-convention.herokuapp.com/person/" + userID
+      );
+      const json = await response.json();
+      setUserInfo(json);
+    } catch (error) {
+      console.error(error);
+    } finally {
+    }
+  };
 
   return (
     <View style={{ backgroundColor: "#EFF0F4" }}>
@@ -96,14 +110,14 @@ export default function ProfileEdit({ route, navigation }) {
       <Icon 
         raised
         name = "person"
-        onPress={() => navigation.navigate("Profile")}
+        onPress={() => navigation.navigate("Profile", 1)}
         
       />
       <Icon
       raised 
       name= "home"
       type="ionicon"
-      onPress={() => navigation.navigate("Home")}
+      onPress={() => navigation.navigate("Home", 1)}
       
       />
       <Icon
@@ -111,6 +125,12 @@ export default function ProfileEdit({ route, navigation }) {
         name= "log-out"
         type="ionicon"
         onPress={() => navigation.navigate("Start")} 
+      />
+      <Icon
+        raised
+        name= "help-outline"
+        type="ionicon"
+        onPress={() => navigation.navigate("ProfileEditHelp")} 
       />
       </View>
     </View>

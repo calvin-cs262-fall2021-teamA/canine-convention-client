@@ -135,6 +135,33 @@ export default function Profile({ route, navigation }) {
             );})}
         </PagerView>
       )}
+      <View style={globalStyles.navigationBarProfile}>
+      <Icon 
+        raised
+        name = "person"
+        onPress={() => navigation.navigate("Profile", 1)}  
+      />
+      <Icon
+      raised 
+      name= "home"
+      type="ionicon"
+      onPress={() => navigation.navigate("Home", 1)}
+      
+      />
+      <Icon
+        raised
+        name= "log-out"
+        type="ionicon"
+        onPress={() => navigation.navigate("Start")} 
+      />
+       <Icon
+        raised
+        name= "help-outline"
+        type="ionicon"
+        onPress={() => navigation.navigate("ProfileHelp")} 
+      />
+      </View>
     </View>
+    
   );
 }

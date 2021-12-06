@@ -189,14 +189,14 @@ export default function History({ route, navigation }) {
       <Icon 
         raised
         name = "person"
-        onPress={() => navigation.navigate("Profile")}
+        onPress={() => navigation.navigate("Profile", 1)}
         
       />
       <Icon
       raised 
       name= "home"
       type="ionicon"
-      onPress={() => navigation.navigate("Home")}
+      onPress={() => navigation.navigate("Home", 1)}
       
       />
       <Icon
@@ -204,6 +204,12 @@ export default function History({ route, navigation }) {
         name= "log-out"
         type="ionicon"
         onPress={() => navigation.navigate("Start")} 
+      />
+      <Icon
+        raised
+        name= "help-outline"
+        type="ionicon"
+        onPress={() => navigation.navigate("HistoryHelp")} 
       />
       </View>
         </ScrollView>
