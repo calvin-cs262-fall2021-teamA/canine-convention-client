@@ -8,7 +8,7 @@ export default function ProfileEditHelp({ route, navigation }) {
         <View style={globalStyles.container}>
             <ScrollView>
             <Text style={{fontWeight: "bold", marginLeft: "5%"}}>
-            To edit your dog's profile:
+            {"\n"}To edit your dog's profile:{"\n"}
             </Text>
             <Text style={globalStyles.HelptText}>
             {"1. Tap on the 'Edit' button in the top right corner of the box containing the dog you want to edit." + "\n" +
@@ -21,13 +21,13 @@ export default function ProfileEditHelp({ route, navigation }) {
              "4b. This will open a popup where you can scroll to select the approximate date your dog was born."+ "\n" + "\t" + 
              "4c. Press “ confirm” once the right date has been selected." + "\n" + 
              "5. Press the “Save” button in the upper right hand corner to save your changes." + "\n" +
-             "6. To delet your dog press the 'Delete Dog' button in the top left corner of the screen"}
+             "6. To delet your dog press the 'Delete Dog' button in the top left corner of the screen\n\n"}
             
             </Text>
 
             
             <Text style={{fontWeight: "bold", marginLeft: "5%"}}>
-            To add a new dog to your profile:
+            To add a new dog to your profile:{"\n"}
             </Text>
 
             <Text style={globalStyles.HelptText}>
@@ -41,7 +41,7 @@ export default function ProfileEditHelp({ route, navigation }) {
             "4b. This will open a popup where you can scroll to select the approximate date your dog was born."+ "\n" + "\t" + 
             "4c. Press “ confirm” once the right date has been selected." + "\n" + 
             "5. If you change your mind, press “Cancel” in the upper left corner to discard your changes."+ "\n" +
-            "6. Press “Save” in the upper right hand corner to save your changes. "}
+            "6. Press “Save” in the upper right hand corner to save your changes.\n\n"}
             </Text>
             </ScrollView>
         </View>

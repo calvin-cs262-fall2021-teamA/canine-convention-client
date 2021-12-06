@@ -6,24 +6,24 @@ import { globalStyles } from "../styles/global";
 export default function ProfileEditHelp({ route, navigation }) {
     return (
         <View style={globalStyles.container}>
-            <Text style={{fontWeight: "bold", marginLeft: "-35%", marginTop: "-100%"}}>
-            To change your profile picture:
+            <Text style={{fontWeight: "bold", marginLeft: "-35%", marginTop: "-80%"}}>
+            {"\n\n\n"}To change your profile picture:{"\n"}
             </Text>
             
             <Text style={globalStyles.HelptText}>
                 {"1. Tap on the ”Choose a profile picture!” button." + "\n"+
                 "2. That will open your phone’s camera roll where you can select a new photo." + "\n" +
-                "3. Press the “Save” button in the upper right hand corner to save your changes." }
+                "3. Press the “Save” button in the upper right hand corner to save your changes.\n\n" }
             </Text>
         
             <Text style={{fontWeight: "bold", marginLeft: "-25%"}}>
-                To change your personal information:
+                To change your personal information:{"\n"}
             </Text>
 
             <Text style={globalStyles.HelptText}>
                 {"1. Tap in the text box that contains the outdated information." + "\n" +
                 "2. Type in the new information." + "\n" +
-                "3. Press “Save” in the upper right hand corner to save your changes." }
+                "3. Press “Save” in the upper right hand corner to save your changes.\n" }
             </Text>
             
            
