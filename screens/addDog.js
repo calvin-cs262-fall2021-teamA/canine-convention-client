@@ -20,15 +20,29 @@ import blankDogPFP from "../assets/blankDogPFP.jpg";
 
 //Add Dog Page
 export default function AddDog({ navigation, route }) {
+  
   //Declare Variables
+  const sizeButtons = ["Small", "Medium", "Large"];
+  const genderButtons = ["Male", "Female"];
+  const charButtons = ["Calm", "Playful", "Friendly"];
+  const neuteredButtons = ["Neutered", "Not Neutered"];
+
   const {userID} = route.params;
   const [dogSize, setDogSize] = useState("");
   const [dogGender, setDogGender] = useState("");
   const [dogChar, setDogChar] = useState("");
   const [dogStatus, setDogStatus] = useState("");
   const [dogName, setDogName] = useState("");
+  var today = new Date();
 
-  const [date, setDate] = useState("Oct 2015");
+  const dateToString = (date) => {
+    var birthDate = new Date(date);
+    let tempDate = birthDate.toString().split(" ");
+    return(tempDate[1] + " " + tempDate[3]);
+  };
+
+  const [date, setDate] = useState(today);
+  const [stringDate, setStringDate] = useState(dateToString(today.toString()));
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -37,8 +51,9 @@ export default function AddDog({ navigation, route }) {
     setDatePickerVisibility(false);
   };
   const handleConfirm = (date) => {
-    let tempDate = date.toString().split(" ");
-    setDate(tempDate[1] + " " + tempDate[3]);
+    setDate(date);
+    dateToString(date);
+    setStringDate(dateToString(date));
     hideDatePicker();
   };
 
@@ -63,13 +78,22 @@ export default function AddDog({ navigation, route }) {
     currentImage = selectedImage.localUri;
   }
 
+
   //Deploy new Dog data to database
-    const createDog = async () => {
+  const createDog = async () => {
 
     var neutered = false;
     if(dogStatus === "Neutered"){
       neutered = true;
     }
+    console.log(userID);
+    console.log(dogName);
+    console.log(date);
+    console.log(charButtons[dogChar]);
+    console.log(genderButtons[dogGender]);
+    console.log(sizeButtons[dogSize]);
+    console.log(neutered);
+    console.log(currentImage);
     try{
       const response = await fetch(`http://canine-convention.herokuapp.com/dog`, {method: 'POST',
         headers: { 'Content-Type': 'application/json' }, 
@@ -77,14 +101,14 @@ export default function AddDog({ navigation, route }) {
             {"personID": userID,
              "dogName": dogName,
              "Birthdate": date,
-             "Personality": dogChar,
-             "Gender": dogGender,
+             "Personality": charButtons[dogChar],
+             "Gender": genderButtons[dogGender],
              "Neutered": neutered,
-             "Size": dogSize,
+             "Size": sizeButtons[dogSize],
              "image": currentImage}
         )});
       const json = await response.json();
-      //console.log(json);
+      console.log(json);
       return json;
     }catch(error) {console.error(error)}
   };
@@ -100,11 +124,19 @@ export default function AddDog({ navigation, route }) {
       />
 
       <View style={globalStyles.row}>
-        
+      <TouchableOpacity
+          style={{width: "30%", borderRadius: 25, height: "100%", justifyContent: "center", alignItems: "center", 
+            backgroundColor: "#195F6B", marginTop: "2%", marginLeft: "2%"}}
+          onPress={() => navigation.navigate("Profile", userID)}
+        >
+          <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
+            Cancel
+          </Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={{width: "15%", borderRadius: 25, height: "100%", justifyContent: "center", alignItems: "center",
             backgroundColor: "#195F6B", marginTop: "2%", marginLeft: "auto", marginRight: "2%"}}
-          onPress={() => createDog().then(navigation.navigate("Profile", userID))}
+          onPress={() => createDog().then(navigation.push("Profile", userID))}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             Save
@@ -133,14 +165,13 @@ export default function AddDog({ navigation, route }) {
         <TextInput
           style={globalStyles.ProfileInput}
           textAlign="center"
-          placeholder={"Add a dog"}
-          placeholderTextColor="#003f5c"
+          defaultValue={"Add a new dog"}
           onChangeText={(name) => setDogName(name)}
         />
       </View>
       <ButtonGroup
         selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
-        buttons={["Small", "Medium", "Large"]}
+        buttons={sizeButtons}
         selectedIndex={dogSize}
         onPress={(value) => {
           setDogSize(value);
@@ -149,7 +180,7 @@ export default function AddDog({ navigation, route }) {
       <ButtonGroup
         containerStyle={{ marginTop: "2%" }}
         selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
-        buttons={["Male", "Female"]}
+        buttons={genderButtons}
         selectedIndex={dogGender}
         onPress={(value) => {
           setDogGender(value);
@@ -158,7 +189,7 @@ export default function AddDog({ navigation, route }) {
       <ButtonGroup
         containerStyle={{ marginTop: "2%" }}
         selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
-        buttons={["Calm", "Playful", "Friendly"]}
+        buttons={charButtons}
         selectedIndex={dogChar}
         onPress={(value) => {
           setDogChar(value);
@@ -167,7 +198,7 @@ export default function AddDog({ navigation, route }) {
       <ButtonGroup
         containerStyle={{ marginTop: "2%" }}
         selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
-        buttons={["Neutered", "Not Neutered"]}
+        buttons={neuteredButtons}
         selectedIndex={dogStatus}
         onPress={(value) => {
           setDogStatus(value);
@@ -187,7 +218,7 @@ export default function AddDog({ navigation, route }) {
           marginLeft: "5%",
         }}
       >
-        Birthdate: {date}
+        Birthdate: {stringDate}
       </Text>
     </View>
   );

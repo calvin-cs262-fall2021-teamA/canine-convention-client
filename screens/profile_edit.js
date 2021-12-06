@@ -17,7 +17,9 @@ import{Icon} from "react-native-elements";
 
 //Profile Edit Screen
 export default function ProfileEdit({ route, navigation }) {
+  
   //Declare Variables
+  const {userID} = route.params;
   const [selectedImage, setSelectedImage] = React.useState(null);
 
   //Get a Picture from the cameraroll
@@ -46,7 +48,7 @@ export default function ProfileEdit({ route, navigation }) {
       {/* save button */}
       <TouchableOpacity
         style={[globalStyles.editBtn, {height: "5%"}]}
-        onPress={() => navigation.navigate("Profile", route.params)}
+        onPress={() => navigation.navigate("Profile", userID)}
       >
         <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
           Save
@@ -90,26 +92,20 @@ export default function ProfileEdit({ route, navigation }) {
           />
         </View>
       </View>
-      <TouchableOpacity
-        style={[globalStyles.picturePicker, { marginTop: "5%" }]}
-        onPress={() => navigation.navigate("DogProfileEdit", {currentDog: "New dog", userID: route.params})}
-      >
-        <Text style={globalStyles.ButtonsText}>Add a new dog</Text>
-      </TouchableOpacity>
 
 {/* Default Navigation bar */}
 <View style={globalStyles.navigationBarProfileEdit}>
       <Icon 
         raised
         name = "person"
-        onPress={() => navigation.navigate("Profile")}
+        onPress={() => navigation.navigate("Profile", userID)}
         
       />
       <Icon
       raised 
       name= "home"
       type="ionicon"
-      onPress={() => navigation.navigate("Home")}
+      onPress={() => navigation.navigate("Home", userID)}
       
       />
       <Icon

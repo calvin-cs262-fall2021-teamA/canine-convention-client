@@ -19,7 +19,6 @@ export default function SignUpScreen({ navigation }) {
   const [firstName, setFirst] = useState("");
   const [lastName, setLast] = useState("");
   const [phone, setPhone] = useState("");
-  //const [id, setID] = useState("hi");
 
   //make a user and deploy firstName, lastName, email, and phone to the data base
   const makeUser = async () => {
@@ -104,9 +103,7 @@ export default function SignUpScreen({ navigation }) {
         </View>
         <TouchableOpacity
           style={globalStyles.loginBtn}
-          //onPressIn={() => makeUser()}
           onPress={() => makeUser().then(val => navigation.navigate("Home", val.id))}
-          //onPress={() => makeUser().then(val => navigation.navigate("DogProfileEdit", {currentDog: "New dog", userID: val.id}))}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             {" "}

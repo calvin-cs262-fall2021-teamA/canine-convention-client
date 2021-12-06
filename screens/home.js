@@ -8,6 +8,7 @@ import{Icon} from "react-native-elements";
 
 //Home Screen
 export default function HomeScreen({ route, navigation }) {
+
   //Display Logo, Find Event and View History Buttons
   return (
     <View style={globalStyles.container}>
@@ -44,14 +45,14 @@ export default function HomeScreen({ route, navigation }) {
       <Icon 
         raised
         name = "person"
-        onPress={() => navigation.navigate("Profile")}
+        onPress={() => navigation.navigate("Profile", route.params)}
         
       />
       <Icon
       raised 
       name= "home"
       type="ionicon"
-      onPress={() => navigation.navigate("Home")}
+      onPress={() => navigation.navigate("Home", route.params)}
       
       />
       <Icon

@@ -114,7 +114,9 @@ const CONTENT = [
 
 //View History page
 export default function History({ route, navigation }) {
+  
   //Declare Variables
+  const {userID} = route.params;
   const [activeSections, setActiveSections] = useState([]);
   const [collapsed, setCollapsed] = useState(true);
   const screen = Dimensions.get("window");
@@ -193,14 +195,14 @@ export default function History({ route, navigation }) {
       <Icon 
         raised
         name = "person"
-        onPress={() => navigation.navigate("Profile")}
+        onPress={() => navigation.navigate("Profile", userID)}
         
       />
       <Icon
       raised 
       name= "home"
       type="ionicon"
-      onPress={() => navigation.navigate("Home")}
+      onPress={() => navigation.navigate("Home", userID)}
       
       />
       <Icon
