@@ -98,6 +98,7 @@ function App() {
         <Stack.Screen
           name="HistoryHelp"
           component={HistoryHelp}
+        />
         <Stack.Screen
           name="AddDog"
           component={AddDog}

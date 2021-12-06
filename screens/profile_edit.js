@@ -21,7 +21,6 @@ export default function ProfileEdit({ route, navigation }) {
   //Declare Variables
   const {userID} = route.params;
   const [selectedImage, setSelectedImage] = React.useState(null);
-  const [userID, setUserID] = useState(1);
 
   //Get a Picture from the cameraroll
   var currentImage = Asset.fromModule(require("../assets/blankPFP.png")).uri;
