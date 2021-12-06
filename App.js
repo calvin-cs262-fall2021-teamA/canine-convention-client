@@ -12,7 +12,11 @@ import DogProfileEdit from "./screens/dogprofile_edit";
 import Map from "./screens/map";
 import MatchFound from "./screens/matchFound";
 import History from "./screens/history";
+import ProfileEditHelp from "./screens/ProfileEditHelp";
+import ProfileHelp from "./screens/ProfileHelp";
+import HistoryHelp from "./screens/HistoryHelp"
 import AddDog from "./screens/addDog";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -81,6 +85,19 @@ function App() {
           component={History}
           options={{ headerStyle: { backgroundColor: "#16BAC6" } }}
         />
+         <Stack.Screen
+          name="ProfileEditHelp"
+          component={ProfileEditHelp}
+          options={{ headerStyle: { backgroundColor: "#16BAC6" } }}
+        />
+        <Stack.Screen
+          name="ProfileHelp"
+          component={ProfileHelp}
+          options={{ headerStyle: { backgroundColor: "#16BAC6" } }}
+        />
+        <Stack.Screen
+          name="HistoryHelp"
+          component={HistoryHelp}
         <Stack.Screen
           name="AddDog"
           component={AddDog}

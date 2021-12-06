@@ -21,6 +21,7 @@ export default function ProfileEdit({ route, navigation }) {
   //Declare Variables
   const {userID} = route.params;
   const [selectedImage, setSelectedImage] = React.useState(null);
+  const [userID, setUserID] = useState(1);
 
   //Get a Picture from the cameraroll
   var currentImage = Asset.fromModule(require("../assets/blankPFP.png")).uri;
@@ -41,6 +42,19 @@ export default function ProfileEdit({ route, navigation }) {
   if (selectedImage !== null) {
     currentImage = selectedImage.localUri;
   }
+
+  const getPersonInfo = async () => {
+    try {
+      const response = await fetch(
+        "https://canine-convention.herokuapp.com/person/" + userID
+      );
+      const json = await response.json();
+      setUserInfo(json);
+    } catch (error) {
+      console.error(error);
+    } finally {
+    }
+  };
 
   //Display Picture, Buttons, And the text boxes 
   return (
@@ -113,6 +127,12 @@ export default function ProfileEdit({ route, navigation }) {
         name= "log-out"
         type="ionicon"
         onPress={() => navigation.navigate("Start")} 
+      />
+      <Icon
+        raised
+        name= "help-outline"
+        type="ionicon"
+        onPress={() => navigation.navigate("ProfileEditHelp")} 
       />
       </View>
     </View>

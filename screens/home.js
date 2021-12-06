@@ -61,6 +61,7 @@ export default function HomeScreen({ route, navigation }) {
         type="ionicon"
         onPress={() => navigation.navigate("Start")} 
       />
+    
       </View>
     </View>
   );

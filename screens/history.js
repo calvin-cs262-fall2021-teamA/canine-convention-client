@@ -211,6 +211,12 @@ export default function History({ route, navigation }) {
         type="ionicon"
         onPress={() => navigation.navigate("Start")} 
       />
+      <Icon
+        raised
+        name= "help-outline"
+        type="ionicon"
+        onPress={() => navigation.navigate("HistoryHelp")} 
+      />
       </View>
         </ScrollView>
       </View>
