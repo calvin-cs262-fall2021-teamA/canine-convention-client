@@ -11,10 +11,13 @@ import {
 } from "react-native";
 import { globalStyles } from "../styles/global";
 
+//Login Screen
 export default function LoginScreen({ navigation }) {
+  //Declare Variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //Display Logo, Text boxes, and Buttons
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -27,6 +30,7 @@ export default function LoginScreen({ navigation }) {
         contentContainerStyle={{ alignItems: "center" }}
         scrollEnabled={false}
       >
+        {/* email input */}
         <View style={globalStyles.inputView}>
           <TextInput
             style={globalStyles.TextInput}
@@ -36,7 +40,7 @@ export default function LoginScreen({ navigation }) {
             onChangeText={(email) => setEmail(email)}
           />
         </View>
-
+        {/* passsword input */}
         <View style={globalStyles.inputView}>
           <TextInput
             style={globalStyles.TextInput}
@@ -51,10 +55,12 @@ export default function LoginScreen({ navigation }) {
         <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
           <Text style={globalStyles.forgot_button}>Don't have an account?</Text>
         </TouchableOpacity>
+        {/* 
         <TouchableOpacity>
           <Text style={globalStyles.forgot_button}>Forgot Password?</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
+        {/*Login button */}
         <TouchableOpacity
           style={globalStyles.loginBtn}
           onPress={() => navigation.navigate("Home", 1)}

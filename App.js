@@ -15,6 +15,8 @@ import History from "./screens/history";
 import ProfileEditHelp from "./screens/ProfileEditHelp";
 import ProfileHelp from "./screens/ProfileHelp";
 import HistoryHelp from "./screens/HistoryHelp"
+import AddDog from "./screens/addDog";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -96,6 +98,9 @@ function App() {
         <Stack.Screen
           name="HistoryHelp"
           component={HistoryHelp}
+        <Stack.Screen
+          name="AddDog"
+          component={AddDog}
           options={{ headerStyle: { backgroundColor: "#16BAC6" } }}
         />
       </Stack.Navigator>
