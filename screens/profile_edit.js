@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
   Text,
@@ -10,17 +9,20 @@ import {
   TextInput,
   FlatList,
 } from "react-native";
-
 import * as ImagePicker from "expo-image-picker";
 import { globalStyles } from "../styles/global";
 import { Asset } from "expo-asset";
 import blankPFP from "../assets/blankPFP.png";
 import{Icon} from "react-native-elements";
 
+//Profile Edit Screen
 export default function ProfileEdit({ route, navigation }) {
+  
+  //Declare Variables
   const {userID} = route.params;
   const [selectedImage, setSelectedImage] = React.useState(null);
 
+  //Get a Picture from the cameraroll
   var currentImage = Asset.fromModule(require("../assets/blankPFP.png")).uri;
   let openImagePickerAsync = async () => {
     let permissionResult =
@@ -40,8 +42,10 @@ export default function ProfileEdit({ route, navigation }) {
     currentImage = selectedImage.localUri;
   }
 
+  //Display Picture, Buttons, And the text boxes 
   return (
     <View style={{ backgroundColor: "#EFF0F4" }}>
+      {/* save button */}
       <TouchableOpacity
         style={[globalStyles.editBtn, {height: "5%"}]}
         onPress={() => navigation.navigate("Profile", userID)}
@@ -54,12 +58,14 @@ export default function ProfileEdit({ route, navigation }) {
         source={{ uri: currentImage }}
         style={[globalStyles.picture, { marginTop: "10%" }]}
       />
+      {/* Change Picture button */}
       <TouchableOpacity
         style={[globalStyles.picturePicker, { marginBottom: "8%" }]}
         onPress={openImagePickerAsync}
       >
         <Text style={globalStyles.ButtonsText}>Choose a profile picture!</Text>
       </TouchableOpacity>
+      {/* profile edit text boxes */}
       <View style={{ alignItems: "center" }}>
         <View style={globalStyles.inputView}>
           <TextInput
@@ -87,18 +93,19 @@ export default function ProfileEdit({ route, navigation }) {
         </View>
       </View>
 
+{/* Default Navigation bar */}
 <View style={globalStyles.navigationBarProfileEdit}>
       <Icon 
         raised
         name = "person"
-        onPress={() => navigation.navigate("Profile")}
+        onPress={() => navigation.navigate("Profile", userID)}
         
       />
       <Icon
       raised 
       name= "home"
       type="ionicon"
-      onPress={() => navigation.navigate("Home")}
+      onPress={() => navigation.navigate("Home", userID)}
       
       />
       <Icon

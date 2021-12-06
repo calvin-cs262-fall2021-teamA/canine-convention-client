@@ -1,29 +1,27 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import {
   Text,
   View,
   Image,
-  Button,
   TouchableOpacity,
   TouchableWithoutFeedback,
   ActivityIndicator,
-  FlatList,
 } from "react-native";
 import PagerView from "react-native-pager-view";
 import { globalStyles } from "../styles/global";
 import blankPFP from "../assets/blankPFP.png";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
-import { Icon } from "react-native-elements";
-import { render } from "react-dom";
 import Dots from 'react-native-dots-pagination';
 
+//Profile Screen
 export default function Profile({ route, navigation }) {
+  //declare variables
   const [isLoading, setLoading] = useState(true);
   const [userID, setUserID] = useState(route.params);
   const [userInfo, setUserInfo] = useState([]);
   const [dogInfo, setDogInfo] = useState([]);
 
+  //Get user data from the Database
   const getPersonInfo = async () => {
     try {
       const response = await fetch(
@@ -37,6 +35,7 @@ export default function Profile({ route, navigation }) {
     }
   };
 
+  //Get Dog info from the DataBase
   const getDogInfo = async () => {
     try {
       const response = await fetch(
@@ -96,8 +95,10 @@ export default function Profile({ route, navigation }) {
   }
 
 
+  //Display User and Dog Data, Buttons for Editing Dog and Person.
   return (
     <View style={{ backgroundColor: "#EFF0F4" }}>
+      {/* profile edit button */}
       <TouchableOpacity
         style={[globalStyles.editBtn, { height: "5%" }]}
         onPress={() => navigation.navigate("ProfileEdit", userID)}
@@ -124,6 +125,7 @@ export default function Profile({ route, navigation }) {
             <View style={globalStyles.container} key={item.id}>
               <View style={[globalStyles.row, {minHeight: "7%"}]}>
                 <Text style={globalStyles.dogName}>{item.dogname}</Text>
+                {/* dog edit button */}
                 <TouchableOpacity
                   style={[
                     globalStyles.editBtn,
@@ -136,6 +138,7 @@ export default function Profile({ route, navigation }) {
                   </Text>
                 </TouchableOpacity>
               </View>
+              {/* Display Dog Info */}
               <Image source={{uri: item.image}} style={globalStyles.pictureDog} />
               <View style={globalStyles.row}>
                 <TouchableWithoutFeedback>

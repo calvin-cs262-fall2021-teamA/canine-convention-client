@@ -18,14 +18,16 @@ import { Asset } from "expo-asset";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
 
+//Add Dog Page
 export default function AddDog({ navigation, route }) {
+  
+  //Declare Variables
   const sizeButtons = ["Small", "Medium", "Large"];
   const genderButtons = ["Male", "Female"];
   const charButtons = ["Calm", "Playful", "Friendly"];
   const neuteredButtons = ["Neutered", "Not Neutered"];
 
   const {userID} = route.params;
-
   const [dogSize, setDogSize] = useState("");
   const [dogGender, setDogGender] = useState("");
   const [dogChar, setDogChar] = useState("");
@@ -76,7 +78,9 @@ export default function AddDog({ navigation, route }) {
     currentImage = selectedImage.localUri;
   }
 
-const createDog = async () => {
+
+  //Deploy new Dog data to database
+  const createDog = async () => {
 
     var neutered = false;
     if(dogStatus === "Neutered"){
@@ -109,6 +113,7 @@ const createDog = async () => {
     }catch(error) {console.error(error)}
   };
 
+  //Display Buttons, Pictures, and selectable dog attributes
   return (
     <View style={{ backgroundColor: "#EFF0F4" }}>
       <DateTimePickerModal

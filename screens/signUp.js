@@ -11,13 +11,16 @@ import {
 } from "react-native";
 import { globalStyles } from "../styles/global";
 
+//Sign Up Screen
 export default function SignUpScreen({ navigation }) {
+  //declare variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirst] = useState("");
   const [lastName, setLast] = useState("");
   const [phone, setPhone] = useState("");
 
+  //make a user and deploy firstName, lastName, email, and phone to the data base
   const makeUser = async () => {
     try{
       const requestOptions = {
@@ -37,7 +40,7 @@ export default function SignUpScreen({ navigation }) {
     }catch(error) {console.error(error)}
   };
 
-  
+  //Setup the Signup Screen's logo and text boxes
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
