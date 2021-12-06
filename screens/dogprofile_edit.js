@@ -18,7 +18,9 @@ import { Asset } from "expo-asset";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
 
+//Dog Edit Screen
 export default function DogProfileEdit({ navigation, route }) {
+  //Declare Variables
   const {currentDog} = route.params;
   const {userID} = route.params;
 
@@ -74,7 +76,7 @@ export default function DogProfileEdit({ navigation, route }) {
     //     </View>
     //  );
   }
-
+  //Update the new dog data and deploy to the database
   const updateDog = async () => {
 
     var neutered = false;
@@ -149,6 +151,7 @@ export default function DogProfileEdit({ navigation, route }) {
     }catch(error) {console.error(error)}
   };
 
+  //Display Buttons, Picutures, Input boxes, and selecting the new dog features
   return (
     <View style={{ backgroundColor: "#EFF0F4" }}>
       <DateTimePickerModal

@@ -112,7 +112,9 @@ const CONTENT = [
   },
 ];
 
+//View History page
 export default function History({ route, navigation }) {
+  //Declare Variables
   const [activeSections, setActiveSections] = useState([]);
   const [collapsed, setCollapsed] = useState(true);
   const screen = Dimensions.get("window");
@@ -156,6 +158,7 @@ export default function History({ route, navigation }) {
       </Animatable.View>
     );
   };
+  //Display History of past events
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={[globalStyles.container, { paddingTop: "10%" }]}>
@@ -186,6 +189,7 @@ export default function History({ route, navigation }) {
             onChange={setSections}
           />
           <View style={globalStyles.navigationBarHistory}>
+        {/* Navigation Bar */}
       <Icon 
         raised
         name = "person"
