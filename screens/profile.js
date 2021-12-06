@@ -12,6 +12,7 @@ import { globalStyles } from "../styles/global";
 import blankPFP from "../assets/blankPFP.png";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
 import Dots from 'react-native-dots-pagination';
+import{Icon} from "react-native-elements";
 
 //Profile Screen
 export default function Profile({ route, navigation }) {
