@@ -22,13 +22,11 @@ export default function SignUpScreen({ navigation }) {
   const makeUser = async () => {
     try{
       const requestOptions = {
-        method: 'POST',
+        method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          "firstName": firstName,
-          "lastName": lastName,
           "email": email,
-          "phone": phone
+          "password": password,
         })
       };
       const response = await fetch("http://canine-convention.herokuapp.com/persons", requestOptions);
