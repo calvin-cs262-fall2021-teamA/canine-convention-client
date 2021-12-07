@@ -17,9 +17,8 @@ export default function FindSuccess({ route, navigation }) {
     <View style={{ backgroundColor: "#EFF0F4" }}>
       <View style={{ marginTop: "2%", marginLeft: "5%" }}>
         <Text style={globalStyles.subtitle}>Match found:</Text>
-        <Text style={globalStyles.profileText}>John Doe</Text>
+        <Text style={globalStyles.profileText}>{route.params.firstname} {route.params.lastname}</Text>
         <Text style={globalStyles.profileText}>616-222-5555</Text>
-        {/* <Text style={globalStyles.profileText}>Grand Rapids{"\n"}</Text> */}
       </View>
       <Image source={blankPFP} style={globalStyles.picture} />
 

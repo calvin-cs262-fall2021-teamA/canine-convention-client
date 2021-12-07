@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import * as Location from "expo-location";
-import { BackHandler, View, Text, StyleSheet, TouchableOpacity, Modal } from "react-native";
+import { BackHandler, View, Text, StyleSheet, TouchableOpacity, Modal, FlatList, ActivityIndicator, Button } from "react-native";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { ButtonGroup, Icon } from "react-native-elements";
 import { globalStyles } from "../styles/global";
@@ -22,6 +22,9 @@ export default function Map({ route, navigation }) {
   const [dogStatus, setDogStatus] = useState("");
   const [eventData, setEventData] = useState('{}');
   const [showEvents, setShowEvents] = useState(false);
+  const [isLoading, setLoading] = useState(true);
+  const [location, setLocation] = useState(42, 42);
+  const [showCreateEvent, setShowCreateEvent] = useState(false);
   const dogNames = ["Fido", "Rover", "Snowball"];
 
 
@@ -40,18 +43,14 @@ export default function Map({ route, navigation }) {
 
   //find Event
   const findEvent = () => {
-    getEvents()
-    if (eventData !== '{}') {
-      setShowEvents(true)
-    }
+    setShowEvents(true);
+    getEvents();
   }
   // ref
   const bottomSheetRef = useRef(null);
 
-  const handleExpandPress = () => bottomSheetRef.current.expand()
-
   // variables
-  const snapPoints = useMemo(() => ["20%", "80%"], []);
+  const snapPoints = useMemo(() => ["20%", "60%"], []);
 
   const [mapRegion, setMapRegion] = useState(null);
   useEffect(() => {
@@ -78,32 +77,9 @@ export default function Map({ route, navigation }) {
         provider={PROVIDER_GOOGLE}
         initialRegion={mapRegion}
         showsUserLocation={true}
-        onLongPress={e => console.log(e.nativeEvent)}
+        onLongPress={(e) => setLocation(e.nativeEvent.coordinate)}
       >
-        <Marker
-          coordinate={{
-            latitude: 42.96731,
-            longitude: -85.639156,
-          }}
-          title="Fuller Park"
-          source={require("../assets/map_marker.png")}
-        ></Marker>
-        <Marker
-          coordinate={{
-            latitude: 42.959025,
-            longitude: -85.675905,
-          }}
-          title="Downtown Dog Park"
-          source={require("../assets/map_marker.png")}
-        ></Marker>
-        <Marker
-          coordinate={{
-            latitude: 42.972993,
-            longitude: -85.716083,
-          }}
-          title="Covell"
-          source={require("../assets/map_marker.png")}
-        ></Marker>
+
       </MapView>
       <BottomSheet
         ref={bottomSheetRef}
@@ -151,7 +127,7 @@ export default function Map({ route, navigation }) {
               }}
               dropdownIconPosition={"right"}
             />
-            <ButtonGroup
+            {/*<ButtonGroup
               buttons={["WALK", "PARK"]}
               selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
               selectedIndex={eventType}
@@ -197,9 +173,10 @@ export default function Map({ route, navigation }) {
                 setDogStatus(value);
               }}
             />
+            */}
             <TouchableOpacity
               style={globalStyles.homeBtns}
-              onPress={() => setShowEvents(true)}
+              onPress={() => findEvent()}
             >
               <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
                 FIND
@@ -211,11 +188,83 @@ export default function Map({ route, navigation }) {
       <Modal transparent={true} fullScreen={true} visible={showEvents} animationType='slide'>
         <View style={globalStyles.container}>
           <View style={popStyle.box}>
+            <Text> Events found: </Text>
+            {isLoading ? <ActivityIndicator /> : (
+              <FlatList
+                data={eventData}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={{ marginTop: "2%", alignSelf: 'center', borderWidth: 1, borderRadius: 5, justifyContent: "space-between", flexDirection: "row", width: "95%", padding: "5%" }}
+                    onPress={() => navigation.navigate("Match Found", item)}
+                  >
+                    <Text>{item.location['x']} {item.location['y']}, created by {item.firstname} {item.lastname}</Text>
+                    <Icon
+                      name="chevron-right"
+                      type="font-awesome-5"
+                      color={"#444"}
+                      size={18}
+                    />
+                  </TouchableOpacity>
+                )}
+              />)}
+            <TouchableOpacity
+              onPress={() => setShowCreateEvent(true)}>
+              <Text>Want a different event? Create it here!</Text>
+            </TouchableOpacity>
             <TouchableOpacity
               onPress={() => setShowEvents(false)}
               style={styles.modalToggle}
             >
               <Text>CLOSE</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+      <Modal transparent={true} fullScreen={true} visible={showCreateEvent} animationType='slide'>
+        <View style={globalStyles.container}>
+          <View style={popStyle.box}>
+            <Text> Create an event: </Text>
+            <View style={styles.contentContainer}>
+              <SelectDropdown
+                buttonStyle={{
+                  backgroundColor: "#FFFFFF",
+                  borderWidth: 1,
+                  borderColor: "#000000",
+                  marginVertical: "6%",
+                }}
+                data={dogNames}
+                defaultButtonText="Choose Dog"
+                onSelect={(selectedItem, index) => {
+                  //console.log(selectedItem, index)
+                }}
+                buttonTextAfterSelection={(selectedItem, index) => {
+                  // text represented after item is selected
+                  // if data array is an array of objects then return selectedItem.property to render after item is selected
+                  return selectedItem;
+                }}
+                rowTextForSelection={(item, index) => {
+                  // text represented for each item in dropdown
+                  // if data array is an array of objects then return item.property to represent item in dropdown
+                  return item;
+                }}
+                renderDropdownIcon={() => {
+                  return (
+                    <Icon
+                      name="chevron-down"
+                      type="font-awesome-5"
+                      color={"#444"}
+                      size={18}
+                    />
+                  );
+                }}
+                dropdownIconPosition={"right"}
+              />
+            </View>
+            <TouchableOpacity
+              onPress={() => setShowEvents(false)}
+              style={styles.modalToggle}
+            >
+              <Text>CREATE</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -247,7 +296,6 @@ const popStyle = StyleSheet.create({
     padding: 25,
     height: '50%',
     borderRadius: 10,
-    flexDirection: 'row',
     alignItems: 'center'
   },
 
