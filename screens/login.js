@@ -18,7 +18,7 @@ export default function LoginScreen({ navigation }) {
   const checkUser = async () => {
     try{
       const requestOptions = {
-        method: 'POST',
+        method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           "email": email,
