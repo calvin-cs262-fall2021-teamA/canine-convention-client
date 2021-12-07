@@ -15,6 +15,23 @@ export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const checkUser = async () => {
+    try{
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          "email": email,
+          "password": password,
+        })
+      };
+      const response = await fetch("http://canine-convention.herokuapp.com/login", requestOptions);
+      const json = await response.text();
+      console.log(json);
+      return json;
+    }catch(error) {console.error(error)}
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -57,7 +74,7 @@ export default function LoginScreen({ navigation }) {
 
         <TouchableOpacity
           style={globalStyles.loginBtn}
-          onPress={() => navigation.navigate("Home", 1)}
+          onPress={() => checkUser()}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             LOGIN

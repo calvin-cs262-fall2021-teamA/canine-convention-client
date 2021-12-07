@@ -38,7 +38,6 @@ export default function SignUpScreen({ navigation }) {
     }catch(error) {console.error(error)}
   };
 
-  
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
