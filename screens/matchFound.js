@@ -62,7 +62,7 @@ export default function FindSuccess({ route, navigation }) {
       <View style={globalStyles.row}>
         <TouchableOpacity
           style={globalStyles.acceptBtns}
-          onPress={() => navigation.navigate("Home", route.params[0])}
+          onPress={() => {console.log(route.params);navigation.navigate("Home", route.params[0])}}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             Accept
