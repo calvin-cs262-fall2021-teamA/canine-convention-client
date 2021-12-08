@@ -17,7 +17,7 @@ export default function FindSuccess({ route, navigation }) {
     <View style={{ backgroundColor: "#EFF0F4" }}>
       <View style={{ marginTop: "2%", marginLeft: "5%" }}>
         <Text style={globalStyles.subtitle}>Match found:</Text>
-        <Text style={globalStyles.profileText}>{route.params.firstname} {route.params.lastname}</Text>
+        <Text style={globalStyles.profileText}>{route.params[1].firstname} {route.params[1].lastname}</Text>
         <Text style={globalStyles.profileText}>616-222-5555</Text>
       </View>
       <Image source={blankPFP} style={globalStyles.picture} />
@@ -62,7 +62,7 @@ export default function FindSuccess({ route, navigation }) {
       <View style={globalStyles.row}>
         <TouchableOpacity
           style={globalStyles.acceptBtns}
-          onPress={() => navigation.navigate("Home", route.params)}
+          onPress={() => navigation.navigate("Home", route.params[0])}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             Accept
@@ -70,7 +70,7 @@ export default function FindSuccess({ route, navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={globalStyles.acceptBtns}
-          onPress={() => navigation.navigate("FindEvent", route.params)}
+          onPress={() => navigation.navigate("Home", route.params[0])}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             Decline

@@ -15,22 +15,39 @@ import SelectDropdown from "react-native-select-dropdown";
 
 
 export default function Map({ route, navigation }) {
+  /*
   const [eventType, setEventType] = useState("");
   const [dogSize, setDogSize] = useState("");
   const [dogGender, setDogGender] = useState("");
   const [dogChar, setDogChar] = useState("");
   const [dogStatus, setDogStatus] = useState("");
+  */
   const [eventData, setEventData] = useState('{}');
   const [showEvents, setShowEvents] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [location, setLocation] = useState(42, 42);
   const [showCreateEvent, setShowCreateEvent] = useState(false);
-  const dogNames = ["Fido", "Rover", "Snowball"];
+  const [dogNames, setDogNames] = useState(null);
 
+  //Get Dog info from the DataBase
+  const getDogInfo = async () => {
+    try {
+      const response = await fetch(
+        "https://canine-convention.herokuapp.com/person/" + route.params + "/dogs"
+      );
+      const json = await response.json();
+      setDogNames(json.map(item => {return item.dogname}));
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  //Check events available
+  // Check events available
   const getEvents = async () => {
     try {
+      setLoading(true);
       const response = await fetch('https://canine-convention.herokuapp.com/events');
       const json = await response.json();
       setEventData(json);
@@ -38,6 +55,25 @@ export default function Map({ route, navigation }) {
       console.error(error);
     } finally {
       setLoading(false);
+    }
+  }
+  // Create Event
+  const createEvent = async (loc, creatorID) => {
+    try {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          "location": loc,
+          "creatorID": creatorID,
+          "email": email,
+          "phone": phone
+        })
+      };
+      const response = await fetch('https://canine-convention.herokuapp.com/event', requestOptions);
+      const json = await response.json();
+    } catch (error) {
+      console.error(error);
     }
   }
 
@@ -54,6 +90,7 @@ export default function Map({ route, navigation }) {
 
   const [mapRegion, setMapRegion] = useState(null);
   useEffect(() => {
+    getDogInfo();
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
@@ -93,40 +130,42 @@ export default function Map({ route, navigation }) {
           keyboardShouldPersistTaps='handled'
         >
           <View style={styles.contentContainer}>
-            <SelectDropdown
-              buttonStyle={{
-                backgroundColor: "#FFFFFF",
-                borderWidth: 1,
-                borderColor: "#000000",
-                marginVertical: "6%",
-              }}
-              data={dogNames}
-              defaultButtonText="Choose Dog"
-              onSelect={(selectedItem, index) => {
-                //console.log(selectedItem, index)
-              }}
-              buttonTextAfterSelection={(selectedItem, index) => {
-                // text represented after item is selected
-                // if data array is an array of objects then return selectedItem.property to render after item is selected
-                return selectedItem;
-              }}
-              rowTextForSelection={(item, index) => {
-                // text represented for each item in dropdown
-                // if data array is an array of objects then return item.property to represent item in dropdown
-                return item;
-              }}
-              renderDropdownIcon={() => {
-                return (
-                  <Icon
-                    name="chevron-down"
-                    type="font-awesome-5"
-                    color={"#444"}
-                    size={18}
-                  />
-                );
-              }}
-              dropdownIconPosition={"right"}
-            />
+            {isLoading ? <ActivityIndicator /> : (
+              <SelectDropdown
+                buttonStyle={{
+                  backgroundColor: "#FFFFFF",
+                  borderWidth: 1,
+                  borderColor: "#000000",
+                  marginVertical: "6%",
+                }}
+                data={dogNames}
+                defaultButtonText="Choose Dog"
+                onSelect={(selectedItem, index) => {
+                  //console.log(selectedItem, index)
+                }}
+                buttonTextAfterSelection={(selectedItem, index) => {
+                  // text represented after item is selected
+                  // if data array is an array of objects then return selectedItem.property to render after item is selected
+                  return selectedItem;
+                }}
+                rowTextForSelection={(item, index) => {
+                  // text represented for each item in dropdown
+                  // if data array is an array of objects then return item.property to represent item in dropdown
+                  return item;
+                }}
+                renderDropdownIcon={() => {
+                  return (
+                    <Icon
+                      name="chevron-down"
+                      type="font-awesome-5"
+                      color={"#444"}
+                      size={18}
+                    />
+                  );
+                }}
+                dropdownIconPosition={"right"}
+              />
+            )}
             {/*<ButtonGroup
               buttons={["WALK", "PARK"]}
               selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
@@ -195,7 +234,7 @@ export default function Map({ route, navigation }) {
                 renderItem={({ item }) => (
                   <TouchableOpacity
                     style={{ marginTop: "2%", alignSelf: 'center', borderWidth: 1, borderRadius: 5, justifyContent: "space-between", flexDirection: "row", width: "95%", padding: "5%" }}
-                    onPress={() => navigation.navigate("Match Found", item)}
+                    onPress={() => { console.log("clicked!"); navigation.navigate("Match Found", [route.params, item]) }}
                   >
                     <Text>{item.location['x']} {item.location['y']}, created by {item.firstname} {item.lastname}</Text>
                     <Icon
@@ -261,7 +300,7 @@ export default function Map({ route, navigation }) {
               />
             </View>
             <TouchableOpacity
-              onPress={() => setShowEvents(false)}
+              onPress={() => { createEvent(location, route.params.id); setShowCreateEvent(false) }}
               style={styles.modalToggle}
             >
               <Text>CREATE</Text>

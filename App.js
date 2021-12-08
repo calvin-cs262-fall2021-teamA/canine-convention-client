@@ -67,7 +67,10 @@ function App() {
         <Stack.Screen
           name="Match Found"
           component={MatchFound}
-          options={{ headerStyle: { backgroundColor: "#16BAC6" } }}
+          options={{
+            headerStyle: { backgroundColor: "#16BAC6" },
+            headerBackVisible: false
+          }}
         />
         <Stack.Screen
           name="History"
