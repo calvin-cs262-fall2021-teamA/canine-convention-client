@@ -11,22 +11,22 @@ import {
 } from "react-native";
 import { globalStyles } from "../styles/global";
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen({ route, navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const checkUser = async () => {
     try{
-      const requestOptions = {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          "email": email,
-          "password": password,
-        })
-      };
-      const response = await fetch("http://canine-convention.herokuapp.com/login", requestOptions);
-      const json = await response.text();
+      // const requestOptions = {
+      //   method: 'GET',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({
+      //     "email": email,
+      //     "password": password,
+      //   })
+      // };
+      const response = await fetch("http://canine-convention.herokuapp.com/login");
+      const json = await response.json();
       console.log(json);
       return json;
     }catch(error) {console.error(error)}
