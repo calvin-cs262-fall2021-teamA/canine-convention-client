@@ -27,7 +27,7 @@ export default function AddDog({ navigation, route }) {
   const charButtons = ["Calm", "Playful", "Friendly"];
   const neuteredButtons = ["Neutered", "Not Neutered"];
 
-  const {userID} = route.params;
+  const userID = route.params;
   const [dogSize, setDogSize] = useState("");
   const [dogGender, setDogGender] = useState("");
   const [dogChar, setDogChar] = useState("");
@@ -165,7 +165,8 @@ export default function AddDog({ navigation, route }) {
         <TextInput
           style={globalStyles.ProfileInput}
           textAlign="center"
-          defaultValue={"Add a new dog"}
+          placeholder={"Name your dog"}
+          placeholderTextColor="#003f5c"
           onChangeText={(name) => setDogName(name)}
         />
       </View>

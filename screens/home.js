@@ -10,6 +10,7 @@ import{Icon} from "react-native-elements";
 export default function HomeScreen({ route, navigation }) {
 
   //Display Logo, Find Event and View History Buttons
+  console.log(route.params);
   return (
     <View style={globalStyles.container}>
       <StatusBar style="auto" />

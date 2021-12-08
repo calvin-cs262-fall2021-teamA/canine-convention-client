@@ -17,8 +17,8 @@ import{Icon} from "react-native-elements";
 //Profile Screen
 export default function Profile({ route, navigation }) {
   //declare variables
+  const userID = route.params;
   const [isLoading, setLoading] = useState(true);
-  const [userID, setUserID] = useState(route.params);
   const [userInfo, setUserInfo] = useState([]);
   const [dogInfo, setDogInfo] = useState([]);
 
@@ -44,7 +44,6 @@ export default function Profile({ route, navigation }) {
       );
       const json = await response.json();
       setDogInfo(json);
-      console.log(json);
     } catch (error) {
       console.error(error);
     } finally {
@@ -55,8 +54,6 @@ export default function Profile({ route, navigation }) {
   useEffect(() => {
     getPersonInfo();
     getDogInfo();
-    console.log(route.params);
-    console.log("userID " + userID);
   }, []);
 
   const getAge = (birthdate) =>{
@@ -102,7 +99,7 @@ export default function Profile({ route, navigation }) {
       {/* profile edit button */}
       <TouchableOpacity
         style={[globalStyles.editBtn, { height: "5%" }]}
-        onPress={() => navigation.navigate("ProfileEdit", userID)}
+        onPress={() => navigation.push("ProfileEdit", {currentUser: userInfo, userID: userID})}
       >
         <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
           Edit
@@ -117,7 +114,7 @@ export default function Profile({ route, navigation }) {
           <Text style={globalStyles.profileText}>{userInfo.email}</Text>
         </View>
       )}
-      <Image source={blankPFP} style={globalStyles.picture} />
+      <Image source={{uri: userInfo.image}} style={globalStyles.picture} />
       {/* onPageSelected={e => {changeIndicator(e)}} */}
 
       {isLoading ? <ActivityIndicator/> : (
@@ -190,7 +187,7 @@ export default function Profile({ route, navigation }) {
                   justifyContent: "center",
                   backgroundColor: "#195F6B",
                   minHeight: "20%",}}
-                onPress={() => navigation.push("AddDog", {userID: userID})}>
+                onPress={() => navigation.push("AddDog", route.params)}>
                 <Text style={{color: "#FFFFFF", fontSize: 18}}>Add a new dog</Text>
               </TouchableOpacity>
               <View style={{height:"20%", marginBottom:"-40%", marginTop: "20%"}}>
@@ -203,13 +200,13 @@ export default function Profile({ route, navigation }) {
       <Icon 
         raised
         name = "person"
-        onPress={() => navigation.navigate("Profile", 1)}  
+        onPress={() => navigation.navigate("Profile", userID)}  
       />
       <Icon
       raised 
       name= "home"
       type="ionicon"
-      onPress={() => navigation.navigate("Home", 1)}
+      onPress={() => navigation.navigate("Home", userID)}
       
       />
       <Icon

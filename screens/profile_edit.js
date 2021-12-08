@@ -8,6 +8,8 @@ import {
   TouchableWithoutFeedback,
   TextInput,
   FlatList,
+  KeyboardAvoidingView,
+  ScrollView, 
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { globalStyles } from "../styles/global";
@@ -19,11 +21,17 @@ import{Icon} from "react-native-elements";
 export default function ProfileEdit({ route, navigation }) {
   
   //Declare Variables
+  const {currentUser} = route.params;
   const {userID} = route.params;
   const [selectedImage, setSelectedImage] = React.useState(null);
+  const [email, setEmail] = useState(currentUser.email);
+  //const [password, setPassword] = useState(currentUser.password);
+  const [firstName, setFirst] = useState(currentUser.firstname);
+  const [lastName, setLast] = useState(currentUser.lastname);
+  const [phone, setPhone] = useState(currentUser.phone);
 
   //Get a Picture from the cameraroll
-  var currentImage = Asset.fromModule(require("../assets/blankPFP.png")).uri;
+  var currentImage = currentUser.image;
   let openImagePickerAsync = async () => {
     let permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -42,69 +50,94 @@ export default function ProfileEdit({ route, navigation }) {
     currentImage = selectedImage.localUri;
   }
 
-  const getPersonInfo = async () => {
-    try {
-      const response = await fetch(
-        "https://canine-convention.herokuapp.com/person/" + userID
-      );
-      const json = await response.json();
-      setUserInfo(json);
-    } catch (error) {
-      console.error(error);
-    } finally {
-    }
+  const updatePerson = async () => {
+    try{
+      await Promise.all([
+        fetch("http://canine-convention.herokuapp.com/persons/name/"+ userID, {method: 'PUT', 
+          headers: { 'Content-Type': 'application/json' }, 
+          body: JSON.stringify({"firstName": firstName})}),
+        fetch("http://canine-convention.herokuapp.com/persons/surname/"+ userID, {method: 'PUT',
+          headers: { 'Content-Type': 'application/json' }, 
+          body: JSON.stringify({"lastName": lastName})}),
+        fetch("http://canine-convention.herokuapp.com/persons/email/"+ userID, {method: 'PUT',
+          headers: { 'Content-Type': 'application/json' }, 
+          body: JSON.stringify({"email": email})}),
+        fetch("http://canine-convention.herokuapp.com/persons/phone/"+ userID, {method: 'PUT',
+          headers: { 'Content-Type': 'application/json' }, 
+          body: JSON.stringify({"phone": phone})}),
+        fetch("http://canine-convention.herokuapp.com/persons/image/"+ userID , {method: 'PUT',
+          headers: { 'Content-Type': 'application/json' }, 
+          body: JSON.stringify({"image": currentImage})}),
+        // fetch("http://canine-convention.herokuapp.com/persons/password/"+ userID , {method: 'PUT',
+        //   headers: { 'Content-Type': 'application/json' }, 
+        //   body: JSON.stringify({"Password": password})})
+      ])
+
+    }catch(error) {console.error(error)}
   };
 
   //Display Picture, Buttons, And the text boxes 
   return (
     <View style={{ backgroundColor: "#EFF0F4" }}>
       {/* save button */}
-      <TouchableOpacity
-        style={[globalStyles.editBtn, {height: "5%"}]}
-        onPress={() => navigation.navigate("Profile", userID)}
-      >
-        <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
-          Save
-        </Text>
-      </TouchableOpacity>
-      <Image
-        source={{ uri: currentImage }}
-        style={[globalStyles.picture, { marginTop: "10%" }]}
-      />
       {/* Change Picture button */}
-      <TouchableOpacity
-        style={[globalStyles.picturePicker, { marginBottom: "8%" }]}
-        onPress={openImagePickerAsync}
-      >
-        <Text style={globalStyles.ButtonsText}>Choose a profile picture!</Text>
-      </TouchableOpacity>
       {/* profile edit text boxes */}
-      <View style={{ alignItems: "center" }}>
-        <View style={globalStyles.inputView}>
+      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} 
+        //keyboardDissmissMode="on-drag"
+        style={{ alignItems: "center", height: "90%", justifyContent: "center"}}>
+        <TouchableOpacity
+          style={[globalStyles.editBtn, {height: "5%"}]}
+          onPress={() => updatePerson().then(navigation.push("Profile", userID))}
+        >
+          <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
+            Save
+          </Text>
+        </TouchableOpacity>
+        <Image
+          source={{ uri: currentImage }}
+          style={[globalStyles.picture, { marginTop: "5%", marginLeft: "0%"}]}
+        />
+        {/* Change Picture button */}
+        <TouchableOpacity
+          style={[globalStyles.picturePicker, { marginBottom: "4%", marginLeft: "0%"}]}
+          onPress={openImagePickerAsync}
+        >
+          <Text style={globalStyles.ButtonsText}>Choose a profile picture!</Text>
+        </TouchableOpacity>
+        <ScrollView contentContainerStyle={{ alignItems: "center", height: "80%" }} scrollEnabled={true}>
+        <View style={[globalStyles.inputView, globalStyles.row, 
+          {alignContent: "center", minHeight: "100%", marginTop: "-27%"}]}>
           <TextInput
-            style={globalStyles.ProfileInput}
+            style={[globalStyles.ProfileInput, {height: "15%", width: "45%", marginLeft: "5%"}]}
             textAlign="center"
-            placeholder="John Doe"
-            placeholderTextColor="#003f5c"
+            defaultValue={firstName}
+            onChangeText={(firstName) => setFirst(firstName)}
+          />
+          <TextInput
+            style={[globalStyles.ProfileInput, {height: "15%", width: "45%"}]}
+            textAlign="center"
+            defaultValue={lastName}
+            onChangeText={(lastName) => setLast(lastName)}
           />
         </View>
-        <View style={globalStyles.inputView}>
+        <View style={[globalStyles.inputView, {height: "20%", marginTop: "-30%"}]}>
           <TextInput
-            style={globalStyles.ProfileInput}
+            style={[globalStyles.ProfileInput, {height: "100%"}]}
             textAlign="center"
-            placeholder="616-222-5555"
-            placeholderTextColor="#003f5c"
+            defaultValue={phone}
+            onChangeText={(phone) => setPhone(phone)}
           />
         </View>
-        <View style={globalStyles.inputView}>
+        <View style={[globalStyles.inputView, {height: "20%", marginBottom: "30%"}]}>
           <TextInput
-            style={globalStyles.ProfileInput}
+            style={[globalStyles.ProfileInput, {height: "100%"}]}
             textAlign="center"
-            placeholder="doeadeer"
-            placeholderTextColor="#003f5c"
+            defaultValue={email}
+            onChangeText={(email) => setEmail(email)}
           />
         </View>
-      </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
 
 {/* Default Navigation bar */}
 <View style={globalStyles.navigationBarProfileEdit}>
