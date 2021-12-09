@@ -14,23 +14,41 @@ import { globalStyles } from "../styles/global";
 export default function LoginScreen({ route, navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [id, setID] = useState("");
+  //const [userID, setUserID] = useState(1);
+  const [userInfo, setUserInfo] = useState([]);
 
+  // const checkUser = async () => {
+  //   try{
+  //     // const requestOptions = {
+  //     //   method: 'GET',
+  //     //   headers: { 'Content-Type': 'application/json' },
+  //     //   body: JSON.stringify({
+  //     //     "email": email,
+  //     //     "password": password,
+  //     //   })
+  //     // };
+  //     const response = await fetch("http://canine-convention.herokuapp.com/person/");
+  //     const json = await response.json();
+  //     console.log(json);
+  //     return json;
+  //   }catch(error) {console.error(error)}
+  // };
   const checkUser = async () => {
-    try{
-      // const requestOptions = {
-      //   method: 'GET',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({
-      //     "email": email,
-      //     "password": password,
-      //   })
-      // };
-      const response = await fetch("http://canine-convention.herokuapp.com/login");
+    try {
+      const response = await fetch(
+        "https://canine-convention.herokuapp.com/login" + email
+      );
       const json = await response.json();
       console.log(json);
-      return json;
-    }catch(error) {console.error(error)}
+      setID(json);
+      console.log(id)
+    } catch (error) {
+      console.error(error);
+    } finally {
+    }
   };
+
 
   return (
     <KeyboardAvoidingView
@@ -75,6 +93,8 @@ export default function LoginScreen({ route, navigation }) {
         <TouchableOpacity
           style={globalStyles.loginBtn}
           onPress={() => checkUser()}
+          //onPress={() => navigation.navigate("Home")}
+          //onPress={console.log(id)}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             LOGIN
