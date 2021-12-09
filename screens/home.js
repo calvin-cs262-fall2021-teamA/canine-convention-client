@@ -6,7 +6,11 @@ import { globalStyles } from "../styles/global";
 import logo from "../assets/logo.png";
 import { Icon } from "react-native-elements";
 
+//Home Screen
 export default function HomeScreen({ route, navigation }) {
+
+  //Display Logo, Find Event and View History Buttons
+  console.log(route.params);
   return (
     <View style={globalStyles.container}>
       <StatusBar style="auto" />
@@ -28,26 +32,37 @@ export default function HomeScreen({ route, navigation }) {
           View History
         </Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={globalStyles.homeBtns}
+        onPress={() => navigation.navigate("Map", route.params)}
+      >
+        <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
+          View Map
+        </Text>
+      </TouchableOpacity>
+
+      {/*Navigation bar */}
       <View style={globalStyles.navigationBarHome}>
-        <Icon
-          raised
-          name="person"
-          onPress={() => navigation.navigate("Profile")}
-
-        />
-        <Icon
-          raised
-          name="home"
-          type="ionicon"
-          onPress={() => navigation.navigate("Home")}
-
-        />
-        <Icon
-          raised
-          name="log-out"
-          type="ionicon"
-          onPress={() => navigation.navigate("Start")}
-        />
+      <Icon 
+        raised
+        name = "person"
+        onPress={() => navigation.navigate("Profile", route.params)}
+        
+      />
+      <Icon
+      raised 
+      name= "home"
+      type="ionicon"
+      onPress={() => navigation.navigate("Home", route.params)}
+      
+      />
+      <Icon
+        raised
+        name= "log-out"
+        type="ionicon"
+        onPress={() => navigation.navigate("Start")} 
+      />
+    
       </View>
     </View>
   );

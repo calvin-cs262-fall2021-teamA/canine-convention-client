@@ -18,21 +18,36 @@ import { Asset } from "expo-asset";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
 
+//Dog Edit Screen
 export default function DogProfileEdit({ navigation, route }) {
+
+  //Declare Variables
+  const sizeButtons = ["Small", "Medium", "Large"];
+  const genderButtons = ["Male", "Female"];
+  const charButtons = ["Calm", "Playful", "Friendly"];
+  const neuteredButtons = ["Neutered", "Not Neutered"];
+
   const {currentDog} = route.params;
   const {userID} = route.params;
 
-  const [dogSize, setDogSize] = useState(currentDog.size);
-  const [dogGender, setDogGender] = useState(currentDog.gender);
-  const [dogChar, setDogChar] = useState(currentDog.personality);
+  const [dogSize, setDogSize] = useState(sizeButtons.indexOf(currentDog.size));
+  const [dogGender, setDogGender] = useState(genderButtons.indexOf(currentDog.gender));
+  const [dogChar, setDogChar] = useState(charButtons.indexOf(currentDog.personality));
   var neutered = "Not Neutered";
   if (currentDog.neutered){
     neutered = "Neutered";
   }
-  const [dogStatus, setDogStatus] = useState(neutered);
+  const [dogStatus, setDogStatus] = useState(neuteredButtons.indexOf(neutered));
   const [dogName, setDogName] = useState(currentDog.dogname);
 
-  const [date, setDate] = useState("Oct 2015");
+  const dateToString = (date) => {
+    var birthDate = new Date(date);
+    let tempDate = birthDate.toString().split(" ");
+    return(tempDate[1] + " " + tempDate[3]);
+  };
+
+  const [date, setDate] = useState(currentDog.birthdate);
+  const [stringDate, setStringDate] = useState(dateToString(currentDog.birthdate));
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -41,14 +56,16 @@ export default function DogProfileEdit({ navigation, route }) {
     setDatePickerVisibility(false);
   };
   const handleConfirm = (date) => {
-    let tempDate = date.toString().split(" ");
-    setDate(tempDate[1] + " " + tempDate[3]);
+    setDate(date);
+    dateToString(date);
+    setStringDate(dateToString(date));
     hideDatePicker();
   };
 
+
   const [selectedImage, setSelectedImage] = React.useState(null);
 
-  var currentImage = Asset.fromModule(require("../assets/blankDogPFP.jpg")).uri;
+  var currentImage = currentDog.image;
   let openImagePickerAsync = async () => {
     let permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -64,91 +81,50 @@ export default function DogProfileEdit({ navigation, route }) {
   };
 
   if (selectedImage !== null) {
-    //Change this to send image to database
     currentImage = selectedImage.localUri;
-    // return (
-    //     <View style={globalStyles.container}>
-    //         <Image source={{uri:selectedImage.localUri}}
-    //             style={{width: 200, height: 100, marginBottom: 30}}
-    //         />
-    //     </View>
-    //  );
   }
-
+  //Update the new dog data and deploy to the database
   const updateDog = async () => {
 
     var neutered = false;
-    if(dogStatus === "Neutered"){
+    if(neuteredButtons[dogStatus] === "Neutered"){
       neutered = true;
     }
     try{
-      const response = await fetch("http://canine-convention.herokuapp.com/dog/name/"+ currentDog.id , {method: 'PUT',
-        headers: { 'Content-Type': 'application/json' }, 
-        body: JSON.stringify(
-            {"dogName": dogName}
-        )});
-      const json = await response.json();
-      return json;
-    }catch(error) {console.error(error)}
-    try{
-      const response = await fetch("http://canine-convention.herokuapp.com/dog/birthdate/"+ currentDog.id , {method: 'PUT',
-        headers: { 'Content-Type': 'application/json' }, 
-        body: JSON.stringify(
-            {"Birthdate": date}
-        )});
-      const json = await response.json();
-      return json;
-    }catch(error) {console.error(error)}
-    try{
-      const response = await fetch("http://canine-convention.herokuapp.com/dog/personality/"+ currentDog.id , {method: 'PUT',
-        headers: { 'Content-Type': 'application/json' }, 
-        body: JSON.stringify(
-            {"Personality": dogChar}
-        )});
-      const json = await response.json();
-      return json;
-    }catch(error) {console.error(error)}
-    try{
-      const response = await fetch("http://canine-convention.herokuapp.com/dog/gender/"+ currentDog.id , {method: 'PUT',
-        headers: { 'Content-Type': 'application/json' }, 
-        body: JSON.stringify(
-            {"Gender": dogGender}
-        )});
-      const json = await response.json();
-      return json;
-    }catch(error) {console.error(error)}
-    try{
-      if (dogStatus == "Neutered"){
-        var neuterBool = true;
-      }else{neuterbool = false;}
-      const response = await fetch("http://canine-convention.herokuapp.com/dog/neutered/"+ currentDog.id , {method: 'PUT',
-        headers: { 'Content-Type': 'application/json' }, 
-        body: JSON.stringify(
-            {"Neutered": neuterBool}
-        )});
-      const json = await response.json();
-      return json;
-    }catch(error) {console.error(error)}
-    try{
-      const response = await fetch("http://canine-convention.herokuapp.com/dog/image/"+ currentDog.id , {method: 'PUT',
-        headers: { 'Content-Type': 'application/json' }, 
-        body: JSON.stringify(
-            {"image": currentImage}
-        )});
-      const json = await response.json();
-      return json;
-    }catch(error) {console.error(error)}
-    try{
-      const response = await fetch("http://canine-convention.herokuapp.com/dog/size/"+ currentDog.id , {method: 'PUT',
-        headers: { 'Content-Type': 'application/json' }, 
-        body: JSON.stringify(
-            {"Size": dogSize}
-        )});
-      const json = await response.json();
-      return json;
+      await Promise.all([
+        fetch("http://canine-convention.herokuapp.com/dog/name/"+ currentDog.id, {method: 'PUT', 
+          headers: { 'Content-Type': 'application/json' }, 
+          body: JSON.stringify({"dogName": dogName})}),
+        fetch("http://canine-convention.herokuapp.com/dog/birthdate/"+ currentDog.id, {method: 'PUT',
+          headers: { 'Content-Type': 'application/json' }, 
+          body: JSON.stringify({"Birthdate": date})}),
+        fetch("http://canine-convention.herokuapp.com/dog/personality/"+ currentDog.id , {method: 'PUT',
+          headers: { 'Content-Type': 'application/json' }, 
+          body: JSON.stringify({"Personality": charButtons[dogChar]})}),
+        fetch("http://canine-convention.herokuapp.com/dog/gender/"+ currentDog.id , {method: 'PUT',
+          headers: { 'Content-Type': 'application/json' }, 
+          body: JSON.stringify({"Gender": genderButtons[dogGender]})}),
+        fetch("http://canine-convention.herokuapp.com/dog/neutered/"+ currentDog.id , {method: 'PUT',
+          headers: { 'Content-Type': 'application/json' }, 
+          body: JSON.stringify({"Neutered": neutered})}),
+        fetch("http://canine-convention.herokuapp.com/dog/image/"+ currentDog.id , {method: 'PUT',
+          headers: { 'Content-Type': 'application/json' }, 
+          body: JSON.stringify({"image": currentImage})}),
+        fetch("http://canine-convention.herokuapp.com/dog/size/"+ currentDog.id , {method: 'PUT',
+          headers: { 'Content-Type': 'application/json' }, 
+          body: JSON.stringify({"Size": sizeButtons[dogSize]})})
+      ])
+
     }catch(error) {console.error(error)}
   };
 
+  const removeDog = async () => {
+    fetch("http://canine-convention.herokuapp.com/dog/"+ currentDog.id, {method: 'DELETE', 
+          headers: { 'Content-Type': 'application/json' }})
+  };
+
+
+  //Display Buttons, Picutures, Input boxes, and selecting the new dog features
   return (
     <View style={{ backgroundColor: "#EFF0F4" }}>
       <DateTimePickerModal
@@ -162,7 +138,7 @@ export default function DogProfileEdit({ navigation, route }) {
         <TouchableOpacity
           style={{width: "30%", borderRadius: 25, height: "100%", justifyContent: "center", alignItems: "center", 
             backgroundColor: "#195F6B", marginTop: "2%", marginLeft: "2%"}}
-          onPress={() => navigation.navigate("Profile", userID)}
+          onPress={() => removeDog().then(navigation.push("Profile", userID))}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             Delete Dog
@@ -172,7 +148,7 @@ export default function DogProfileEdit({ navigation, route }) {
         <TouchableOpacity
           style={{width: "15%", borderRadius: 25, height: "100%", justifyContent: "center", alignItems: "center",
             backgroundColor: "#195F6B", marginTop: "2%", marginLeft: "auto", marginRight: "2%"}}
-          onPress={() => navigation.navigate("Profile", userID)}
+          onPress={() => updateDog().then(navigation.push("Profile", userID))}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             Save
@@ -200,15 +176,14 @@ export default function DogProfileEdit({ navigation, route }) {
       <View style={globalStyles.inputView}>
         <TextInput
           style={globalStyles.ProfileInput}
+          defaultValue={currentDog.dogname}
           textAlign="center"
-          placeholder={currentDog.dogname}
-          placeholderTextColor="#003f5c"
           onChangeText={(name) => setDogName(name)}
         />
       </View>
       <ButtonGroup
         selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
-        buttons={["Small", "Medium", "Large"]}
+        buttons={sizeButtons}
         selectedIndex={dogSize}
         onPress={(value) => {
           setDogSize(value);
@@ -217,7 +192,7 @@ export default function DogProfileEdit({ navigation, route }) {
       <ButtonGroup
         containerStyle={{ marginTop: "2%" }}
         selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
-        buttons={["Male", "Female"]}
+        buttons={genderButtons}
         selectedIndex={dogGender}
         onPress={(value) => {
           setDogGender(value);
@@ -226,7 +201,7 @@ export default function DogProfileEdit({ navigation, route }) {
       <ButtonGroup
         containerStyle={{ marginTop: "2%" }}
         selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
-        buttons={["Calm", "Playful", "Friendly"]}
+        buttons={charButtons}
         selectedIndex={dogChar}
         onPress={(value) => {
           setDogChar(value);
@@ -235,7 +210,7 @@ export default function DogProfileEdit({ navigation, route }) {
       <ButtonGroup
         containerStyle={{ marginTop: "2%" }}
         selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
-        buttons={["Neutered", "Not Neutered"]}
+        buttons={neuteredButtons}
         selectedIndex={dogStatus}
         onPress={(value) => {
           setDogStatus(value);
@@ -255,7 +230,7 @@ export default function DogProfileEdit({ navigation, route }) {
           marginLeft: "5%",
         }}
       >
-        Birthdate: {date}
+        Birthdate: {stringDate}
       </Text>
     </View>
   );
