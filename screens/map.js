@@ -27,7 +27,8 @@ export default function Map({ route, navigation }) {
   const [isLoading, setLoading] = useState(true);
   const [location, setLocation] = useState(42, 42);
   const [showCreateEvent, setShowCreateEvent] = useState(false);
-  const [dogNames, setDogNames] = useState(null);
+  const [dogData, setDogData] = useState(null);
+  const [dog, setDog] = useState(null);
 
   //Get Dog info from the DataBase
   const getDogInfo = async () => {
@@ -36,13 +37,14 @@ export default function Map({ route, navigation }) {
         "https://canine-convention.herokuapp.com/person/" + route.params + "/dogs"
       );
       const json = await response.json();
-      setDogNames(json.map(item => {return item.dogname}));
+      setDogData(json);
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
     }
   };
+
 
   // Check events available
   const getEvents = async () => {
@@ -138,20 +140,20 @@ export default function Map({ route, navigation }) {
                   borderColor: "#000000",
                   marginVertical: "6%",
                 }}
-                data={dogNames}
+                data={dogData}
                 defaultButtonText="Choose Dog"
                 onSelect={(selectedItem, index) => {
-                  //console.log(selectedItem, index)
+                  setDog(selectedItem)
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   // text represented after item is selected
                   // if data array is an array of objects then return selectedItem.property to render after item is selected
-                  return selectedItem;
+                  return selectedItem.dogname;
                 }}
                 rowTextForSelection={(item, index) => {
                   // text represented for each item in dropdown
                   // if data array is an array of objects then return item.property to represent item in dropdown
-                  return item;
+                  return item.dogname;
                 }}
                 renderDropdownIcon={() => {
                   return (
@@ -234,7 +236,7 @@ export default function Map({ route, navigation }) {
                 renderItem={({ item }) => (
                   <TouchableOpacity
                     style={{ marginTop: "2%", alignSelf: 'center', borderWidth: 1, borderRadius: 5, justifyContent: "space-between", flexDirection: "row", width: "95%", padding: "5%" }}
-                    onPress={() => { console.log("clicked!"); navigation.navigate("Match Found", [route.params, item]) }}
+                    onPress={() => {navigation.navigate("Match Found", [route.params, item, dog]) }}
                   >
                     <Text>{item.location['x']} {item.location['y']}, created by {item.firstname} {item.lastname}</Text>
                     <Icon
@@ -271,20 +273,20 @@ export default function Map({ route, navigation }) {
                   borderColor: "#000000",
                   marginVertical: "6%",
                 }}
-                data={dogNames}
+                data={dogData}
                 defaultButtonText="Choose Dog"
                 onSelect={(selectedItem, index) => {
-                  //console.log(selectedItem, index)
+                  setDog(selectedItem)
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   // text represented after item is selected
                   // if data array is an array of objects then return selectedItem.property to render after item is selected
-                  return selectedItem;
+                  return selectedItem.dogname;
                 }}
                 rowTextForSelection={(item, index) => {
                   // text represented for each item in dropdown
                   // if data array is an array of objects then return item.property to represent item in dropdown
-                  return item;
+                  return item.dogname;
                 }}
                 renderDropdownIcon={() => {
                   return (

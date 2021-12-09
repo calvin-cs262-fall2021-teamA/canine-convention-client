@@ -13,6 +13,23 @@ import blankDogPFP from "../assets/blankDogPFP.jpg";
 import blankPFP from "../assets/blankPFP.png";
 
 export default function FindSuccess({ route, navigation }) {
+  // Join event
+  const joinEvent = async (dogID, eventID) => {
+    try {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          "dogID": dogID,
+          "activityID": eventID,
+        })
+      };
+      const response = await fetch('https://canine-convention.herokuapp.com/event/join/' + eventID, requestOptions);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <View style={{ backgroundColor: "#EFF0F4" }}>
       <View style={{ marginTop: "2%", marginLeft: "5%" }}>
@@ -62,7 +79,7 @@ export default function FindSuccess({ route, navigation }) {
       <View style={globalStyles.row}>
         <TouchableOpacity
           style={globalStyles.acceptBtns}
-          onPress={() => {console.log(route.params);navigation.navigate("Home", route.params[0])}}
+          onPress={() => { console.log(route.params[2]);joinEvent(route.params[2].id, route.params[1].id); navigation.navigate("Home", route.params[0]) }}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             Accept
