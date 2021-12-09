@@ -37,7 +37,7 @@ export default function LoginScreen({ route, navigation }) {
   const checkUser = async () => {
     try {
       const response = await fetch(
-        "https://canine-convention.herokuapp.com/login" + email
+        "https://canine-convention.herokuapp.com/login/" + email
       );
       const json = await response.json();
       console.log(json);
