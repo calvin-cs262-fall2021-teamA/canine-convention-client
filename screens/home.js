@@ -4,7 +4,7 @@ import { Text, View, Image, TouchableOpacity, Alert } from "react-native";
 import * as Location from "expo-location";
 import { globalStyles } from "../styles/global";
 import logo from "../assets/logo.png";
-import{Icon} from "react-native-elements";
+import { Icon } from "react-native-elements";
 
 //Home Screen
 export default function HomeScreen({ route, navigation }) {
@@ -18,7 +18,7 @@ export default function HomeScreen({ route, navigation }) {
       {/* <Text>User id is {route.params}</Text> */}
       <TouchableOpacity
         style={globalStyles.homeBtns}
-        onPress={() => navigation.navigate("FindEvent", route.params)}
+        onPress={() => navigation.navigate("Map", route.params)}
       >
         <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
           Find an Event

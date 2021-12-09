@@ -5,7 +5,6 @@ import HomeScreen from "./screens/home";
 import LoginScreen from "./screens/login";
 import StartScreen from "./screens/start";
 import SignUpScreen from "./screens/signUp";
-import FindEvent from "./screens/eventFind";
 import Profile from "./screens/profile";
 import ProfileEdit from "./screens/profile_edit";
 import DogProfileEdit from "./screens/dogprofile_edit";
@@ -51,11 +50,6 @@ function App() {
           options={{ headerStyle: { backgroundColor: "#16BAC6" } }}
         />
         <Stack.Screen
-          name="FindEvent"
-          component={FindEvent}
-          options={{ headerStyle: { backgroundColor: "#16BAC6" } }}
-        />
-        <Stack.Screen
           name="Profile"
           component={Profile}
           options={{ headerStyle: { backgroundColor: "#16BAC6" } }}
@@ -78,7 +72,10 @@ function App() {
         <Stack.Screen
           name="Match Found"
           component={MatchFound}
-          options={{ headerStyle: { backgroundColor: "#16BAC6" } }}
+          options={{
+            headerStyle: { backgroundColor: "#16BAC6" },
+            headerBackVisible: false
+          }}
         />
         <Stack.Screen
           name="History"
