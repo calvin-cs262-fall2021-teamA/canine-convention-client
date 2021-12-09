@@ -28,7 +28,6 @@ export default function HomeScreen({ route, navigation }) {
           View History
         </Text>
       </TouchableOpacity>
-
       <View style={globalStyles.navigationBarHome}>
         <Icon
           raised

@@ -41,7 +41,7 @@ export default function FindSuccess({ route, navigation }) {
 
       <PagerView style={globalStyles.pager} initialPage={0}>
         <View style={globalStyles.container} key="1" collapsable="false">
-          <Text style={globalStyles.dogName}>Fido</Text>
+          <Text style={globalStyles.dogName}>Rover</Text>
           <Image source={blankDogPFP} style={globalStyles.pictureDog} />
           <View style={globalStyles.row}>
             <TouchableWithoutFeedback>
