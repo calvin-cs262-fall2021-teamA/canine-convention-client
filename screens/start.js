@@ -3,8 +3,10 @@ import { Text, View, Image, TouchableOpacity } from "react-native";
 import { globalStyles } from "../styles/global";
 import logo from "../assets/logo.png";
 
+//The Default Screen when you start the app 
 export default function StartScreen({ navigation }) {
   return (
+    //Displays Title, logo, Login and Signup buttons
     <View style={globalStyles.container}>
       <Text style={globalStyles.title}>Canine Convention</Text>
       <Image source={logo} style={globalStyles.logo} />

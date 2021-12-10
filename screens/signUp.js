@@ -11,14 +11,16 @@ import {
 } from "react-native";
 import { globalStyles } from "../styles/global";
 
+//Sign Up Screen
 export default function SignUpScreen({ navigation }) {
+  //declare variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirst] = useState("");
   const [lastName, setLast] = useState("");
   const [phone, setPhone] = useState("");
-  //const [id, setID] = useState("hi");
 
+  //make a user and deploy firstName, lastName, email, and phone to the data base
   const makeUser = async () => {
     try{
       const requestOptions = {
@@ -37,7 +39,8 @@ export default function SignUpScreen({ navigation }) {
       return json;
     }catch(error) {console.error(error)}
   };
-
+  
+  //Setup the Signup Screen's logo and text boxes
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -100,9 +103,7 @@ export default function SignUpScreen({ navigation }) {
         </View>
         <TouchableOpacity
           style={globalStyles.loginBtn}
-          //onPressIn={() => makeUser()}
           onPress={() => makeUser().then(val => navigation.navigate("Home", val.id))}
-          //onPress={() => makeUser().then(val => navigation.navigate("DogProfileEdit", {currentDog: "New dog", userID: val.id}))}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             {" "}

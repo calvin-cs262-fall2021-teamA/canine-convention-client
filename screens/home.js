@@ -4,58 +4,20 @@ import { Text, View, Image, TouchableOpacity, Alert } from "react-native";
 import * as Location from "expo-location";
 import { globalStyles } from "../styles/global";
 import logo from "../assets/logo.png";
-import{Icon} from "react-native-elements";
+import { Icon } from "react-native-elements";
 
-export default function HomeScreen({ route, navigation }){
-  const [response, setLocation] = useState(null);
-  //const [errorMsg, setErrorMsg] = useState(null);
-
-  useEffect(() => {
-    //CheckIfLocationEnabled();
-    GetCurrentLocation();
-  }, []);
-
-  const GetCurrentLocation = async () => {
-    let { status } = await Location.requestForegroundPermissionsAsync();
-
-    if (status !== "granted") {
-      Alert.alert(
-        "Permission not granted",
-        "Allow the app to use location service.",
-        [{ text: "OK" }],
-        { cancelable: false }
-      );
-    }
-    let { coords } = await Location.getCurrentPositionAsync({});
-    if (coords) {
-      const { latitude, longitude } = coords;
-      let response = await Location.reverseGeocodeAsync({
-        latitude,
-        longitude,
-      });
-      setLocation(response);
-    }
-  };
-
-  let addressText = "";
-  if (response) {
-    for (let item of response) {
-      let name = item.name;
-      let city = item.city;
-      let region = item.region;
-      addressText = JSON.stringify(name + " " + city + ", " + region);
-    }
-  }
-
+//Home Screen
+export default function HomeScreen({ route, navigation }) {
+  //Display Logo, Find Event and View History Buttons
+  console.log(route.params);
   return (
-
     <View style={globalStyles.container}>
       <StatusBar style="auto" />
       <Image source={logo} style={globalStyles.logo} />
       {/* <Text>User id is {route.params}</Text> */}
       <TouchableOpacity
         style={globalStyles.homeBtns}
-        onPress={() => navigation.navigate("FindEvent", route.params)}
+        onPress={() => navigation.navigate("Map", route.params)}
       >
         <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
           Find an Event
@@ -78,24 +40,19 @@ export default function HomeScreen({ route, navigation }){
         </Text>
       </TouchableOpacity>
 
-      {/* <Text>
-        {"\n\n"} This is your current location:
-        {"\n"}
-        {addressText}
-      </Text> */}
-
+      {/*Navigation bar */}
       <View style={globalStyles.navigationBarHome}>
       <Icon 
         raised
         name = "person"
-        onPress={() => navigation.navigate("Profile")}
+        onPress={() => navigation.navigate("Profile", route.params)}
         
       />
       <Icon
       raised 
       name= "home"
       type="ionicon"
-      onPress={() => navigation.navigate("Home")}
+      onPress={() => navigation.navigate("Home", route.params)}
       
       />
       <Icon
@@ -104,6 +61,7 @@ export default function HomeScreen({ route, navigation }){
         type="ionicon"
         onPress={() => navigation.navigate("Start")} 
       />
+    
       </View>
     </View>
   );

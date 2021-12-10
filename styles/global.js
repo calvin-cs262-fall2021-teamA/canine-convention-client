@@ -72,7 +72,7 @@ export const globalStyles = StyleSheet.create({
   },
   profileText: {
     marginRight: "auto",
-    fontSize: 25,
+    fontSize: 20,
   },
   logo: {
     width: "100%",
@@ -109,11 +109,12 @@ export const globalStyles = StyleSheet.create({
     marginLeft: "auto",
   },
   pager: {
-    height: "50%",
+    height: "48%",
     width: "100%",
     backgroundColor: "#16BAC6",
     borderColor: "#16BAC6",
     borderWidth: 10,
+    marginBottom:"-1.5%",
   },
   picture: {
     width: "40%",
@@ -204,4 +205,23 @@ export const globalStyles = StyleSheet.create({
     flexDirection: "row",
     marginTop:"90%",
   },
+  navigationBarProfile:{
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    marginTop:".5%",
+  },
+  HelptText:{
+    marginLeft: "10%",
+    
+  },
+  HelptTextTitle: {
+    //marginLeft: "-25%",
+    fontWeight: "bold",
+    textAlign: "right",
+    textAlignVertical: "top",
+
+
+  },
+
 });

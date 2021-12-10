@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { globalStyles } from "../styles/global";
 
-export default function LoginScreen({ route, navigation }) {
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -27,8 +27,7 @@ export default function LoginScreen({ route, navigation }) {
       console.error(error);
     }
   };
-
-
+  
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -41,6 +40,7 @@ export default function LoginScreen({ route, navigation }) {
         contentContainerStyle={{ alignItems: "center" }}
         scrollEnabled={false}
       >
+        {/* email input */}
         <View style={globalStyles.inputView}>
           <TextInput
             style={globalStyles.TextInput}
@@ -50,7 +50,7 @@ export default function LoginScreen({ route, navigation }) {
             onChangeText={(email) => setEmail(email)}
           />
         </View>
-
+        {/* passsword input */}
         <View style={globalStyles.inputView}>
           <TextInput
             style={globalStyles.TextInput}
@@ -65,10 +65,12 @@ export default function LoginScreen({ route, navigation }) {
         <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
           <Text style={globalStyles.forgot_button}>Don't have an account?</Text>
         </TouchableOpacity>
+        {/* 
         <TouchableOpacity>
           <Text style={globalStyles.forgot_button}>Forgot Password?</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
+        {/*Login button */}
         <TouchableOpacity
           style={globalStyles.loginBtn}
           //onPress={() => checkUser()}
