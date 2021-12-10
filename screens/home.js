@@ -6,7 +6,7 @@ import { globalStyles } from "../styles/global";
 import logo from "../assets/logo.png";
 import{Icon} from "react-native-elements";
 
-export default function HomeScreen({ route, navigation }) {
+export default function HomeScreen({ route, navigation }){
   const [response, setLocation] = useState(null);
   //const [errorMsg, setErrorMsg] = useState(null);
 
