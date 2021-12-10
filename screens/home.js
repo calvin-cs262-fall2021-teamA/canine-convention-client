@@ -8,7 +8,6 @@ import { Icon } from "react-native-elements";
 
 //Home Screen
 export default function HomeScreen({ route, navigation }) {
-
   //Display Logo, Find Event and View History Buttons
   console.log(route.params);
   return (

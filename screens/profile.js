@@ -29,6 +29,7 @@ export default function Profile({ route, navigation }) {
         "https://canine-convention.herokuapp.com/person/" + userID
       );
       const json = await response.json();
+      console.log(json);
       setUserInfo(json);
     } catch (error) {
       console.error(error);

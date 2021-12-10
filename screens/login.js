@@ -11,13 +11,23 @@ import {
 } from "react-native";
 import { globalStyles } from "../styles/global";
 
-//Login Screen
 export default function LoginScreen({ navigation }) {
-  //Declare Variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  //Display Logo, Text boxes, and Buttons
+  const checkUser = async () => {
+    try {
+      const response = await fetch(
+        "https://canine-convention.herokuapp.com/login/" + email
+      );
+      const json = await response.json();
+      //console.log(json);
+      return json
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -63,7 +73,9 @@ export default function LoginScreen({ navigation }) {
         {/*Login button */}
         <TouchableOpacity
           style={globalStyles.loginBtn}
-          onPress={() => navigation.navigate("Home", 1)}
+          //onPress={() => checkUser()}
+          onPress={() => checkUser().then(val => navigation.navigate("Home", val.id))}
+          //onPress={() => navigation.navigate("Home")}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             LOGIN

@@ -39,7 +39,7 @@ export default function SignUpScreen({ navigation }) {
       return json;
     }catch(error) {console.error(error)}
   };
-
+  
   //Setup the Signup Screen's logo and text boxes
   return (
     <KeyboardAvoidingView
