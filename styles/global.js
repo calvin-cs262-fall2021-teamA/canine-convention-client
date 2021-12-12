@@ -136,7 +136,7 @@ export const globalStyles = StyleSheet.create({
   tag: {
     fontSize: 20,
     marginHorizontal: "4%",
-    backgroundColor: "#195F6B",
+    backgroundColor: "#16BAC6",
     borderRadius: 25,
     width: "30%",
     height: "80%",
@@ -144,7 +144,7 @@ export const globalStyles = StyleSheet.create({
   },
   historyTag: {
     fontSize: 20,
-    backgroundColor: "#195F6B",
+    backgroundColor: "#16BAC6",
     borderRadius: 25,
     width: "40%",
     height: "50%",
@@ -153,7 +153,7 @@ export const globalStyles = StyleSheet.create({
   tagText: {
     textAlign: "center",
     textAlignVertical: "center",
-    color: "#FFFFFF",
+    color: "#000000",
   },
   row: {
     flex: 1,

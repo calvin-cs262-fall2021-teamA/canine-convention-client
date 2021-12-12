@@ -17,7 +17,9 @@ import { Asset } from "expo-asset";
 import blankPFP from "../assets/blankPFP.png";
 import{Icon} from "react-native-elements";
 
-//Profile Edit Screen
+/*
+  Allows the user to edit their information
+*/
 export default function ProfileEdit({ route, navigation }) {
   
   //Declare Variables
@@ -30,7 +32,7 @@ export default function ProfileEdit({ route, navigation }) {
   const [lastName, setLast] = useState(currentUser.lastname);
   const [phone, setPhone] = useState(currentUser.phone);
 
-  //Get a Picture from the cameraroll
+  //Sets up image picker
   var currentImage = currentUser.image;
   let openImagePickerAsync = async () => {
     let permissionResult =
@@ -45,11 +47,11 @@ export default function ProfileEdit({ route, navigation }) {
     }
     setSelectedImage({ localUri: pickerResult.uri });
   };
-
   if (selectedImage !== null) {
     currentImage = selectedImage.localUri;
   }
 
+  //Sends updated information to the database
   const updatePerson = async () => {
     try{
       await Promise.all([
@@ -80,8 +82,6 @@ export default function ProfileEdit({ route, navigation }) {
   return (
     <View style={{ backgroundColor: "#EFF0F4" }}>
       {/* save button */}
-      {/* Change Picture button */}
-      {/* profile edit text boxes */}
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} 
         //keyboardDissmissMode="on-drag"
         style={{ alignItems: "center", height: "90%", justifyContent: "center"}}>
@@ -105,6 +105,7 @@ export default function ProfileEdit({ route, navigation }) {
           <Text style={globalStyles.ButtonsText}>Choose a profile picture!</Text>
         </TouchableOpacity>
         <ScrollView contentContainerStyle={{ alignItems: "center", height: "80%" }} scrollEnabled={true}>
+      {/* profile edit text boxes */}
         <View style={[globalStyles.inputView, globalStyles.row, 
           {alignContent: "center", minHeight: "100%", marginTop: "-27%"}]}>
           <TextInput

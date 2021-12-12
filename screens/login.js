@@ -11,10 +11,15 @@ import {
 } from "react-native";
 import { globalStyles } from "../styles/global";
 
+/*
+  Allows the user to login to a previously created account
+*/
+
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //Checks if the user has an account
   const checkUser = async () => {
     try {
       const response = await fetch(
@@ -75,7 +80,6 @@ export default function LoginScreen({ navigation }) {
           style={globalStyles.loginBtn}
           //onPress={() => checkUser()}
           onPress={() => checkUser().then(val => navigation.navigate("Home", val.id))}
-          //onPress={() => navigation.navigate("Home")}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>
             LOGIN

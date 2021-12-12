@@ -18,7 +18,10 @@ import { Asset } from "expo-asset";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
 
-//Dog Edit Screen
+/*
+  Where the user can edit any of their dog's information
+*/
+
 export default function DogProfileEdit({ navigation, route }) {
 
   //Declare Variables
@@ -40,12 +43,14 @@ export default function DogProfileEdit({ navigation, route }) {
   const [dogStatus, setDogStatus] = useState(neuteredButtons.indexOf(neutered));
   const [dogName, setDogName] = useState(currentDog.dogname);
 
+  //converts a date to a string in the form Month Year
   const dateToString = (date) => {
     var birthDate = new Date(date);
     let tempDate = birthDate.toString().split(" ");
     return(tempDate[1] + " " + tempDate[3]);
   };
 
+  //Sets up the date picker
   const [date, setDate] = useState(currentDog.birthdate);
   const [stringDate, setStringDate] = useState(dateToString(currentDog.birthdate));
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -62,9 +67,8 @@ export default function DogProfileEdit({ navigation, route }) {
     hideDatePicker();
   };
 
-
+  //Sets up Image picker
   const [selectedImage, setSelectedImage] = React.useState(null);
-
   var currentImage = currentDog.image;
   let openImagePickerAsync = async () => {
     let permissionResult =
@@ -79,13 +83,12 @@ export default function DogProfileEdit({ navigation, route }) {
     }
     setSelectedImage({ localUri: pickerResult.uri });
   };
-
   if (selectedImage !== null) {
     currentImage = selectedImage.localUri;
   }
+
   //Update the new dog data and deploy to the database
   const updateDog = async () => {
-
     var neutered = false;
     if(neuteredButtons[dogStatus] === "Neutered"){
       neutered = true;
@@ -137,7 +140,7 @@ export default function DogProfileEdit({ navigation, route }) {
       <View style={globalStyles.row}>
         <TouchableOpacity
           style={{width: "30%", borderRadius: 25, height: "100%", justifyContent: "center", alignItems: "center", 
-            backgroundColor: "#195F6B", marginTop: "2%", marginLeft: "2%"}}
+          backgroundColor:"#C62216", marginTop: "2%", marginLeft: "2%"}}
           onPress={() => removeDog().then(navigation.push("Profile", userID))}
         >
           <Text style={(globalStyles.loginText, globalStyles.ButtonsText)}>

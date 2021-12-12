@@ -11,7 +11,10 @@ import {
 } from "react-native";
 import { globalStyles } from "../styles/global";
 
-//Sign Up Screen
+/*
+  Allows the user to sign up for an account
+*/
+
 export default function SignUpScreen({ navigation }) {
   //declare variables
   const [email, setEmail] = useState("");
