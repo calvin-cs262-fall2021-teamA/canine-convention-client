@@ -5,10 +5,13 @@ import { globalStyles } from "../styles/global";
 import logo from "../assets/logo.png";
 import { Icon } from "react-native-elements";
 
-//Home Screen
+/*
+  Home screen, where the user can view their profile, history, or find a new events
+*/
+
 export default function HomeScreen({ route, navigation }) {
   //Display Logo, Find Event and View History Buttons
-  console.log(route.params);
+  //console.log(route.params);
   return (
     <View style={globalStyles.container}>
       <StatusBar style="auto" />
@@ -43,6 +46,7 @@ export default function HomeScreen({ route, navigation }) {
       raised 
       name= "home"
       type="ionicon"
+      disabled="true"
       onPress={() => navigation.navigate("Home", route.params)}
       
       />

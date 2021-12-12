@@ -53,17 +53,23 @@ function App() {
         <Stack.Screen
           name="Profile"
           component={Profile}
-          options={{ headerStyle: { backgroundColor: "#16BAC6" } }}
+          options={{ headerStyle: { backgroundColor: "#16BAC6" },
+          headerBackVisible: false,
+        }}
         />
         <Stack.Screen
           name="ProfileEdit"
           component={ProfileEdit}
-          options={{ headerStyle: { backgroundColor: "#16BAC6" } }}
+          options={{ headerStyle: { backgroundColor: "#16BAC6" },
+          headerBackVisible: false,
+        }}
         />
         <Stack.Screen
           name="DogProfileEdit"
           component={DogProfileEdit}
-          options={{ headerStyle: { backgroundColor: "#16BAC6" } }}
+          options={{ headerStyle: { backgroundColor: "#16BAC6" },
+          headerBackVisible: false,
+        }}
         />
         <Stack.Screen
           name="Map"

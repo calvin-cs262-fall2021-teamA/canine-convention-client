@@ -14,7 +14,10 @@ import blankDogPFP from "../assets/blankDogPFP.jpg";
 import Dots from 'react-native-dots-pagination';
 import{Icon} from "react-native-elements";
 
-//Profile Screen
+/*
+  Shows the user's info and their dog's info. 
+*/
+
 export default function Profile({ route, navigation }) {
   //declare variables
   const userID = route.params;
@@ -29,7 +32,7 @@ export default function Profile({ route, navigation }) {
         "https://canine-convention.herokuapp.com/person/" + userID
       );
       const json = await response.json();
-      console.log(json);
+      //console.log(json);
       setUserInfo(json);
     } catch (error) {
       console.error(error);
@@ -37,7 +40,7 @@ export default function Profile({ route, navigation }) {
     }
   };
 
-  //Get Dog info from the DataBase
+  //Get Dog info from the Database
   const getDogInfo = async () => {
     try {
       const response = await fetch(
@@ -52,11 +55,13 @@ export default function Profile({ route, navigation }) {
     }
   };
 
+
   useEffect(() => {
     getPersonInfo();
     getDogInfo();
   }, []);
 
+  //Calculates age in months and years from a date and creates appropriate text to display the age
   const getAge = (birthdate) =>{
     var today = new Date();
     var birthDate = new Date(birthdate);
@@ -87,8 +92,8 @@ export default function Profile({ route, navigation }) {
       }
     }
   }
-  const [activeDot, setActiveDot] = useState(0);
 
+  const [activeDot, setActiveDot] = useState(0);
   const changeIndicator = (pageNum) =>{
     setActiveDot(parseInt(pageNum.nativeEvent.position));
   }
@@ -115,8 +120,10 @@ export default function Profile({ route, navigation }) {
           <Text style={globalStyles.profileText}>{userInfo.email}</Text>
         </View>
       )}
-      <Image source={{uri: userInfo.image}} style={globalStyles.picture} />
-      {/* onPageSelected={e => {changeIndicator(e)}} */}
+      {userInfo.image == null &&
+      <Image source={blankPFP} style={globalStyles.picture} />}
+      {userInfo.image != null &&
+      <Image source={{uri: userInfo.image}} style={globalStyles.picture} />}
 
       {isLoading ? <ActivityIndicator/> : (
           <PagerView style={globalStyles.pager} initialPage={0} onPageSelected={e => {changeIndicator(e)}}>
@@ -138,6 +145,7 @@ export default function Profile({ route, navigation }) {
                 </TouchableOpacity>
               </View>
               {/* Display Dog Info */}
+              
               <Image source={{uri: item.image}} style={globalStyles.pictureDog} />
               <View style={globalStyles.row}>
                 <TouchableWithoutFeedback>
@@ -201,6 +209,7 @@ export default function Profile({ route, navigation }) {
       <Icon 
         raised
         name = "person"
+        disabled= "true"
         onPress={() => navigation.navigate("Profile", userID)}  
       />
       <Icon

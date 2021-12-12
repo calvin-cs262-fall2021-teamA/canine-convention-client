@@ -18,7 +18,10 @@ import { Asset } from "expo-asset";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import blankDogPFP from "../assets/blankDogPFP.jpg";
 
-//Add Dog Page
+/*
+  Allows the user to add a new dog to their profile
+*/
+
 export default function AddDog({ navigation, route }) {
   
   //Declare Variables
@@ -35,12 +38,14 @@ export default function AddDog({ navigation, route }) {
   const [dogName, setDogName] = useState("");
   var today = new Date();
 
+  //Converts a date to a string in the form Month Year
   const dateToString = (date) => {
     var birthDate = new Date(date);
     let tempDate = birthDate.toString().split(" ");
     return(tempDate[1] + " " + tempDate[3]);
   };
 
+  //Sets up date picker
   const [date, setDate] = useState(today);
   const [stringDate, setStringDate] = useState(dateToString(today.toString()));
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -57,8 +62,8 @@ export default function AddDog({ navigation, route }) {
     hideDatePicker();
   };
 
+  //Set up image picker
   const [selectedImage, setSelectedImage] = React.useState(null);
-
   var currentImage = Asset.fromModule(require("../assets/blankDogPFP.jpg")).uri;
   let openImagePickerAsync = async () => {
     let permissionResult =
@@ -157,7 +162,7 @@ export default function AddDog({ navigation, route }) {
         style={[globalStyles.picturePicker, { marginBottom: "5%" }]}
         onPress={openImagePickerAsync}
       >
-        <Text style={globalStyles.tagText}>
+        <Text style={globalStyles.ButtonsText}>
           Choose a puppy profile picture!
         </Text>
       </TouchableOpacity>
@@ -209,7 +214,7 @@ export default function AddDog({ navigation, route }) {
         style={[globalStyles.picturePicker, { marginTop: "2%" }]}
         onPress={showDatePicker}
       >
-        <Text style={globalStyles.tagText}>Select birthdate</Text>
+        <Text style={globalStyles.ButtonsText}>Select birthdate</Text>
       </TouchableOpacity>
       <Text
         style={{
