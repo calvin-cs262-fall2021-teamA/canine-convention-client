@@ -7,48 +7,45 @@ import * as Animatable from "react-native-animatable";
 import Accordion from "react-native-collapsible/Accordion";
 
 /*
-* This displayes the help text for the Profile screen
+* This displayes the help text for the Find an Event screen
 */
-
 
 const CONTENT = [
     {
-        title:  "To edit your dog's profile ",
+        title:  "To join an event ",
         content: 
          <Text style={globalStyles.HelptText}>
-        {"1. Tap on the 'Edit' button in the top right corner of the box containing the dog you want to edit." + "\n" +
-         "2. That will take you to the 'DogProfileEdit' screen." + "\n" +
-         "3. To change the profile picture of your dog:" + "\n" + "\t"+
-         "3a. Tap on the “Choose a puppy profile picture!” button." + "\n" + "\t"+
-         "3b. That will open your phone’s camera roll where you can select a photo." + "\n" + 
-         "4. To change your dog’s birthday:" + "\n" + "\t" + 
-         "4a. Tap on the “Select birthdate” button near the bottom of your screen." + "\n" + "\t" + 
-         "4b. This will open a popup where you can scroll to select the approximate date your dog was born."+ "\n" + "\t" + 
-         "4c. Press “ confirm” once the right date has been selected." + "\n" + 
-         "5. Press the “Save” button in the upper right hand corner to save your changes." + "\n" +
-         "6. To delete your dog press the 'Delete Dog' button in the top left corner of the screen\n\n"}
+        {"1. Swipe up on the white bar at the bottom of the screen" + "\n"+ "\n" +
+        "2. Tap on the box that says 'Choose Dog' and select the dog would like to take" + "\n" + "\n" +
+        "3. Select the qualities that you want the other dog to have by taping the appropriately labeled buttons" + "\n" + "\n" +
+        "4. Tap the teal 'FIND' button" + "\n" + "\n" +
+        "5. A 'Events found' screen will pop up with the location of the event and who created it in your area" + "\n" + "\n" +
+        "6. Tap on the event you wish to go to " + "\n" + "\n" + 
+        "7. This will take you to screen with contact infromation of the event creator and their dog" + "\n" + "\n"+
+        "8. Accept or decline the match" + "\n" + "\n"+  "\t" +
+        "8a. Press the button labeled 'Accept' to join the event and have it recorded on your history page" + "\n" + "\n" + "\t" +
+        "8b. Press the button labeled 'Delete' if you would not like to go to the event"}                                                                                                                                                                                                               "
         </Text> 
     },
 
     {
-        title: "To add a new dog to your profile",
-        content: <Text style={globalStyles.HelptText}>
-        {"1. Press the “Add a new dog” button on the last slide of your dogs." + "\n" + 
-        "2. From that page you can enter all of your dog’s information by tapping on the corretly labed buttons." + "\n" + 
-        "3. To add a profile picture for your dog:" + "\n" + "\t"+
-        "3a. Tap on the “Choose a puppy profile picture!” button." + "\n" + "\t"+
-        "3b. That will open your phone’s camera roll where you can select a photo." + "\n" +
-        "4. To enter your dog’s birthday:" + "\n" + "\t" + 
-        "4a.  Tap on the “Select birthdate” button near the bottom of your screen." + "\n" + "\t" + 
-        "4b. This will open a popup where you can scroll to select the approximate date your dog was born."+ "\n" + "\t" + 
-        "4c. Press “ confirm” once the right date has been selected." + "\n" + 
-        "5. If you change your mind, press “Cancel” in the upper left corner to discard your changes."+ "\n" +
-        "6. Press “Save” in the upper right hand corner to save your changes.\n\n"}
+        title: "To create an event",
+        content:
+        <Text style={globalStyles.HelptText}>
+        {"1. Swipe up on the white bar at the bottom of the screen" + "\n"+ "\n" +
+        "2. Tap on the box that says 'Choose Dog' and select the dog would like to take" + "\n" + "\n" +
+        "3. Select the qualities that you want the other dog to have by taping the appropriately labeled buttons" + "\n" + "\n" +
+        "4. Tap the teal 'FIND' button" + "\n" + "\n" + 
+        "5. Tap the text that says 'want a different event? Create it here!'"+ "\n" + "\n" +
+        "6. Use the drop down menu to select which dog you would like to take" + "\n" + "\n" +
+        "7. Select the qualities that you want the other dog to have by taping the appropriately labeled buttons" + "\n" + "\n" + 
+        "8. Tap the text that says 'Create' when you are done and the event will be made"}
         </Text>
-      },
+    },
+
 ];
 
-export default function ProfileEditHelp({ route, navigation }) {
+export default function findEventHelp ({ route, navigation }) {
     const [activeSections, setActiveSections] = useState([]);
   const [collapsed, setCollapsed] = useState(true);
   const screen = Dimensions.get("window");
@@ -99,7 +96,7 @@ export default function ProfileEditHelp({ route, navigation }) {
 
           <Accordion
             style={{
-              height: screen.height * 0.6,
+              height: screen.height * 0.9,
               width: screen.width * 0.9,
               alignItems: "center",
             }}

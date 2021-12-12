@@ -114,6 +114,14 @@ export default function Map({ route, navigation }) {
         showsUserLocation={true}
         onLongPress={(e) => setLocation(e.nativeEvent.coordinate)}
       >
+        <View style={{marginLeft: "83%"}}>
+       <Icon
+        raised
+        name= "help-outline"
+        type="ionicon"
+        onPress={() => navigation.navigate("FindEventHelp")} 
+      />
+      </View>
 
       </MapView>
       <BottomSheet
@@ -209,7 +217,7 @@ export default function Map({ route, navigation }) {
               onPress={(value) => {
                 setDogStatus(value);
               }}
-            />
+            
             <TouchableOpacity
               style={globalStyles.homeBtns}
               onPress={() => findEvent()}
