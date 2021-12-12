@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Text, View, Image, TouchableOpacity, Alert } from "react-native";
 import { globalStyles } from "../styles/global";
 
+/*
+* This displayes the help text for the History screen
+*/
 export default function HistoryHelp({ route, navigation }) {
     return (
         <View style={globalStyles.container}>

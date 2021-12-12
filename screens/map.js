@@ -1,3 +1,4 @@
+/* Map page to display a map and attend an event */
 import React, {
   useEffect,
   useState,
@@ -15,13 +16,11 @@ import SelectDropdown from "react-native-select-dropdown";
 
 
 export default function Map({ route, navigation }) {
-  /*
   const [eventType, setEventType] = useState("");
   const [dogSize, setDogSize] = useState("");
   const [dogGender, setDogGender] = useState("");
   const [dogChar, setDogChar] = useState("");
   const [dogStatus, setDogStatus] = useState("");
-  */
   const [eventData, setEventData] = useState('{}');
   const [showEvents, setShowEvents] = useState(false);
   const [isLoading, setLoading] = useState(true);
@@ -45,7 +44,6 @@ export default function Map({ route, navigation }) {
     }
   };
 
-
   // Check events available
   const getEvents = async () => {
     try {
@@ -68,8 +66,6 @@ export default function Map({ route, navigation }) {
         body: JSON.stringify({
           "location": loc,
           "creatorID": creatorID,
-          "email": email,
-          "phone": phone
         })
       };
       const response = await fetch('https://canine-convention.herokuapp.com/event', requestOptions);
@@ -88,7 +84,7 @@ export default function Map({ route, navigation }) {
   const bottomSheetRef = useRef(null);
 
   // variables
-  const snapPoints = useMemo(() => ["20%", "60%"], []);
+  const snapPoints = useMemo(() => ["20%", "90%"], []);
 
   const [mapRegion, setMapRegion] = useState(null);
   useEffect(() => {
@@ -118,6 +114,14 @@ export default function Map({ route, navigation }) {
         showsUserLocation={true}
         onLongPress={(e) => setLocation(e.nativeEvent.coordinate)}
       >
+        <View style={{marginLeft: "83%"}}>
+       <Icon
+        raised
+        name= "help-outline"
+        type="ionicon"
+        onPress={() => navigation.navigate("FindEventHelp")} 
+      />
+      </View>
 
       </MapView>
       <BottomSheet
@@ -168,7 +172,7 @@ export default function Map({ route, navigation }) {
                 dropdownIconPosition={"right"}
               />
             )}
-            {/*<ButtonGroup
+            <ButtonGroup
               buttons={["WALK", "PARK"]}
               selectedButtonStyle={{ backgroundColor: "#16BAC6" }}
               selectedIndex={eventType}
@@ -213,8 +217,7 @@ export default function Map({ route, navigation }) {
               onPress={(value) => {
                 setDogStatus(value);
               }}
-            />
-            */}
+            
             <TouchableOpacity
               style={globalStyles.homeBtns}
               onPress={() => findEvent()}
@@ -236,7 +239,7 @@ export default function Map({ route, navigation }) {
                 renderItem={({ item }) => (
                   <TouchableOpacity
                     style={{ marginTop: "2%", alignSelf: 'center', borderWidth: 1, borderRadius: 5, justifyContent: "space-between", flexDirection: "row", width: "95%", padding: "5%" }}
-                    onPress={() => {navigation.navigate("Match Found", [route.params, item, dog]) }}
+                    onPress={() => {setShowEvents(false); navigation.navigate("Match Found", [route.params, item, dog]) }}
                   >
                     <Text>{item.location['x']} {item.location['y']}, created by {item.firstname} {item.lastname}</Text>
                     <Icon
@@ -249,7 +252,8 @@ export default function Map({ route, navigation }) {
                 )}
               />)}
             <TouchableOpacity
-              onPress={() => setShowCreateEvent(true)}>
+              style={{marginBottom: 12}}
+              onPress={() => { setShowEvents(false); setShowCreateEvent(true)}}>
               <Text>Want a different event? Create it here!</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -302,7 +306,7 @@ export default function Map({ route, navigation }) {
               />
             </View>
             <TouchableOpacity
-              onPress={() => { createEvent(location, route.params.id); setShowCreateEvent(false) }}
+              onPress={() => { console.log(route.params);createEvent(location, route.params); setShowCreateEvent(false) }}
               style={styles.modalToggle}
             >
               <Text>CREATE</Text>
@@ -326,11 +330,6 @@ const styles = StyleSheet.create({
 });
 
 const popStyle = StyleSheet.create({
-  boxBackground: {
-    backgroundColor: "#000000aa",
-    flex: 1,
-  },
-
   box: {
     backgroundColor: "#fff",
     width: "80%",
@@ -339,8 +338,4 @@ const popStyle = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center'
   },
-
-  boxText: {
-    fontSize: 50,
-  }
 });

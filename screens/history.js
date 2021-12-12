@@ -20,8 +20,6 @@ import Accordion from "react-native-collapsible/Accordion";
 /*
   Shows the user's past matches, ordered by date
 */
-
-
 const CONTENT = [
   {
     title: "Oct 31 - Grand Rapids",
