@@ -172,7 +172,7 @@ export default function DogProfileEdit({ navigation, route }) {
         style={[globalStyles.picturePicker, { marginBottom: "5%" }]}
         onPress={openImagePickerAsync}
       >
-        <Text style={globalStyles.tagText}>
+        <Text style={globalStyles.ButtonsText}>
           Choose a puppy profile picture!
         </Text>
       </TouchableOpacity>
@@ -223,7 +223,7 @@ export default function DogProfileEdit({ navigation, route }) {
         style={[globalStyles.picturePicker, { marginTop: "2%" }]}
         onPress={showDatePicker}
       >
-        <Text style={globalStyles.tagText}>Select birthdate</Text>
+        <Text style={globalStyles.ButtonsText}>Select birthdate</Text>
       </TouchableOpacity>
       <Text
         style={{
