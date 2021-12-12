@@ -17,6 +17,7 @@ import{Icon} from "react-native-elements";
 import * as Animatable from "react-native-animatable";
 import Accordion from "react-native-collapsible/Accordion";
 
+
 const CONTENT = [
   {
     title: "Oct 31 - Grand Rapids",

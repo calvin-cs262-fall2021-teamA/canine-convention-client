@@ -13,7 +13,8 @@ import MatchFound from "./screens/matchFound";
 import History from "./screens/history";
 import ProfileEditHelp from "./screens/ProfileEditHelp";
 import ProfileHelp from "./screens/ProfileHelp";
-import HistoryHelp from "./screens/HistoryHelp"
+import HistoryHelp from "./screens/HistoryHelp";
+import FindEventHelp from "./screens/findEventHelp";
 import AddDog from "./screens/addDog";
 
 
@@ -95,6 +96,10 @@ function App() {
         <Stack.Screen
           name="HistoryHelp"
           component={HistoryHelp}
+        />
+         <Stack.Screen
+          name="FindEventHelp"
+          component={FindEventHelp}
         />
         <Stack.Screen
           name="AddDog"
