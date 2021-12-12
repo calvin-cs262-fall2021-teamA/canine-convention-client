@@ -158,7 +158,8 @@ const CONTENT = [
 export default function History({ route, navigation }) {
   
   //Declare Variables
-  const {userID} = route.params;
+  const userID = route.params;
+  console.log(route.params);
   const [activeSections, setActiveSections] = useState([]);
   const [collapsed, setCollapsed] = useState(true);
   const [matchedDogIDs, setmatchedDogIDs] = useState([]);

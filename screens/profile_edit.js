@@ -25,6 +25,7 @@ export default function ProfileEdit({ route, navigation }) {
   //Declare Variables
   const {currentUser} = route.params;
   const {userID} = route.params;
+  console.log(userID);
   const [selectedImage, setSelectedImage] = React.useState(null);
   const [email, setEmail] = useState(currentUser.email);
   //const [password, setPassword] = useState(currentUser.password);
