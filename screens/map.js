@@ -216,7 +216,7 @@ export default function Map({ route, navigation }) {
               selectedIndex={dogStatus}
               onPress={(value) => {
                 setDogStatus(value);
-              }}
+              }} />
             
             <TouchableOpacity
               style={globalStyles.homeBtns}
