@@ -244,7 +244,7 @@ export default function Map({ route, navigation }) {
                 )}
               />)}
             <TouchableOpacity
-              style={{marginBottom: 10}}
+              style={{marginBottom: 12}}
               onPress={() => { setShowEvents(false); setShowCreateEvent(true)}}>
               <Text>Want a different event? Create it here!</Text>
             </TouchableOpacity>
